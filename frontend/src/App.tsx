@@ -1,12 +1,13 @@
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./routes";
 
-
-function App() {
-
+const App: React.FC = () => {
   return (
-    <>
-      hello world
-    </>
-  )
-}
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  );
+};
 
-export default App
+export default App;
