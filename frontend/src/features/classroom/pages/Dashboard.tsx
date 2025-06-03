@@ -7,7 +7,7 @@ const Dashboard: React.FC = () => {
         Dashboard
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
         <div className="bg-white rounded-2xl shadow-lg p-6">
           <h2 className="text-xl font-semibold text-gray-800">Card 1</h2>
           <p className="text-gray-600">This is a dashboard card.</p>
