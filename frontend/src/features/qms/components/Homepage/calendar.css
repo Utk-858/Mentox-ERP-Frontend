@@ -1,0 +1,92 @@
+.react-calendar {
+  font-family: 'Inter', sans-serif;
+  border: none;
+  width: max-content;
+  padding: 1rem;
+  background-color: #f5f5f7; /* Main calendar background */
+  border-radius: 16px;
+
+}
+
+.react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 80px); /* 7 days a week */
+  grid-auto-rows: 100px;
+  gap: 20px;
+  justify-content: center;
+}
+
+.react-calendar__tile {
+  background-color: white;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: start;
+  transition: background-color 0.2s ease;
+  font-size: 1rem;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  box-sizing: border-box;
+  min-width: 90px;
+  height: 100px;
+}
+
+/* Selected tile */
+.react-calendar__tile--active {
+  background-color: #8b5cf6 !important;
+  color: white;
+}
+
+/* Range tiles */
+.react-calendar__tile--range {
+  background-color: #d8b4fe;
+  color: white;
+}
+
+.react-calendar__tile--rangeStart,
+.react-calendar__tile--rangeEnd {
+  background-color: #a855f7;
+  color: white;
+  border-radius: 12px;
+}
+
+/* Today tile */
+.react-calendar__tile--now {
+  background: none;
+  color: inherit;
+}
+
+/* Neighboring month tiles */
+.react-calendar__month-view__days__day--neighboringMonth {
+  background-color: #C6ABFF;
+  color: white;
+  border-radius: 10px;
+}
+
+/* Optional: Tags and badges inside tiles */
+.tile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.tag {
+  border: 1px solid #a78bfa;
+  color: #6b21a8;
+  font-size: 0.6rem;
+  border-radius: 9999px;
+  padding: 1px 6px;
+  line-height: 1;
+  
+  /* white-space: nowrap; */
+  text-align: center;
+}
+
+.has-tags {
+  background-color: white;
+  border-radius: 12px;
+  margin-top: 10px;
+  text-align: left;
+}
