@@ -106,9 +106,9 @@ const Sidebar = () => {
                 <NavLink to={`/Sign-Out`}>
                 <button
                   className="text-white hover:bg-white/10 p-2 rounded-lg transition"
-                  onClick={() => setActiveItem("Sign Out")}
+                  onClick={() => setActiveItem("Sign-Out")}
                 >
-                  {navItems.find((item) => item.label === "Sign Out")?.icon}
+                  {navItems.find((item) => item.label === "Sign-Out")?.icon}
                 </button>
                 </NavLink>
               </div>
