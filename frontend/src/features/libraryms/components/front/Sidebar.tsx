@@ -27,7 +27,7 @@ const navItems = [
   { icon: <User size={16} />, label: "Profile" },
   { icon: <Settings size={16} />, label: "Settings" },
   { icon: <HelpCircle size={16} />, label: "Help & Support" },
-  { icon: <LogOut size={16} />, label: "Sign Out" },
+  { icon: <LogOut size={16} />, label: "Sign-Out" },
 ];
 const Sidebar = () => {
 
@@ -84,25 +84,33 @@ const Sidebar = () => {
           ) : (
             <nav className="flex flex-col justify-between items-center h-full">
               <div className="flex flex-col gap-6 mt-4">
-                {navItems.slice(0, navItems.length - 7).map((item, index) => (
-                  <button
-                    key={index}
-                    className="text-white hover:bg-white/10 p-2 rounded-lg transition"
-                    onClick={() => setActiveItem(item.label)}
-                  >
-                    {item.icon}
-                  </button>
-                ))}
+                 {navItems.slice(0, navItems.length - 7).map((item, index) => (
+      <NavLink
+        to={`/${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+        key={index}
+        className={({ isActive }) =>
+          `p-2 rounded-lg transition text-white hover:bg-white/10 ${
+            isActive ? "bg-white/20" : ""
+          }`
+        }
+        onClick={() => setActiveItem(item.label)}
+      >
+        {item.icon}
+      </NavLink>
+    ))}
               </div>
 
               {/* Logout at bottom */}
               <div className="mb-4">
+
+                <NavLink to={`/Sign-Out`}>
                 <button
                   className="text-white hover:bg-white/10 p-2 rounded-lg transition"
                   onClick={() => setActiveItem("Sign Out")}
                 >
                   {navItems.find((item) => item.label === "Sign Out")?.icon}
                 </button>
+                </NavLink>
               </div>
             </nav>
           )}
