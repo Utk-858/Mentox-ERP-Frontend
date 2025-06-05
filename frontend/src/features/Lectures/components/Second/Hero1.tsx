@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaLock, FaClock, FaFileAlt } from "react-icons/fa";
+// import { FaLock, FaClock, FaFileAlt } from "react-icons/fa";
 import {
   Accordion,
   AccordionContent,
@@ -215,23 +215,23 @@ const Hero1: React.FC = () => {
   );
 };
 
-interface LessonItemProps {
-  title: string;
-  time: string;
-  locked?: boolean;
-}
+// interface LessonItemProps {
+//   title: string;
+//   time: string;
+//   locked?: boolean;
+// }
 
-const LessonItem: React.FC<LessonItemProps> = ({ title, time, locked }) => (
-  <div className="flex items-center justify-between text-sm text-gray-700">
-    <div className="flex items-center gap-2">
-      <FaFileAlt className="text-purple-600" />
-      <span>{title}</span>
-    </div>
-    <div className="flex items-center gap-1 text-gray-500">
-      {locked && <FaLock />}
-      <FaClock /> <span>{time}</span>
-    </div>
-  </div>
-);
+// const LessonItem: React.FC<LessonItemProps> = ({ title, time, locked }) => (
+//   <div className="flex items-center justify-between text-sm text-gray-700">
+//     <div className="flex items-center gap-2">
+//       <FaFileAlt className="text-purple-600" />
+//       <span>{title}</span>
+//     </div>
+//     <div className="flex items-center gap-1 text-gray-500">
+//       {locked && <FaLock />}
+//       <FaClock /> <span>{time}</span>
+//     </div>
+//   </div>
+// );
 
 export default Hero1;
