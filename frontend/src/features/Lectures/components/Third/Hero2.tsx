@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Sidebar from '../front/Sidebar';
 import { Bell, MessageCircle, Plus } from 'lucide-react';
 
