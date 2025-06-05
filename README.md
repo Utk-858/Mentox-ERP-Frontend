@@ -7,25 +7,6 @@
 > * Each frontend feature is isolated in its own module.
 > * Backend services communicate via APIs and are independently deployed.
 
-## Folder Structure:
-
-src/
-├── main.tsx                 # React root entry file
-├── App.tsx                  # App layout & route mount point
-├── routes.tsx               # Central route definitions for all modules
-├── features/                # All domain-specific modules (modular frontend)
-│   └── \[featureName]/       # Each feature lives here (e.g., qms, attendance)
-│       ├── pages/           # Full-page views, route-bound
-│       ├── components/      # Reusable components specific to this feature
-│       ├── api.ts           # API calls specific to this feature (use .ts, not .tsx)
-│       ├── Slice.ts (optional) # Redux or zustand state logic
-│       └── types.ts         # Types/interfaces related to the feature
-├──                  # Shared components, hooks, utils across features
-│   ├── components/          # Reusable UI components (buttons, modals)
-│   ├── hooks/               # Custom React hooks
-│   ├── utils/               # Helper functions/utilities
-│   └── constants.ts         # Shared constants
-└── styles/                  # Global styles and Tailwind configuration (if any)
 
 ## How to Contribute a Feature:
 
