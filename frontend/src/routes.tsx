@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { Routes, Route, } from "react-router-dom";
-import Home from "./features/libraryms/components/Home";
+import Home from "./features/Lectures/components/Home";
 
 
 // const ClassroomDashboard = lazy(()=> import ("./features/classroom/pages/Dashboard"));
