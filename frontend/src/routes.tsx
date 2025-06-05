@@ -7,6 +7,7 @@ import Home from "./features/Lectures/components/Home";
 const Quizattempt=lazy(()=>import("./features/qms/pages/Quizattempt"))
 const Quizreview=lazy(()=>import("./features/qms/pages/Quizreview"))
 const Homepage=lazy(()=>import("./features/qms/pages/Homepage"))
+const LibraryDashboard=lazy(()=>import("./features/libraryms/pages/library-dashboard.tsx"))
 
 const AppRoutes: React.FC = () => {
   return (
@@ -16,7 +17,9 @@ const AppRoutes: React.FC = () => {
         <Route path="/review" element={<Quizreview />} />
         <Route path="/homepage" element={<Homepage/>}/>
         <Route path="/Lectures/*" element={<Home/>} />
+        <Route path="/library" element={<LibraryDashboard/>} />
         <Route path="*" element={<div>404 - Not Found</div>} />
+        
       </Routes>
     </Suspense>
   );
