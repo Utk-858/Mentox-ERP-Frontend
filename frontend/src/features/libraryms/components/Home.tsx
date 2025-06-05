@@ -1,0 +1,20 @@
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Hero from './front/Hero'
+import Sidebar from './front/Sidebar'
+import Hero1 from './Second/Hero1'
+
+const Home = () => {
+  return (
+    <div>
+
+     <Routes>
+      <Route path="*" element={<div>404 - Not Found</div>} />
+       <Route path="/" element={<Hero/>} />
+       <Route path="/side" element={<Hero1/>} />
+      </Routes>
+    </div>
+  )
+}
+
+export default Home

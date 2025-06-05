@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { Routes, Route, } from "react-router-dom";
+import Home from "./features/libraryms/components/Home";
 
 
 // const ClassroomDashboard = lazy(()=> import ("./features/classroom/pages/Dashboard"));
@@ -14,6 +15,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/" element={<Quizattempt />} />
         <Route path="/review" element={<Quizreview />} />
         <Route path="/homepage" element={<Homepage/>}/>
+        <Route path="/Lectures/*" element={<Home/>} />
         <Route path="*" element={<div>404 - Not Found</div>} />
       </Routes>
     </Suspense>
