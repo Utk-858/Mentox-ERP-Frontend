@@ -82,7 +82,7 @@ const NCERT: React.FC = () => {
           <button
             onClick={prevSlide}
             disabled={currentIndex === 0}
-            className="p-2 rounded-full bg-gray-200 hover:bg-purple-500 hover:text-white transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+            className="p-2 rounded-full bg-gray-200 hover:bg-[#702DFF] hover:text-white transition-all disabled:opacity-40 disabled:cursor-not-allowed"
             aria-label="Previous"
           >
             <FaArrowLeft />
@@ -90,7 +90,7 @@ const NCERT: React.FC = () => {
           <button
             onClick={nextSlide}
             disabled={currentIndex >= books.length - visibleCount}
-            className="p-2 rounded-full bg-gray-200 hover:bg-purple-500 hover:text-white transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+            className="p-2 rounded-full bg-gray-200 hover:bg-[#702DFF] hover:text-white transition-all disabled:opacity-40 disabled:cursor-not-allowed"
             aria-label="Next"
           >
             <FaArrowRight />

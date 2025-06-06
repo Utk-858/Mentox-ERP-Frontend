@@ -9,7 +9,7 @@ const PageFooter: React.FC = () => {
         src="https://res.cloudinary.com/dikylfimn/image/upload/v1749029176/Design_product_qfr4mx.png" 
         alt="" 
       />
-      //Library policies box
+      
       <div className='absolute top-1/2 right-10 transform -translate-y-1/2 bg-[#702DFF] rounded-xl md:w-[30vw] lg:max-w-lg '>
         <h2 className='text-xl lg:text-4xl font-bold text-white mb-4 text-center'>Library Policies</h2>
         <p className='text-gray-100 text-xs lg:text-lg text-center mb-4'>

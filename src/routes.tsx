@@ -8,6 +8,8 @@ const Quizattempt=lazy(()=>import("./features/qms/pages/Quizattempt"))
 const Quizreview=lazy(()=>import("./features/qms/pages/Quizreview"))
 const Homepage=lazy(()=>import("./features/qms/pages/Homepage"))
 const LibraryDashboard=lazy(()=>import("./features/libraryms/pages/library-dashboard.tsx"))
+const IssuedBooks=lazy(()=>import("./features/libraryms/pages/issued-books.tsx"))
+const ReservedBooks=lazy(()=>import("./features/libraryms/pages/reserved-books.tsx"))
 
 const AppRoutes: React.FC = () => {
   return (
@@ -18,6 +20,14 @@ const AppRoutes: React.FC = () => {
         <Route path="/homepage" element={<Homepage/>}/>
         <Route path="/Lectures/*" element={<Home/>} />
         <Route path="/library" element={<LibraryDashboard/>} />
+        <Route path="/library/issued-books" element={<IssuedBooks/>} />
+        <Route path="/library/reserved-books" element={<ReservedBooks/>} />
+        
+        {/* Add more routes as needed */}
+        {/* Example: */}
+        {/* <Route path="/classroom" element={<ClassroomDashboard />} /> */}
+        
+        {/* Catch-all route for 404 Not Found */}
         <Route path="*" element={<div>404 - Not Found</div>} />
         
       </Routes>
