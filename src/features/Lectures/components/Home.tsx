@@ -14,6 +14,7 @@ const Home = () => {
        <Route path="/" element={<Hero/>} />
        <Route path="/side" element={<Hero1/>} />
        <Route path="/second" element={<Hero2/>} />
+        <Route path="/third" element={<div>500- Not Found</div>} />
       </Routes>
     </div>
   )
