@@ -21,7 +21,7 @@ const QuestionReviewCard: React.FC<Props> = ({ index, question, userAnswer, eval
   const isCorrect = question.questionType === "mcq" && evaluated.correctAnswer === userAnswer;
 
   return (
-    <div className="bg-white p-4 rounded-xl sm:w-[45rem] lg:w-[51rem] xl:w-[60rem] ">
+    <div className="bg-white p-4 rounded-xl sm:w-[45rem] lg:w-[51rem] xl:min-w-[58rem] ">
         <div className=" bg-[#F5F5F7] p-4 rounded-[0.6rem]">
       <div className="flex justify-between items-center">
         <h2 className="font-bold text-[1.7rem]">Q{index + 1}</h2>

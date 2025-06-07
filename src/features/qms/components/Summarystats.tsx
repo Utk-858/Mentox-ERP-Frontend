@@ -27,7 +27,7 @@ const SummaryStats: React.FC<SummaryStatsProps> = ({
   averageMarks,
   topScore,
 }) => (
-  <div className="grid sm:grid-cols-4 text-center sm:w-[44rem] lg:w-[50rem] xl:w-[60rem] mt-8 h-[6rem] gap-4">
+  <div className="grid sm:grid-cols-4 text-center sm:w-[44rem] lg:w-[50rem] xl:w-[58rem] mt-8 h-[6rem] gap-4">
     <StatCard label="Total Marks" value={`${totalMarks}/${maxMarks}`} icon={<IoBookOutline />} />
     <StatCard label="Time Taken" value={time} icon={<MdOutlineCalendarToday />} />
     <StatCard label="Average Marks" value={averageMarks} icon={<MdOutlinePeople />} />

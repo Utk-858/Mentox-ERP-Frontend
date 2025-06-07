@@ -1,8 +1,11 @@
 import React from "react";
+import { lazy } from "react";
 import SummaryStats from "../components/Summarystats";
 import QuestionReviewCard from "../components/QuestionReviewCard";
 import QuestionReviewNavigation from "../components/QuestionReviewNavigation";
 import MentoxBanner from "../components/MentoxBanner";
+const Sidebar = lazy(() => import("../../../components/Sidebar"));
+const Searchbar = lazy(() => import("../../../components/SearchBar"));
 
 const quizData = {
   title: "Science & Technology Quiz",
@@ -69,9 +72,10 @@ const QuizReviewPage: React.FC = () => {
 
   return (
     <div className="min-h-screen w-full flex px-8 ">
-      <div className=" w-[13rem]"></div>
-      <div className="w-full">
-        <h1 className="sm:text-[2.2rem] lg:text-[2.2rem] xl:text-[2.5rem] font-bold text-center">
+      <div className=""><Sidebar/></div>
+      <div className="w-full ml-[2rem]">
+        <div className="mt-4 w-full"><Searchbar/></div>
+        <h1 className="sm:text-[2.2rem] lg:text-[2.2rem] xl:text-[2.5rem] font-bold text-center mt-4">
           {quizData.title}
         </h1>
         <div className="flex gap-2">

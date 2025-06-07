@@ -14,7 +14,7 @@ const QuestionReviewNavigation: React.FC<QuestionReviewNavigationProps> = ({
   questionStatuses,
 }) => {
   return (
-    <div className="p-4 w-[19rem] rounded-xl bg-[#F5F5F7] mt-6">
+    <div className="p-4 w-[16.5rem] rounded-xl bg-[#F5F5F7] mt-6">
       <h2 className="text-[1.5rem] font-[700] mb-3 ">Quiz Navigation</h2>
       <div className="grid grid-cols-5 gap-2 mb-4">
         {Array.from({ length: totalQuestions }).map((_, index) => {

@@ -4,7 +4,7 @@ import { FaRegCirclePlay } from "react-icons/fa6";
 
 const MentoxBanner = () => {
   return (
-    <div className="w-[19rem] bg-[#702DFF] h-[6.5rem] flex flex-col rounded-[0.7rem] p-2 gap-2">
+    <div className="w-[16.5rem] bg-[#702DFF] h-[6.5rem] flex flex-col rounded-[0.7rem] p-2 gap-2">
         <div className="text-[0.5rem] font-[400] text-white">
             YOUR PERSONALISED LEARNING PARTNER
         </div>
