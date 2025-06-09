@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import type { Book } from "../types/Book";
+import type { Book } from "../types";
 
 interface BookTileProps {
   book: Book;

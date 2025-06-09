@@ -3,7 +3,7 @@ import { FaArrowLeft, FaArrowRight, FaHeart } from "react-icons/fa";
 import { Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import BookTile from "../components/BookTile"; 
-import type { Book } from "../types/Book"; 
+import type { Book } from "../types"; 
 
 const NCERT: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);

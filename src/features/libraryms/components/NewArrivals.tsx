@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowLeft, FaArrowRight, FaStar, FaHeart } from "react-icons/fa";
 import BookTile from "./BookTile"; // your BookTile component
-import type { Book } from "../types/Book";
+import type { Book } from "../types";
 
 const NewArrival: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);

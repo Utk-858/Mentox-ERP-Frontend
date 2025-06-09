@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar";
 import SearchBar from "../components/search-bar";
 import Categories from "../components/categories";
 import { FaStar, FaRegStar, FaDownload } from "react-icons/fa";
-import type {Book} from "../types/Book";
+import type {Book} from "../types";
 import RelatedBooks from "../components/relatedBooks";
 
 const mockBook: Book = {
