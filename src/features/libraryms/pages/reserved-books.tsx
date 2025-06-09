@@ -92,7 +92,6 @@ const ReservedBooks: React.FC = () => {
         setLoading(false);
       }
     };
-
     fetchReservedBooks();
   }, []);
 
@@ -116,7 +115,7 @@ const ReservedBooks: React.FC = () => {
                 {error} 
               </p>
             )}
-            {ReservedBooks.map((book) => (
+            {reservedBooks.map((book) => (
               <BookCard
                 key={book.id}
                 title={book.title}
@@ -138,5 +137,4 @@ const ReservedBooks: React.FC = () => {
     </div>
   );
 };
-
 export default ReservedBooks;

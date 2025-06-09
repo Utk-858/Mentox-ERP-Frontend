@@ -79,7 +79,7 @@ const BookDetails: React.FC = () => {
       case "reviews":
         return (
           <ul className="list-disc ml-5 text-sm text-gray-700 space-y-2">
-            {book.reviews.map((review, i) => (
+            {book.reviews.map((review: string, i: number) => (
               <li key={i}>{review}</li>
             ))}
           </ul>
