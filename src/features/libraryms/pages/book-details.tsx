@@ -31,7 +31,7 @@ const mockBook: Book = {
 
 const BookDetails: React.FC = () => {
   const { isbn } = useParams<{ isbn: string }>();
-  const [book, setBook] = useState<BookDetailsType | null>(null);
+  const [book, setBook] = useState<Book | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"description" | "additional" | "reviews">("description");
 
