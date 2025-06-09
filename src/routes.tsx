@@ -10,6 +10,7 @@ const Homepage=lazy(()=>import("./features/qms/pages/Homepage"))
 const LibraryDashboard=lazy(()=>import("./features/libraryms/pages/library-dashboard.tsx"))
 const IssuedBooks=lazy(()=>import("./features/libraryms/pages/issued-books.tsx"))
 const ReservedBooks=lazy(()=>import("./features/libraryms/pages/reserved-books.tsx"))
+const BookDetails=lazy(()=>import("./features/libraryms/pages/book-details.tsx"))
 const Quizinfo=lazy(()=>import("./features/qms/pages/Quizinfo.tsx"))
 const CreateQuiz=lazy(()=>import("./features/qms/pages/CreateQuiz.tsx"))
 
@@ -26,6 +27,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/library" element={<LibraryDashboard/>} />
         <Route path="/library/issued-books" element={<IssuedBooks/>} />
         <Route path="/library/reserved-books" element={<ReservedBooks/>} />
+        <Route path="/library/book-details/:isbn" element={<BookDetails/>} />
         
         {/* Add more routes as needed */}
         {/* Example: */}

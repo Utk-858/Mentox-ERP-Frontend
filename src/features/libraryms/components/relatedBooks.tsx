@@ -3,7 +3,7 @@ import { FaArrowLeft, FaArrowRight, FaStar, FaHeart } from "react-icons/fa";
 import BookTile from "./BookTile"; // your BookTile component
 import type { Book } from "../types/Book";
 
-const NewArrival: React.FC = () => {
+const RelatedBooks: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [startIndex, setStartIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -23,13 +23,13 @@ const NewArrival: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    fetch("/library/student/newarrival")
+    fetch("/library/....")
       .then((res) => res.json())
       .then((data: Book[]) => {
         setBooks(data);
       })
       .catch(() => {
-        setBooks([    //fallback -->
+        setBooks([
           {
             ISBN: "1",
             title: "Sample Book 1",
@@ -94,50 +94,13 @@ const NewArrival: React.FC = () => {
       });
   }, []);
 
-  const handlePrev = () => {
-    setStartIndex((prev) => Math.max(prev - itemsPerPage, 0));
-  };
-
-  const handleNext = () => {
-    setStartIndex((prev) =>
-      Math.min(prev + itemsPerPage, books.length - itemsPerPage)
-    );
-  };
-
+ 
   const visibleBooks = books.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <div className="py-8">
       <div className="flex mr-8">
-        <h2 className="text-2xl font-semibold mb-6 ml-2">New Arrivals</h2>
-        <div className="flex items-center ml-[50rem]">
-          <button
-            onClick={handlePrev}
-            disabled={startIndex === 0}
-            className={`rounded-full p-2 mr-2 ${
-              startIndex === 0 ? "bg-gray-300 cursor-not-allowed" : "bg-gray-200"
-            }`}
-          >
-            <FaArrowLeft className="text-gray-600" />
-          </button>
-          <button
-            onClick={handleNext}
-            disabled={startIndex + itemsPerPage >= books.length}
-            className={`rounded-full p-2 ${
-              startIndex + itemsPerPage >= books.length
-                ? "bg-gray-300 cursor-not-allowed"
-                : "bg-[#702DFF]"
-            }`}
-          >
-            <FaArrowRight
-              className={`${
-                startIndex + itemsPerPage >= books.length
-                  ? "text-gray-400"
-                  : "text-white"
-              }`}
-            />
-          </button>
-        </div>
+        <h2 className="text-3xl font-semibold mb-6 ml-2">Related Products</h2>
       </div>
 
       <div className="flex flex-wrap gap-10">
@@ -146,7 +109,6 @@ const NewArrival: React.FC = () => {
             key={book.ISBN}
             className="relative overflow-hidden w-36 xl:w-46"
           >
-            
             <BookTile book={book} />
 
             {/* Heart icon on top right */}
@@ -177,4 +139,4 @@ const NewArrival: React.FC = () => {
   );
 };
 
-export default NewArrival;
+export default RelatedBooks;

@@ -1,31 +1,66 @@
-import React, { useState, useEffect } from 'react';
-import { FaArrowLeft, FaArrowRight, FaHeart } from 'react-icons/fa';
-import { Download } from 'lucide-react';
-
-interface Book {
-  id: string;
-  title: string;
-  cover: string;
-  downloadUrl: string;
-}
+import React, { useState, useEffect } from "react";
+import { FaArrowLeft, FaArrowRight, FaHeart } from "react-icons/fa";
+import { Download } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import BookTile from "../components/BookTile"; 
+import type { Book } from "../types/Book"; 
 
 const NCERT: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedSubject, setSelectedSubject] = useState('Social Studies');
+  const [selectedSubject, setSelectedSubject] = useState("Social Studies");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
 
+  const navigate = useNavigate();
+
+  // Mock data -->
   const mockBooks: Book[] = [
-    { id: '1', title: 'Achilles', cover: 'https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png', downloadUrl: '#' },
-    { id: '2', title: 'Harry Potter', cover: 'https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png', downloadUrl: '#' },
-    { id: '3', title: 'History Book', cover: 'https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png', downloadUrl: '#' },
-    { id: '4', title: 'Mathematics', cover: 'https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png', downloadUrl: '#' },
-    { id: '5', title: 'Geography', cover: 'https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png', downloadUrl: '#' },
-    { id: '6', title: 'Physics', cover: 'https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png', downloadUrl: '#' },
+    {
+      ISBN: "9781234567890",
+      title: "Achilles",
+      coverImage:
+        "https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png",
+      downloadUrl: "#",
+    },
+    {
+      ISBN: "9781234567891",
+      title: "Harry Potter",
+      coverImage:
+        "https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png",
+      downloadUrl: "#",
+    },
+    {
+      ISBN: "9781234567892",
+      title: "History Book",
+      coverImage:
+        "https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png",
+      downloadUrl: "#",
+    },
+    {
+      ISBN: "9781234567893",
+      title: "Mathematics",
+      coverImage:
+        "https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png",
+      downloadUrl: "#",
+    },
+    {
+      ISBN: "9781234567894",
+      title: "Geography",
+      coverImage:
+        "https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png",
+      downloadUrl: "#",
+    },
+    {
+      ISBN: "9781234567895",
+      title: "Physics",
+      coverImage:
+        "https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png",
+      downloadUrl: "#",
+    },
   ];
 
-  const subjects = ['Home', 'Social Studies', 'Science', 'English', 'Hindi'];
+  const subjects = ["Home", "Social Studies", "Science", "English", "Hindi"];
 
   const getVisibleBookCount = () => {
     if (window.innerWidth >= 1280) return 3;
@@ -36,20 +71,24 @@ const NCERT: React.FC = () => {
   useEffect(() => {
     setVisibleCount(getVisibleBookCount());
     const handleResize = () => setVisibleCount(getVisibleBookCount());
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
     const fetchBooks = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`/library/student/ncert?subject=${encodeURIComponent(selectedSubject)}`);
-        if (!res.ok) throw new Error('API failed');
+        const res = await fetch(
+          `/library/student/ncert?subject=${encodeURIComponent(selectedSubject)}`
+        );
+        if (!res.ok) throw new Error("API failed");
         const data = await res.json();
-        setBooks(data);
+
+
+        setBooks(data); 
       } catch (error) {
-        console.warn('API not available, falling back to mock data.');
+        console.warn("API not available, falling back to mock data.");
         setBooks(mockBooks);
       } finally {
         setLoading(false);
@@ -61,15 +100,21 @@ const NCERT: React.FC = () => {
   }, [selectedSubject]);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % Math.max(1, books.length - visibleCount + 1));
+    setCurrentIndex(
+      (prev) => (prev + 1) % Math.max(1, books.length - visibleCount + 1)
+    );
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + Math.max(1, books.length - visibleCount + 1)) % Math.max(1, books.length - visibleCount + 1));
+    setCurrentIndex(
+      (prev) =>
+        (prev - 1 + Math.max(1, books.length - visibleCount + 1)) %
+        Math.max(1, books.length - visibleCount + 1)
+    );
   };
 
   const handleDownload = (book: Book) => {
-    console.log('Downloading:', book.title);
+    console.log("Downloading:", book.title);
   };
 
   const visibleBooks = books.slice(currentIndex, currentIndex + visibleCount);
@@ -107,11 +152,17 @@ const NCERT: React.FC = () => {
                 <button
                   onClick={() => setSelectedSubject(subject)}
                   className={`w-full flex text-left px-4 py-3 rounded-3xl text-xs lg:text-sm font-medium transition-colors ${
-                    selectedSubject === subject ? 'bg-gray-800 text-white' : 'text-gray-600 hover:bg-gray-100'
+                    selectedSubject === subject
+                      ? "bg-gray-800 text-white"
+                      : "text-gray-600 hover:bg-gray-100"
                   }`}
                 >
                   {subject}
-                  <FaArrowRight className={`ml-5 mt-1 text-gray-600 ${selectedSubject === subject ? 'block' : 'hidden'}`} />
+                  <FaArrowRight
+                    className={`ml-5 mt-1 text-gray-600 ${
+                      selectedSubject === subject ? "block" : "hidden"
+                    }`}
+                  />
                 </button>
               </div>
             ))}
@@ -119,64 +170,45 @@ const NCERT: React.FC = () => {
         </div>
 
         {/* Book Grid */}
-        <div className="flex-1 min-h-[400px] relative">
+        <div
+          className="flex-1 min-h-[400px] relative grid gap-6"
+          style={{
+            gridTemplateColumns: `repeat(${visibleCount}, minmax(0, 1fr))`,
+          }}
+        >
           {loading ? (
-            <div className="flex justify-center items-center h-full">
+            <div className="flex justify-center items-center h-full col-span-full">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
             </div>
           ) : (
-            <div
-              className="gap-6"
-              style={{
-                display: 'grid',
-                gridTemplateColumns: `repeat(${visibleCount}, minmax(0, 1fr))`,
-              }}
-            >
-              {visibleBooks.map((book) => (
-                <div
-                  key={book.id}
-                  className="flex flex-col justify-between p-2 w-full mx-auto h-[320px] md:h-[360px] lg:h-[400px]"
-                >
-                  <div className="relative  lg:w-full h-48 md:h-76 lg:h-64 mx-auto rounded-lg shadow-lg overflow-hidden mb-4">
-                    <img
-                      src={book.cover}
-                      alt={book.title}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                      }}
-                    />
-                    <button className="absolute top-2 right-2 bg-white rounded-full p-1">
-                      <FaHeart className="text-gray-400 hover:text-red-500" />
-                    </button>
-                  </div>
+            visibleBooks.map((book) => (
+              <div key={book.ISBN} className="flex flex-col justify-between p-2 w-full mx-auto h-[320px] md:h-[360px] lg:h-[400px]">
+                <BookTile book={book} />
 
-                  <div className="flex flex-col items-center gap-3 text-center h-[120px]">
-                    <p
-                      className="text-sm text-gray-700 font-medium"
-                      style={{
-                        display: '-webkit-box',
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: 'vertical',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                      }}
-                      title={book.title}
-                    >
-                      {book.title}
-                    </p>
-                    <button
-                      onClick={() => handleDownload(book)}
-                      className="flex items-center gap-2 bg-gray-700 hover:bg-gray-800 text-white px-5 py-2 rounded-3xl text-sm font-medium transition-colors"
-                    >
-                      <Download className="w-4 h-4" />
-                      Download
-                    </button>
-                  </div>
+                <div className="flex flex-col items-center gap-3 text-center h-[120px]">
+                  <p
+                    className="text-sm text-gray-700 font-medium"
+                    style={{
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                    title={book.title}
+                  >
+                    {book.title}
+                  </p>
+                  <button
+                    onClick={() => handleDownload(book)}
+                    className="flex items-center gap-2 bg-gray-700 hover:bg-gray-800 text-white px-5 py-2 rounded-3xl text-sm font-medium transition-colors"
+                  >
+                    <Download className="w-4 h-4" />
+                    Download
+                  </button>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))
           )}
         </div>
       </div>

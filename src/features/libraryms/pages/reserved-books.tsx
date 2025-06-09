@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import SearchBar from "../components/search-bar";
-import CategoryHeader from "../components/CategoryHeader";
+import Categories from "../components/categories";
 import BookCard from "../components/BookCard";
 import {FaArrowRight} from "react-icons/fa";
 
@@ -59,13 +59,13 @@ const fallbackBooks: Book[] = [
 ];
 
 const ReservedBooks: React.FC = () => {
-  const [issuedBooks, setIssuedBooks] = useState<Book[]>([]);
+  const [reservedBooks, setReservedBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isUsingFallback, setIsUsingFallback] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchIssuedBooks = async () => {
+    const fetchReservedBooks = async () => {
       try {
         const response = await fetch("/library/student/reservedbook");  
         if (!response.ok) {
@@ -76,24 +76,24 @@ const ReservedBooks: React.FC = () => {
         // If API doesnt work, use fallback -->
         if (data.length === 0) {
           console.warn("API returned no books, using fallback data");
-          setIssuedBooks(fallbackBooks);
+          setReservedBooks(fallbackBooks);
           setIsUsingFallback(true);
         } else {
-          setIssuedBooks(data);
+          setReservedBooks(data);
           setIsUsingFallback(false);
         }
       } catch (error: any) {
-        console.error("Error fetching issued books:", error);
+        console.error("Error fetching reserved books:", error);
         setError(error.message);
         // fallback
-        setIssuedBooks(fallbackBooks);
+        setReservedBooks(fallbackBooks);
         setIsUsingFallback(true);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchIssuedBooks();
+    fetchReservedBooks();
   }, []);
 
   return (
@@ -102,7 +102,7 @@ const ReservedBooks: React.FC = () => {
         <Sidebar />
         <div className="flex-1">
           <SearchBar />
-          <CategoryHeader />
+           <div className="ml-20"><Categories /></div>
           <div className="ml-10 mr-10 mt-10 flex justify-between">
             <h1 className="font-semibold text-2xl text-gray-700">Reserved Books</h1>
             <h1 className="text-sm font-semibold mt-2">
@@ -116,7 +116,7 @@ const ReservedBooks: React.FC = () => {
                 {error} 
               </p>
             )}
-            {issuedBooks.map((book) => (
+            {ReservedBooks.map((book) => (
               <BookCard
                 key={book.id}
                 title={book.title}

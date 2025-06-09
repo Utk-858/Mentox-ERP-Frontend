@@ -6,9 +6,17 @@ export type Category = {
   icon: React.JSX.Element;
 };
 
-export type Book = {
-  id: string;
-  title: string;
-  author: string;
-  cover: string;
-};
+export interface Book {
+  ISBN: string;
+  title?: string;
+  author?: string;
+  category?: string;
+  description?: string;
+  rating?: number;
+  coverImage: string;
+  availability?: string;
+  descdown?: string;
+  additionalInfo?: string;
+  reviews?: string[];
+  downloadUrl?: string;
+}

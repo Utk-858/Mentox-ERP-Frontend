@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import SearchBar from "../components/search-bar";
-import CategoryHeader from "../components/CategoryHeader";
+import Categories from "../components/categories";
 import BookCard from "../components/BookCard";
 import {FaArrowRight} from "react-icons/fa";
 
@@ -81,7 +81,7 @@ const IssuedBooks: React.FC = () => {
         <Sidebar />
         <div className="flex-1">
           <SearchBar />
-          <CategoryHeader />
+          <div className="ml-20"><Categories /></div>
           <div className="ml-10 mr-10 mt-10 flex justify-between">
             <h1 className="font-semibold text-2xl text-gray-700">Issued Books</h1>
             <h1 className="text-sm font-semibold mt-2">
