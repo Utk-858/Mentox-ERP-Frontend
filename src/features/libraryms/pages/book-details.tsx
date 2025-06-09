@@ -79,14 +79,13 @@ const BookDetails: React.FC = () => {
       case "reviews":
         return (
           <ul className="list-disc ml-5 text-sm text-gray-700 space-y-2">
-            {book.reviews.map((review: string, i: number) => (
+            {book.reviews?.map((review: string, i: number) => (
               <li key={i}>{review}</li>
             ))}
           </ul>
         );
     }
   };
-
   return (
     <div className="flex">
       <Sidebar />
@@ -123,8 +122,8 @@ const BookDetails: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-2 mb-1">
-                  {renderStars(book.rating)}
-                  <span className="text-gray-600 text-sm ml-1">{book.reviews.length} Student Reviews</span>
+                  {renderStars(book.rating || 0)}
+                  <span className="text-gray-600 text-sm ml-1">{book.reviews?.length || 0} Student Reviews</span>
                 </div>
 
                 <p className="ml-[-10rem] lg:ml-0 mt-10 lg:mt-4 text-sm text-black">{book.description}</p>
@@ -176,7 +175,7 @@ const BookDetails: React.FC = () => {
                   className={`pb-2 ${activeTab === "reviews" ? "border-b-2 border-black text-black" : ""}`}
                   onClick={() => setActiveTab("reviews")}
                 >
-                  Reviews [{book.reviews.length}]
+                  Reviews [{book.reviews?.length || 0}]
                 </button>
               </div>
             </div>
@@ -191,6 +190,4 @@ const BookDetails: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default BookDetails;
+};export default BookDetails;

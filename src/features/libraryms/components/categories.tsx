@@ -156,11 +156,11 @@ const Categories: React.FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {books.map((book) => (
                 <div
-                  key={book.id}
+                  key={book.ISBN}
                   className="bg-white p-2 rounded-lg shadow hover:shadow-md transition"
                 >
                   <img
-                    src={book.cover}
+                    src={book.coverImage}
                     alt={book.title}
                     className="w-full h-48 object-cover rounded"
                   />
