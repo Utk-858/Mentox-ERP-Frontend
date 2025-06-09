@@ -7,7 +7,7 @@ import { FaStar, FaRegStar, FaDownload } from "react-icons/fa";
 import type {Book} from "../types/Book";
 import RelatedBooks from "../components/relatedBooks";
 
-const mockBook: BookDetailsType = {
+const mockBook: Book = {
   title: "Harry Potter and the Philosopher's Stone",
   author: "JK Rowling",
   category: "Fictional, Fantasy",
