@@ -45,8 +45,8 @@ const CreateQuiz: React.FC = () => {
               <div className="flex items-center gap-2">
                 {/* <IoChevronBack className="text-2xl" /> */}
                 <div>
-                  <h1 className="text-[2.25rem] font-[600]">Create New Quiz</h1>
-                  <p className="text-[1.5rem] font-[400] text-gray-500">
+                  <h1 className="text-[2rem] font-[600]">Create New Quiz</h1>
+                  <p className="text-[1.5rem] font-[400] text-[#363636]">
                     Add questions, set answers and configure quiz settings
                   </p>
                 </div>
@@ -56,9 +56,11 @@ const CreateQuiz: React.FC = () => {
                 <button className="border border-[#000] bg-white px-4 py-2 rounded-[0.95rem] text-[1.25rem] font-[500] cursor-pointer">
                   Save Draft
                 </button>
-                <button className="px-6 py-2 bg-[#702DFF] rounded-[0.95rem] text-white text-[1.25rem] font-[500] cursor-pointer">
-                  Preview
-                </button>
+                {step === 4 && (
+    <button className="px-6 py-2 bg-[#702DFF] rounded-[0.95rem] text-white text-[1.25rem] font-[500] cursor-pointer">
+      Preview
+    </button>
+  )}
               </div>
             </div>
 
@@ -75,7 +77,6 @@ const CreateQuiz: React.FC = () => {
               </div>
             </div>
 
-            {/* Bottom Buttons */}
             {/* Bottom Buttons */}
 <div className="mt-6 flex justify-end gap-6">
   <button

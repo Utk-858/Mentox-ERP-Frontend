@@ -22,7 +22,7 @@ const Createquizpage2: React.FC = () => {
           <select
             value={quizType}
             onChange={(e) => setQuizType(e.target.value)}
-            className="w-full bg-gray-100 text-[#363636] rounded-lg px-3 py-2 text-[1.25rem] font-[500] focus:outline-none"
+            className="w-full bg-[#F5F5F7] text-[#555] rounded-lg px-3 py-2 text-[1.25rem] font-[500] focus:outline-none"
           >
             <option value="graded">Graded Quiz</option>
             <option value="practice">Practice Quiz</option>
@@ -53,8 +53,8 @@ const Createquizpage2: React.FC = () => {
               disabled={!marksEnabled}
               type="text"
               placeholder="Global Marks per Question"
-              className={`w-full px-3 py-2 rounded-lg text-[1.25rem] font-[500] text-[#363636] outline-none mb-4 ${
-                marksEnabled ? 'bg-gray-100 text-black' : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+              className={`w-full px-3 py-2 rounded-lg text-[1.25rem] font-[500] text-[#555] outline-none mb-4 ${
+                marksEnabled ? 'bg-[#F5F5F7] text-black' : 'bg-[#F5F5F7] text-gray-400 cursor-not-allowed'
               }`}
             />
 
@@ -79,8 +79,8 @@ const Createquizpage2: React.FC = () => {
               disabled={!negativeMarking}
               type="text"
               placeholder="Global Deduction"
-              className={`w-full px-3 py-2 rounded-lg text-[1.25rem] font-[500] text-[#363636] outline-none mb-4 ${
-                negativeMarking ? 'bg-gray-100 text-black' : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+              className={`w-full px-3 py-2 rounded-lg text-[1.25rem] font-[500] text-[#555] outline-none mb-4 ${
+                negativeMarking ? 'bg-[#F5F5F7] text-black' : 'bg-[#F5F5F7] text-gray-400 cursor-not-allowed'
               }`}
             />
 
@@ -106,7 +106,7 @@ const Createquizpage2: React.FC = () => {
       </div>
 
       {/* Right Column - Info Box */}
-      <div className="w-[18rem] h-fit border border-[#000] rounded-lg px-4 py-3 text-[1rem] text-[#363636] mt-24">
+      <div className="w-[18rem] h-fit border border-[#000] rounded-lg px-4 py-3 text-[1rem] font-[500] text-[#363636] mt-24">
         <p className="mb-2">
           <strong>Graded Quiz</strong> : Quiz has scoring (Global / Question-wise)
         </p>

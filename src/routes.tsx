@@ -13,6 +13,7 @@ const ReservedBooks=lazy(()=>import("./features/libraryms/pages/reserved-books.t
 const BookDetails=lazy(()=>import("./features/libraryms/pages/book-details.tsx"))
 const Quizinfo=lazy(()=>import("./features/qms/pages/Quizinfo.tsx"))
 const CreateQuiz=lazy(()=>import("./features/qms/pages/CreateQuiz.tsx"))
+const Teacherdashboard=lazy(()=>import("./features/qms/pages/Teacherdashboard.tsx"))
 
 const AppRoutes: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/homepage" element={<Homepage/>}/>
          <Route path="/quizinfo" element={<Quizinfo/>}/>
          <Route path="/createquiz" element={<CreateQuiz/>}/>
+                  <Route path="/teacherdashboard" element={<Teacherdashboard/>}/>
         <Route path="/Lectures/*" element={<Home/>} />
         <Route path="/library" element={<LibraryDashboard/>} />
         <Route path="/library/issued-books" element={<IssuedBooks/>} />

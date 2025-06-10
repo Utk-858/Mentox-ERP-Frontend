@@ -106,16 +106,33 @@ const QuestionCard: React.FC<Props> = ({ index, onDelete }) => {
               <input
                 type="text"
                 placeholder={`Enter Option ${i + 1}`}
-                className="flex-1 px-2 py-1 rounded-md focus:outline-none"
-                value={option.text}
+                className="flex-1 px-2 py-1 rounded-md focus:outline-none font-[500] text-[1.25rem]"
+                value={`${i + 1}. ${option.text}`}
                 onChange={(e) => updateOption(i, 'text', e.target.value)}
               />
-              <input
-                type="checkbox"
-                className="accent-purple-500 w-5 h-5"
-                checked={option.isCorrect}
-                onChange={(e) => updateOption(i, 'isCorrect', e.target.checked)}
-              />
+              {questionType === 'Single Choice' ? (
+  <input
+    type="radio"
+    name={`single-choice-${index}`} // unique group for each question
+    className="accent-purple-500 w-5 h-5"
+    checked={option.isCorrect}
+    onChange={() => {
+      const updated = options.map((opt, idx) => ({
+        ...opt,
+        isCorrect: idx === i, // Only current one is true
+      }));
+      setOptions(updated);
+    }}
+  />
+) : (
+  <input
+    type="checkbox"
+    className="accent-purple-500 w-5 h-5"
+    checked={option.isCorrect}
+    onChange={(e) => updateOption(i, 'isCorrect', e.target.checked)}
+  />
+)}
+
               {questionType !== 'True/False' && (
                 <button className="text-red-500 hover:text-red-700 text-[1.5rem]" onClick={() => removeOption(i)}><span><RiDeleteBinLine/></span></button>
               )}

@@ -13,7 +13,7 @@ const Createquizpage1: React.FC = () => {
       {/* Quiz Details */}
       <div className="w-[40rem] bg-white p-5 rounded-lg shadow">
         <h2 className="text-[1.85rem] font-[600]">Quiz Details</h2>
-        <p className="text-[1.25rem] font-[400] text-[#363636] mb-4">
+        <p className="text-[1rem] font-[400] text-[#363636] mb-4">
           Basic information about your quiz
         </p>
 
@@ -24,7 +24,7 @@ const Createquizpage1: React.FC = () => {
           <input
             type="text"
             defaultValue="Computer Communication Networks Quiz 2"
-            className="w-full px-3 py-2 rounded-[0.8rem] bg-[#F5F5F7] outline-none text-[1.5rem] text-[#363636] font-[500]"
+            className="w-full px-3 py-2 rounded-[0.8rem] bg-[#F5F5F7] outline-none text-[1rem] text-[#363636] font-[500]"
           />
         </div>
 
@@ -34,7 +34,7 @@ const Createquizpage1: React.FC = () => {
           </label>
           <textarea
             rows={5}
-            className="w-full px-3 py-2 rounded-[0.8rem] bg-[#F5F5F7] text-[1.5rem] font-[400] text-[#363636] outline-none"
+            className="w-full px-3 py-2 rounded-[0.8rem] bg-[#F5F5F7] text-[1rem] font-[400] text-[#363636] outline-none"
             defaultValue={`1. You are required to bring 1 blank sheet of paper and a pen for rough work.\n2. Calculators are allowed.\n3. Cheating in any form will result in complete debarment from the CCN course (e.g., using ChatGPT, accessing the quiz from another place, etc.).`}
           />
         </div>
@@ -61,20 +61,20 @@ const Createquizpage1: React.FC = () => {
           type="password"
           placeholder="Enter Password"
           disabled={!enabled}
-          className={`w-full px-3 py-2 rounded-md text-[1.25rem] outline-none transition-colors duration-200
-          ${enabled ? "bg-[#F5F5F7] " : "bg-[#F5F5F7]  text-[#363636]"}`}
+          className={`w-full px-3 py-2 rounded-md text-[1rem] font-[500] outline-none transition-colors duration-200
+          ${enabled ? "bg-[#F5F5F7] " : "bg-[#F5F5F7]  text-[#555]"}`}
         />
       </div>
 
       {/* Quiz Settings */}
       <div className="w-[30rem] bg-white p-5 rounded-lg ">
         <h2 className="text-[1.85rem] font-[600]">Quiz Settings</h2>
-        <p className="text-[1.25rem] font-[400] text-[#363636] mb-4">
+        <p className="text-[1rem] font-[400] text-[#696969] mb-4">
           Configure how your quiz works
         </p>
 
         <div className="mb-4">
-          <label className="block font-semibold text-base mb-1">
+          <label className="block font-[500] text-[1.25rem] mb-1">
             Time Limit
           </label>
           <div className="flex items-center justify-between px-4 py-2 bg-[#F5F5F7] rounded-[0.8rem] ">
@@ -95,7 +95,7 @@ const Createquizpage1: React.FC = () => {
         <div className="flex items-center justify-between mb-4 ">
           <div>
             <p className="font-[500] text-[1.25rem]">Shuffle Questions</p>
-            <p className="text-[#363636] text-[1rem] font-[500]">
+            <p className="text-[#555] text-[1rem] font-[400]">
               Show questions in random order
             </p>
           </div>
@@ -116,7 +116,7 @@ const Createquizpage1: React.FC = () => {
         <div className="flex items-center justify-between mb-4 ">
           <div>
             <p className="font-[500] text-[1.25rem]">Immediate Results</p>
-            <p className="text-[#363636] text-[1rem] font-[500]">
+            <p className="text-[#555] text-[1rem] font-[400]">
               Show results for each question
             </p>
           </div>
@@ -147,7 +147,7 @@ const Createquizpage1: React.FC = () => {
         <div className="flex items-center justify-between mb-4 ">
           <div>
             <p className="font-[500] text-[1.25rem]">Sequential Navigation</p>
-            <p className="text-[#363636] text-[1rem] font-[500]">
+            <p className="text-[#555] text-[1rem] font-[400]">
               Students cant go back to a question <br></br>once they submit the answer
             </p>
           </div>
