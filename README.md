@@ -5,7 +5,7 @@
 > 🧭 **Architecture Context**: This project follows a **Modular Frontend + Microservices** approach
 >
 > * Each frontend feature is isolated in its own module.
-> * Backend services communicate via APIs and are independently deployed.
+> * Backend services communicate via APIs and are independently deployed
 
 
 ## How to Contribute a Feature:
