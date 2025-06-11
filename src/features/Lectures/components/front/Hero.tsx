@@ -64,16 +64,16 @@ const Hero = () => {
           </div>
         </main>
         
-        <section className="w-full max-w-7xl mx-auto px-4 z-10">
+        <section className="w-full max-w-6xl mx-auto z-10">
           <ContinueWatching />
         </section>
         
         {/* Free Courses Section */}
-        <section className="w-full max-w-7xl mx-auto px-4">
+        <section className="w-full max-w-6xl mx-auto">
           <FreeCourses />
         </section>
         
-        <section className="w-full max-w-7xl mx-auto px-4">
+        <section className="w-full max-w-6xl mx-auto">
           <Course />
         </section>
       </div>
