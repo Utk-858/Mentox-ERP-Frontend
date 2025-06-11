@@ -225,13 +225,13 @@ const IssueBookEmployeePage: React.FC = () => {
           <IssueBookForm
             userType="Employee"
             userDetails={userDetails}
-            setUserDetails={setUserDetails}
+            setUserDetails={(value) => setUserDetails(prev => ({ ...prev, ...value }))}
             bookSearch={bookSearch}
             setBookSearch={setBookSearch}
             bookDetails={bookDetails}
-            setBookDetails={setBookDetails}
+            setBookDetails={(value) => setBookDetails(prev => ({ ...prev, ...value }))}
             issueDetails={issueDetails}
-            setIssueDetails={setIssueDetails}
+            setIssueDetails={(value) => setIssueDetails(prev => ({ ...prev, ...value }))}
             onSearchUser={handleSearchUser}
             onSearchBook={handleSearchBook}
             onReset={handleReset}
@@ -271,5 +271,4 @@ const IssueBookEmployeePage: React.FC = () => {
       </div>
     </div>
   );
-
 };export default IssueBookEmployeePage;

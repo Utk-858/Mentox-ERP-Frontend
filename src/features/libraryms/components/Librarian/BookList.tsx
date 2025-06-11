@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import type Book from "../../types"; // Adjust the import path as necessary
+import type { Book } from "../../types"; 
 
 
 const BooksList: React.FC = () => {
@@ -8,15 +8,15 @@ const BooksList: React.FC = () => {
 
   // Mock data fallback with more entries for scrolling
   const mockBooks: Book[] = [
-    { id: '#B-10021-30', title: 'Ancestor Trouble', author: 'Maud Newton', available: 30 },
-    { id: '#B-32521-31', title: 'Life Is Everywhere', author: 'Lucy Ives', available: 23 },
-    { id: '#G-95501-31', title: 'Stroller', author: 'Amanda Parrish', available: 90 },
-    { id: '#R-773521-67', title: 'The Secret Syllabus', author: 'Terence C.Burnham', available: 6 },
-    { id: '#B-44521-42', title: 'The Seven Husbands of Evelyn Hugo', author: 'Taylor Jenkins Reid', available: 15 },
-    { id: '#F-55621-53', title: 'Educated', author: 'Tara Westover', available: 42 },
-    { id: '#H-66721-64', title: 'Becoming', author: 'Michelle Obama', available: 38 },
-    { id: '#M-77821-75', title: 'The Midnight Library', author: 'Matt Haig', available: 27 },
-    { id: '#P-88921-86', title: 'Project Hail Mary', author: 'Andy Weir', available: 19 },
+    { ISBN: '#B-10021-30', title: 'Ancestor Trouble', author: 'Maud Newton', available: 30, coverImage: '/images/ancestor_trouble.jpg' },
+    { ISBN: '#B-32521-31', title: 'Life Is Everywhere', author: 'Lucy Ives', available: 23, coverImage: '/images/life_is_everywhere.jpg' },
+    { ISBN: '#G-95501-31', title: 'Stroller', author: 'Amanda Parrish', available: 90, coverImage: '/images/stroller.jpg' },
+    { ISBN: '#R-773521-67', title: 'The Secret Syllabus', author: 'Terence C.Burnham', available: 6, coverImage: '/images/secret_syllabus.jpg' },
+    { ISBN: '#B-44521-42', title: 'The Seven Husbands of Evelyn Hugo', author: 'Taylor Jenkins Reid', available: 15, coverImage: '/images/evelyn_hugo.jpg' },
+    { ISBN: '#F-55621-53', title: 'Educated', author: 'Tara Westover', available: 42, coverImage: '/images/educated.jpg' },
+    { ISBN: '#H-66721-64', title: 'Becoming', author: 'Michelle Obama', available: 38, coverImage: '/images/becoming.jpg' },
+    { ISBN: '#M-77821-75', title: 'The Midnight Library', author: 'Matt Haig', available: 27, coverImage: '/images/midnight_library.jpg' },
+    { ISBN: '#P-88921-86', title: 'Project Hail Mary', author: 'Andy Weir', available: 19, coverImage: '/images/project_hail_mary.jpg' },
   ];
 
   useEffect(() => {
@@ -89,9 +89,9 @@ const BooksList: React.FC = () => {
             </thead>
             <tbody className="bg-gray-100 divide-y divide-gray-200">
               {books.map((book) => (
-                <tr key={book.id} className="hover:bg-gray-200">
+                <tr key={book.ISBN} className="hover:bg-gray-200">
                   <td className="px-1 py-3 whitespace-nowrap text-sm text-gray-700">
-                    {book.id}
+                    {book.ISBN}
                   </td>
                   <td className="px-1 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
                     {book.title}
@@ -104,7 +104,7 @@ const BooksList: React.FC = () => {
                   </td>
                   <td className="px-1 py-3 whitespace-nowrap">
                     <button
-                      onClick={() => handleAction(book.id)}
+                      onClick={() => handleAction(book.ISBN)}
                       className="text-sm text-gray-800 cursor-pointer font-medium"
                     >
                       Action

@@ -23,20 +23,25 @@ type IssueBookFormProps = {
   userType: string;
   studentClass: string;
   setStudentClass: (value: string) => void;
-  userDetails: any;
-  setUserDetails: (value: any) => void;
-  bookSearch: any;
-  setBookSearch: (value: any) => void;
-  bookDetails: any;
-  setBookDetails: (value: any) => void;
-  issueDetails: any;
-  setIssueDetails: (value: any) => void;
+  userDetails: Record<string, string>;
+  setUserDetails: (value: Record<string, string>) => void;
+  bookSearch: BookSearch;
+  setBookSearch: (value: BookSearch) => void;
+  bookDetails: Record<string, string>;
+  setBookDetails: (value: Record<string, string>) => void;
+  issueDetails: Record<string, string>;
+  setIssueDetails: (value: Record<string, string>) => void;
   onSearchUser: () => void;
   onSearchBook: () => void;
   onReset: () => void;
   onIssueBook: () => void;
   userFields: UserField[];
   userSearchFields: UserSearchField[];
+};
+
+type BookSearch = {
+  bookId: string;
+  bookName: string;
 };
 
 const IssueBookForm: React.FC<IssueBookFormProps> = ({
@@ -101,8 +106,9 @@ const IssueBookForm: React.FC<IssueBookFormProps> = ({
 
           {/* Section */}
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Student's Section:</label>
+            <label htmlFor="student-section-select" className="block text-sm font-medium mb-1">Student's Section:</label>
             <select
+              id="student-section-select"
               value={userDetails.studentSection}
               onChange={(e) =>
                 setUserDetails({ ...userDetails, studentSection: e.target.value })
@@ -164,6 +170,7 @@ const IssueBookForm: React.FC<IssueBookFormProps> = ({
                     setUserDetails({ ...userDetails, [field.key]: e.target.value })
                   }
                   className="w-full p-2 border border-gray-300 rounded"
+                  aria-label={field.label}
                 >
                   <option value="">Select {field.label}</option>
                   {field.options &&
@@ -272,6 +279,8 @@ const IssueBookForm: React.FC<IssueBookFormProps> = ({
                   setIssueDetails({ ...issueDetails, [key]: e.target.value })
                 }
                 className="w-50 lg:w-80 p-2 border border-gray-300 rounded"
+                placeholder={`Select ${key.replace(/([A-Z])/g, ' $1')}`}
+                title={`Select ${key.replace(/([A-Z])/g, ' $1')}`}
               />
             </div>
           ))}

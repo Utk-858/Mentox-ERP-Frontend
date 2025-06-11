@@ -82,7 +82,11 @@ const DailyBookActivityChart: React.FC = () => {
           </div>
 
           {/* Settings Icon */}
-          <button className="p-2 rounded-full hover:bg-gray-200">
+          <button
+            className="p-2 rounded-full hover:bg-gray-200"
+            title="Settings"
+            aria-label="Settings"
+          >
             <Settings className="w-5 h-5 text-gray-600" />
           </button>
         </div>

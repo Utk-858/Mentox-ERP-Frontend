@@ -218,13 +218,13 @@ const IssueBookStudent: React.FC = () => {
           <IssueBookForm
             userType="Student"
             userDetails={userDetails}
-            setUserDetails={setUserDetails}
+            setUserDetails={(value: Record<string, string>) => setUserDetails(prev => ({ ...prev, ...value }))}
             bookSearch={bookSearch}
             setBookSearch={setBookSearch}
             bookDetails={bookDetails}
-            setBookDetails={setBookDetails}
+            setBookDetails={(value: Record<string, string>) => setBookDetails(prev => ({ ...prev, ...value }))}
             issueDetails={issueDetails}
-            setIssueDetails={setIssueDetails}
+            setIssueDetails={(value: Record<string, string>) => setIssueDetails(prev => ({ ...prev, ...value }))}
             onSearchUser={handleSearchUser}
             onSearchBook={handleSearchBook}
             onReset={handleReset}

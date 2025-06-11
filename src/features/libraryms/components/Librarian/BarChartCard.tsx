@@ -50,7 +50,12 @@ const BarChartCard: React.FC = () => {
     <div className="bg-gray-100 rounded-xl p-4 shadow-md w-full w-max-sm h-80">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold text-gray-800">Book Demand by Category</h2>
+        <label htmlFor="time-range-select" className="sr-only">
+          Select time range
+        </label>
         <select
+          id="time-range-select"
+          aria-label="Select time range"
           value={range}
           onChange={(e) => setRange(e.target.value as TimeRange)}
           className="bg-indigo-500 text-white text-sm font-medium rounded-md px-3 py-1 focus:outline-none"
@@ -88,7 +93,7 @@ const BarChartCard: React.FC = () => {
                 domain={[0, 100]}
                 tickFormatter={(value) => `${value}%`}
               />
-              <Tooltip formatter={(value: any) => `${value}%`} />
+              <Tooltip formatter={(value: number) => `${value}%`} />
               <Bar
                 dataKey="demand"
                 fill="#7c3aed"
