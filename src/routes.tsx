@@ -18,6 +18,7 @@ const Teacherdashboard=lazy(()=>import("./features/qms/pages/Teacherdashboard.ts
 const IssueBookStudent=lazy(()=>import("./features/libraryms/pages/issueBookStudent.tsx"))
 const IssueBookEmployee=lazy(()=>import("./features/libraryms/pages/issueBookEmployee.tsx"))
 const LibraryLibrarian=lazy(()=>import("./features/libraryms/pages/libraryLibrarian.tsx"))
+const Studentleave=lazy(()=>import("./features/Leave/pages/Studentleave.tsx"))
 
 const AppRoutes: React.FC = () => {
   return (
@@ -37,6 +38,7 @@ const AppRoutes: React.FC = () => {
          <Route path="/library/librarian" element={<LibraryLibrarian/>} />
         <Route path="/library/librarian/issue-book-student" element={<IssueBookStudent/>} />
         <Route path="/library/librarian/issue-book-employee" element={<IssueBookEmployee/>} />
+        <Route path="/leave" element={<Studentleave/>}/>
        
         {/* Add more routes as needed */}
         {/* Example: */}

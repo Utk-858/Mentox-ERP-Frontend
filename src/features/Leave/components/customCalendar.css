@@ -1,0 +1,70 @@
+/* customCalendar.css */
+.react-calendar {
+  width: 300px;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #F5F5F7;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+/* Highlight selected date */
+.react-calendar__tile--active {
+  background-color: #702DFF !important;
+  color: white !important;
+  border-radius: 100%;
+}
+
+.react-calendar__navigation button {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.nav-arrow {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  padding: 5px 8px;
+  font-size: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.react-calendar__month-view__days__day {
+  padding: 1rem 0;
+  border-radius: 50%;
+  font-size: 0.8rem;
+}
+
+.react-calendar__tile--now {
+  background: #eee !important;
+  border-radius: 70%;
+}
+
+.highlight-attendance {
+  background: #7c3aed !important; /* purple */
+  color: white !important;
+  border-radius: 70%;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #ef4444; /* red for Sunday */
+}
+/* Present attendance day */
+.present-day {
+  background-color: #7230FF1A ; /* Purple */
+  color: black !important;
+  border-radius: 70%;
+  
+}
+
+/* Absent attendance day */
+
