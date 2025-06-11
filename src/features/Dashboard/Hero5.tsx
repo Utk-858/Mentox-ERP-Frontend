@@ -235,7 +235,7 @@ const Hero5 = () => {
               </div>
             </div>
           </div>
-
+ 
           <section className="w-full max-w-6xl mx-auto z-10">
             <ContinueWatching />
           </section>
