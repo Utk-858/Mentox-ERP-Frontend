@@ -70,7 +70,7 @@ const LibraryLibrarian: React.FC = () => {
         }
 
         const withIcons = (data as ApiStatData[]).map((item) => {
-          let icon: JSX.Element;
+          let icon: React.ReactElement;
           switch (item.icon) {
             case 'book':
               icon = <Book size={20} />;
