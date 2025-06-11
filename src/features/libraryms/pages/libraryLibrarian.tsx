@@ -19,7 +19,7 @@ interface StatData {
   statLabel: string;
   statChange: string;
   isPositive: boolean;
-  icon: JSX.Element;
+  icon: React.ReactElement;
 }
 
 const MOCK_STATS: StatData[] = [
