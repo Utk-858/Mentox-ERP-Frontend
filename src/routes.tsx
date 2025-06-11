@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Routes, Route, } from "react-router-dom";
 import Home from "./features/Lectures/components/Home";
+import Hero5 from "./features/Dashboard/Hero5.tsx";
 
 
 // const ClassroomDashboard = lazy(()=> import ("./features/classroom/pages/Dashboard"));
@@ -43,6 +44,8 @@ const AppRoutes: React.FC = () => {
         
         {/* Catch-all route for 404 Not Found */}
         <Route path="*" element={<div>404 - Not Found</div>} />
+
+         <Route path="/" element={<Hero5/>} />
         
       </Routes>
     </Suspense>

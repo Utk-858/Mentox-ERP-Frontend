@@ -27,7 +27,7 @@ const navItems = [
   { icon: <User size={16} />, label: "Profile" },
   { icon: <Settings size={16} />, label: "Settings" },
   { icon: <HelpCircle size={16} />, label: "Help & Support" },
-  { icon: <LogOut size={16} />, label: "Sign-Out" },
+  { icon: <LogOut size={16} />, label: "Sign Out" },
 ];
 const Sidebar = () => {
 
@@ -38,13 +38,13 @@ const Sidebar = () => {
       const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
     
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
         {/* Sidebar */}
         <aside
           className={`${
             sidebarOpen
-              ? "w-64 ml-0 rounded-lg"
-              : "w-16 ml-8 mt-7 rounded-lg h-[500px] bg-[#702DFF] shadow-[0_10px_30px_rgba(112,45,255,0.8)]"
+              ? "w-64 ml-0 rounded-lg mt-3"
+              : "w-16 ml-14 mt-7 rounded-lg h-[650px] bg-[#702DFF] shadow-[0_10px_30px_rgba(112,45,255,0.8)]"
           } transition-all duration-300 p-4 drop-shadow-lg shadow-2xl hidden md:flex flex-col relative `}
         >
           {/* Logo and Toggle */}
@@ -54,12 +54,12 @@ const Sidebar = () => {
           >
             <div
               className={`flex flex-row items-center ${
-                sidebarOpen ? "ml-7 mt-10 gap-6" : "gap-0"
+                sidebarOpen ? "ml-7 mt-5 gap-3" : "gap-0"
               }`}
             >
               <img src="/dummy.png" alt="logo" className="w-8 h-8" />
               {sidebarOpen && (
-                <span className="text-2xl font-semibold text-[#1F1F1F]">
+                <span className="text-2xl font-semibold text-center text-[#1F1F1F]">
                   MENTOX
                 </span>
               )}
@@ -68,7 +68,7 @@ const Sidebar = () => {
 
           {/* Nav Items */}
           {sidebarOpen ? (
-            <nav className="ml-6 flex flex-col gap-3 overflow-y-auto">
+            <nav className="ml-6 flex flex-col gap-3 text-[15px] overflow-y-auto">
               {navItems.map((item) => (
                 <NavLink to={`/${item.label}`}>
                 <NavItem
@@ -82,51 +82,32 @@ const Sidebar = () => {
               ))}
             </nav>
           ) : (
-            <nav className="flex flex-col justify-between items-center h-full">
+            <nav className="flex flex-col justify-between items-center">
+
               <div className="flex flex-col gap-6 mt-4">
-                 {navItems.slice(0, navItems.length - 7).map((item, index) => (
-      <NavLink
-        to={`/${item.label.toLowerCase().replace(/\s+/g, '-')}`}
-        key={index}
-        className={({ isActive }) =>
-          `p-2 rounded-lg transition text-white hover:bg-white/10 ${
-            isActive ? "bg-white/20" : ""
-          }`
-        }
-        onClick={() => setActiveItem(item.label)}
-      >
-        {item.icon}
-      </NavLink>
-    ))}
+                {navItems.slice(0, navItems.length - 5).map((item, index) => (
+                  <button
+                    key={index}
+                    className="text-white hover:bg-white/10 p-2 rounded-lg transition"
+                    onClick={() => setActiveItem(item.label)}
+                  >
+                    {item.icon}
+                  </button>
+                ))}
               </div>
 
               {/* Logout at bottom */}
-              <div className="mb-4">
-
-                <NavLink to={`/Sign-Out`}>
+              <div className="mt-20">
                 <button
                   className="text-white hover:bg-white/10 p-2 rounded-lg transition"
-                  onClick={() => setActiveItem("Sign-Out")}
+                  onClick={() => setActiveItem("Sign Out")}
                 >
-                  {navItems.find((item) => item.label === "Sign-Out")?.icon}
+                  {navItems.find((item) => item.label === "Sign Out")?.icon}
                 </button>
-                </NavLink>
               </div>
             </nav>
           )}
         </aside>
-
-        {/* Promo Section */}
-        {sidebarOpen && (
-          <div className="w-64 mt-7 p-4 bg-[#702DFF] rounded-xl text-white text-center space-y-2 mx-1 flex flex-col items-center">
-            <img src="/dummy.png" alt="promo" />
-            <div className="font-bold text-lg">MENTOX</div>
-            <p className="text-xs">Get access to all features on Mentox</p>
-            <button className="bg-white text-[#702DFF] font-semibold text-sm py-1 px-3 rounded-full">
-              Get Pro
-            </button>
-          </div>
-        )}
       </div>
   )
 }

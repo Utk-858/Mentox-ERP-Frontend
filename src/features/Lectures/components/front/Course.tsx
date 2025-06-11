@@ -1,5 +1,6 @@
 import React from "react";
 import { Star, Users, Video } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 interface CourseCardProps {
   title: string;
@@ -46,10 +47,13 @@ const CourseCard: React.FC<CourseCardProps> = ({
       </div>
 
       {/* Action Column */}
-      <div className="flex flex-col justify-between items-end">
+      <div className="flex flex-col justify-between items-end z-10">
+
+        <NavLink to='/Lectures/third'>
         <button className="bg-[#702DFF] hover:bg-[#5c22d0] text-white text-sm cursor-pointer font-semibold px-4 py-1.5 rounded-md transition">
           Start learning
         </button>
+        </NavLink>
         <div className="flex items-center gap-4 text-sm text-gray-600 mt-2">
           <span className="flex items-center gap-1">
             <Star className="w-4 h-4 text-gray-500" /> {rating}

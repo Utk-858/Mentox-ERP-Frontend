@@ -45,7 +45,7 @@ const Sidebar = () => {
             sidebarOpen
               ? "w-64 ml-0 rounded-lg"
               : "w-16 ml-8 mt-7 rounded-lg h-[500px] bg-[#702DFF] shadow-[0_10px_30px_rgba(112,45,255,0.8)]"
-          } transition-all duration-300 p-4 drop-shadow-lg shadow-2xl hidden md:flex flex-col relative `}
+          } transition-all duration-300 p-4 hidden md:flex flex-col relative scrollbar-`}
         >
           {/* Logo and Toggle */}
           <div
@@ -68,7 +68,8 @@ const Sidebar = () => {
 
           {/* Nav Items */}
           {sidebarOpen ? (
-            <nav className="ml-6 flex flex-col gap-3 overflow-y-auto">
+            <nav className="ml-6 flex flex-col gap-3 overflow-y-auto max-h-[calc(100vh-200px)] pr-2">
+
               {navItems.map((item) => (
                 <NavLink to={`/${item.label}`}>
                 <NavItem

@@ -75,7 +75,7 @@ const FreeCourses: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 cusor-pointer">
         {courses.map((course, idx) => (
           <Card key={idx} className="rounded-xl shadow p-4 cursor-pointer">
-            <NavLink to='/Lectures/side'>
+            <NavLink to='/Lectures/third'>
             <div className="flex items-start gap-4">
               <div className="w-16 h-16 bg-gray-200 rounded-md" />
               <div>
