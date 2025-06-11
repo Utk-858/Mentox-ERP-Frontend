@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import SearchBar from "../components/search-bar";
-import Categories from "../components/categories";
+import Categories from "../components/Student/categories";
 import { FaStar, FaRegStar, FaDownload } from "react-icons/fa";
 import type {Book} from "../types";
-import RelatedBooks from "../components/relatedBooks";
+import RelatedBooks from "../components/Student/relatedBooks";
 
 const mockBook: Book = {
   title: "Harry Potter and the Philosopher's Stone",
@@ -115,7 +115,7 @@ const BookDetails: React.FC = () => {
                 <div className="flex justify-between items-start">
                   <h1 className="text-3xl font-bold mb-2 max-w-xl">{book.title}</h1>
                   {book.availability !== "Available" && (
-                    <span className="bg-red-500 text-white text-xs lg:text-sm px-3 py-1 rounded-full">
+                    <span className="bg-red-500 text-white text-xs lg:text-sm px-3 py-1 w-45 xl:w-28  rounded-full">
                       {book.availability}
                     </span>
                   )}

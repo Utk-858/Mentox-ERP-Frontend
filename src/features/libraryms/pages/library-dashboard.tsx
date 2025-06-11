@@ -1,11 +1,11 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
 import SearchBar from "../components/search-bar";
-import Categories from "../components/categories";
-import NewArrival from "../components/NewArrivals";
-import PageFooter from "../components/page-footer";
-import NCERT from "../components/NCERT";
-import DashboardCard from "../components/dashboard-card";
+import Categories from "../components/Student/categories";
+import NewArrival from "../components/Student/NewArrivals";
+import PageFooter from "../components/Student/page-footer";
+import NCERT from "../components/Student/NCERT";
+import DashboardCard from "../components/Student/dashboard-card";
 
 const LibraryDashboard: React.FC = () => {
   return (

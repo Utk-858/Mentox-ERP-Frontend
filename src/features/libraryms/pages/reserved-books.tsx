@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import SearchBar from "../components/search-bar";
-import Categories from "../components/categories";
-import BookCard from "../components/BookCard";
+import Categories from "../components/Student/categories";
+import BookCard from "../components/Student/BookCard";
 import {FaArrowRight} from "react-icons/fa";
 
 // Define the Book type

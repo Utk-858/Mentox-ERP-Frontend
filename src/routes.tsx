@@ -14,6 +14,9 @@ const BookDetails=lazy(()=>import("./features/libraryms/pages/book-details.tsx")
 const Quizinfo=lazy(()=>import("./features/qms/pages/Quizinfo.tsx"))
 const CreateQuiz=lazy(()=>import("./features/qms/pages/CreateQuiz.tsx"))
 const Teacherdashboard=lazy(()=>import("./features/qms/pages/Teacherdashboard.tsx"))
+const IssueBookStudent=lazy(()=>import("./features/libraryms/pages/issueBookStudent.tsx"))
+const IssueBookEmployee=lazy(()=>import("./features/libraryms/pages/issueBookEmployee.tsx"))
+const LibraryLibrarian=lazy(()=>import("./features/libraryms/pages/libraryLibrarian.tsx"))
 
 const AppRoutes: React.FC = () => {
   return (
@@ -30,7 +33,10 @@ const AppRoutes: React.FC = () => {
         <Route path="/library/issued-books" element={<IssuedBooks/>} />
         <Route path="/library/reserved-books" element={<ReservedBooks/>} />
         <Route path="/library/book-details/:isbn" element={<BookDetails/>} />
-        
+         <Route path="/library/librarian" element={<LibraryLibrarian/>} />
+        <Route path="/library/librarian/issue-book-student" element={<IssueBookStudent/>} />
+        <Route path="/library/librarian/issue-book-employee" element={<IssueBookEmployee/>} />
+       
         {/* Add more routes as needed */}
         {/* Example: */}
         {/* <Route path="/classroom" element={<ClassroomDashboard />} /> */}

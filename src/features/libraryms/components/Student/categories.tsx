@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { Category,Book } from "../types.ts";
+import type { Category,Book } from "../../types.ts";
 
 // all categories --->
 
