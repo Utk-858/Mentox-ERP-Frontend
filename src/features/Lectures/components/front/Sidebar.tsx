@@ -55,7 +55,7 @@ const Sidebar = () => {
         >
           <div
             className={`flex flex-row items-center ${
-              sidebarOpen ? "ml-7 mt-5 gap-3" : "gap-0"
+              sidebarOpen ? "ml-7 mt-1 gap-3" : "gap-0"
             }`}
           >
             <img src="/dummy.png" alt="logo" className="w-8 h-8" />
@@ -69,7 +69,7 @@ const Sidebar = () => {
 
         {/* Nav Items */}
         {sidebarOpen ? (
-          <nav className="ml-6 flex flex-col mt-4 gap-3 text-[15px] overflow-y-auto">
+          <nav className="ml-6 flex flex-col mt-4 gap-3.5 text-[15px] overflow-y-auto">
             {navItems.map((item) => (
               <NavLink
                 to={item.path}
