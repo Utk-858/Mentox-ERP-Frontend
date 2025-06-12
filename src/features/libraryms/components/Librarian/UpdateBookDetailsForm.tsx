@@ -114,7 +114,26 @@ const UpdateBookForm: React.FC = () => {
     loadBookDetails();
   }, []);
 
-  const populateFormData = (data: any) => {
+  type BookData = {
+    bookId: string;
+    bookTitle: string;
+    numAuthors: number;
+    firstAuthor: string;
+    publisher: string;
+    edition: string;
+    year: string;
+    numPages: string;
+    numCopies: string;
+    shelfNumber: string;
+    language: string;
+    category: string;
+    price: string;
+    subCategory: string;
+    description: string;
+    coverImageUrl?: string | null;
+  };
+
+  const populateFormData = (data: BookData) => {
     setBookId(data.bookId || "");
     setBookTitle(data.bookTitle || "");
     setFirstAuthor(data.firstAuthor || "");
@@ -421,6 +440,7 @@ const UpdateBookForm: React.FC = () => {
         <div>
           <label className="block mb-2 font-medium">Language</label>
           <select
+            aria-label="Language"
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
             className="border bg-[#D2D2D233] border-[#606060] rounded-md p-2 w-full"
@@ -436,6 +456,7 @@ const UpdateBookForm: React.FC = () => {
         <div>
           <label className="block mb-2 font-medium">Category</label>
           <select
+            aria-label="Category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             className="border border-[#606060] bg-[#D2D2D233] rounded-md p-2 w-full"
@@ -457,6 +478,7 @@ const UpdateBookForm: React.FC = () => {
         <div>
           <label className="block mb-2 font-medium">Sub-Category</label>
           <select
+            aria-label="Sub-Category"
             value={subCategory}
             onChange={(e) => setSubCategory(e.target.value)}
             className="border border-[#606060] bg-[#D2D2D233] rounded-md p-2 w-full"

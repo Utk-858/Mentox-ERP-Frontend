@@ -130,7 +130,14 @@ const Sidebar = () => {
   );
 };
 
-const NavItem = ({ icon, label, active, onClick }: any) => (
+interface NavItemProps {
+  icon: React.ReactNode;
+  label: string;
+  active: boolean;
+  onClick: () => void;
+}
+
+const NavItem = ({ icon, label, active, onClick }: NavItemProps) => (
   <a
     className={`flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer ${
       active
