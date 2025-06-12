@@ -71,9 +71,9 @@ const handleViewQuiz = (index: number) => {
         <Sidebar />
       </div>
       <div className="w-full mt-8 flex flex-col ml-8">
-        <div className="">
-          <Searchbar />
-        </div>
+        <div className="relative flex w-full justify-center z-10 text-center mt-4 mb-4">
+            <Searchbar />
+          </div>
         <div className="text-[2rem] font-[600] mt-4">
           Computer Communication Networks
         </div>

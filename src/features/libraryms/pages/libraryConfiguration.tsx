@@ -51,7 +51,9 @@ const LibraryConfiguration: React.FC = () => {
       <Sidebar />
 
       <div className="flex-1 flex flex-col mt-4">
-        <SearchBar />
+        <div className="relative flex w-full justify-center z-10 text-center mt-8 mb-2">
+            <SearchBar />
+          </div>
 
         <div className="flex-1 p-4 sm:p-6">
           <div className="w-full max-w-5xl mx-auto">

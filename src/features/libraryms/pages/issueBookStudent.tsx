@@ -212,7 +212,9 @@ const IssueBookStudent: React.FC = () => {
     <div className="flex">
       <Sidebar />
       <div className="flex-1 mt-4 p-4">
-        <SearchBar />
+        <div className="relative flex w-full justify-center z-10 text-center mt-8 mb-2">
+            <SearchBar />
+          </div>
 
         <div>
           <IssueBookForm

@@ -35,9 +35,9 @@ const CreateQuiz: React.FC = () => {
         <Sidebar />
       </div>
       <div className="w-full mt-4 flex flex-col">
-        <div className="w-full">
-          <Searchbar />
-        </div>
+        <div className="relative flex w-full justify-center z-10 text-center mt-4 mb-4">
+            <Searchbar />
+          </div>
         <div>
           <div className="flex flex-col p-8 rounded-xl shadow bg-[#F5F5F7] max-w-6xl mx-auto mt-10">
             {/* Top Heading */}

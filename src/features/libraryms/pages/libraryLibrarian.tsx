@@ -104,7 +104,7 @@ const LibraryLibrarian: React.FC = () => {
       <div className="flex-1 flex flex-col overflow-auto">
         {/* Top Search Bar */}
         <div className="w-full px-4 sm:px-6 py-4">
-          <div className="flex justify-center">
+          <div className="relative flex w-full justify-center z-10 text-center mt-8 mb-2">
             <SearchTop />
           </div>
         </div>

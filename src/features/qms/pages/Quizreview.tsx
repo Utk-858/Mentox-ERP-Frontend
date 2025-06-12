@@ -80,9 +80,9 @@ const QuizReviewPage: React.FC = () => {
         <Sidebar />
       </div>
       <div className="w-full ml-[2rem] flex flex-col">
-        <div className="mt-4 w-full">
-          <Searchbar />
-        </div>
+        <div className="relative flex w-full justify-center z-10 text-center mt-8 mb-4">
+            <Searchbar />
+          </div>
         <h1 className="sm:text-[2.2rem] lg:text-[2.2rem] xl:text-[2.5rem] font-bold text-center mt-4">
           {quizData.title}
         </h1>

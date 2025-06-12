@@ -219,7 +219,9 @@ const IssueBookEmployeePage: React.FC = () => {
     <div className="flex">
       <Sidebar />
       <div className="flex-1 mt-4 p-4">
-        <SearchBar />
+        <div className="relative flex w-full justify-center z-10 text-center mt-4 mb-4">
+            <SearchBar />
+          </div>
 
         <div>
           <IssueBookForm

@@ -73,7 +73,7 @@ const Studentleave: React.FC = () => {
         <Sidebar />
       </div>
       <div className="w-full flex flex-col ml-8 ">
-        <div className="mt-8">
+        <div className="relative flex w-full justify-center z-10 text-center mt-8">
           <Searchbar />
         </div>
         <div className="text-[2rem] font-[600] mt-4">Leaves</div>

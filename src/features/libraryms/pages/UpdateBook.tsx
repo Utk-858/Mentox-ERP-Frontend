@@ -92,7 +92,7 @@ const ReturnBook: React.FC = () => {
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
-        <div className="mt-4 px-4">
+        <div className="relative flex w-full justify-center z-10 text-center mt-8">
           <SearchBar />
         </div>
 

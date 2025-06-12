@@ -7,7 +7,9 @@ const Quizinfo:React.FC=()=>{
         <div className="w-full h-screen flex">
             <div><Sidebar/></div>
             <div className="w-full mt-4 flex flex-col">
-                <div className="w-full"><Searchbar/></div>
+                <div className="relative flex w-full justify-center z-10 text-center mt-8 mb-4">
+            <Searchbar />
+          </div>
                 <div> <Quizinfosubject
       courseTitle="Computer Communication Networks"
       quizTitle="Computer Communication Quiz 2"

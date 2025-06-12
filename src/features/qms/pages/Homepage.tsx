@@ -9,7 +9,9 @@ const Homepage:React.FC=()=>{
         <div className="w-full h-full flex">
             <div className=" h-screen"><Sidebar/></div>
             <div className="ml-[6.5rem]">
-                <div className="mt-4"><Searchbar/></div>
+                <div className="relative flex w-full justify-center z-10 text-center mt-8 mb-8">
+            <Searchbar />
+          </div>
                 <div className="text-[2rem] font-[600] ">My Quizzes</div>
                 <div>
                 <Quizlistsection/>
