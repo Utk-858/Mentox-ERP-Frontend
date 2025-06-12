@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { Routes, Route, } from "react-router-dom";
 import Home from "./features/Lectures/components/Home";
 import Hero5 from "./features/Dashboard/Hero5.tsx";
+import ScrollToTop from "./components/ScrollToTop.tsx";
 
 
 // const ClassroomDashboard = lazy(()=> import ("./features/classroom/pages/Dashboard"));
@@ -22,6 +23,10 @@ const Studentleave=lazy(()=>import("./features/Leave/pages/Studentleave.tsx"))
 
 const AppRoutes: React.FC = () => {
   return (
+
+    <>
+
+    <ScrollToTop/>
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path="/attempt" element={<Quizattempt />} />
@@ -51,6 +56,7 @@ const AppRoutes: React.FC = () => {
         
       </Routes>
     </Suspense>
+    </>
   );
 };
 
