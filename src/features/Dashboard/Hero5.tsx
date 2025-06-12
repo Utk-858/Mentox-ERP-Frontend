@@ -107,7 +107,7 @@ const Hero5 = () => {
         <Sidebar />
       </div>
       <div className="flex w-full flex-col">
-        <main className="w-full px-4 md:px-10 py-10 flex flex-col items-center justify-start space-y-12">
+        <main className="w-full px-4 md:px-10 py-14 flex flex-col items-center justify-start space-y-12">
           <div className="relative flex w-full justify-center z-10 text-center">
             <SearchTop />
           </div>

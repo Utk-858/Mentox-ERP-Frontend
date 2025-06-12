@@ -1,26 +1,17 @@
-import { Bell, MessageCircle, Plus } from 'lucide-react'
-import { useState } from 'react';
+import { Bell, MessageCircle, Plus, Search } from 'lucide-react'
+import React, { useState } from 'react'
 
+const SearchBar= () => {
 
-const SearchBar = () => {
-
-     const [search, setSearch] = useState("");
+    const [search, setSearch] = useState("");
   return (
-     <div className="relative flex w-full justify-center z-10">
-            <div className="flex items-center flex-grow px-4 max-w-[600px]">
-              <svg
-                className="w-4 h-4 text-gray-500 mr-2"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z"
-                />
-              </svg>
+
+    <>
+    <div className="flex items-center flex-grow px-4 max-w-[900px]">
+
+        <button className="px-3 py-2 rounded-lg bg-[#F5F5F7] hover:bg-gray-200 mr-2">
+                <Search className="w-4 h-4 text-black" />
+              </button>
               <input
                 type="text"
                 value={search}
@@ -30,6 +21,7 @@ const SearchBar = () => {
               />
             </div>
             <div className="flex items-center space-x-3 pr-2 z-10">
+             
               <button className="p-2 rounded-lg bg-[#F5F5F7] hover:bg-gray-200">
                 <Plus className="w-4 h-4 text-black" />
               </button>
@@ -40,7 +32,8 @@ const SearchBar = () => {
                 <MessageCircle className="w-4 h-4 text-black" />
               </button>
             </div>
-          </div>
+
+            </>
   )
 }
 
