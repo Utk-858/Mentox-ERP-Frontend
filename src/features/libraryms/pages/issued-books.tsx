@@ -61,9 +61,13 @@ const IssuedBooks: React.FC = () => {
           setIssuedBooks(data);
           setIsUsingFallback(false);
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error("Error fetching issued books:", error);
-        setError(error.message);
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError("An unknown error occurred");
+        }
         // fallback 
         setIssuedBooks(fallbackBooks);
         setIsUsingFallback(true);

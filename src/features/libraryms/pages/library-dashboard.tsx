@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "@/components/Sidebar";
 import SearchBar from "../components/search-bar";
 import Categories from "../components/Student/categories";
 import NewArrival from "../components/Student/NewArrivals";

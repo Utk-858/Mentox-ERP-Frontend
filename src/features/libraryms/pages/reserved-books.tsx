@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "@/components/Sidebar";
 import SearchBar from "../components/search-bar";
 import Categories from "../components/Student/categories";
 import BookCard from "../components/Student/BookCard";
@@ -82,9 +82,13 @@ const ReservedBooks: React.FC = () => {
           setReservedBooks(data);
           setIsUsingFallback(false);
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error("Error fetching reserved books:", error);
-        setError(error.message);
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError("An unknown error occurred");
+        }
         // fallback
         setReservedBooks(fallbackBooks);
         setIsUsingFallback(true);

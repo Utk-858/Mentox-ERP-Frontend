@@ -20,6 +20,12 @@ const IssueBookStudent=lazy(()=>import("./features/libraryms/pages/issueBookStud
 const IssueBookEmployee=lazy(()=>import("./features/libraryms/pages/issueBookEmployee.tsx"))
 const LibraryLibrarian=lazy(()=>import("./features/libraryms/pages/libraryLibrarian.tsx"))
 const Studentleave=lazy(()=>import("./features/Leave/pages/Studentleave.tsx"))
+const LibraryConfiguration = lazy(() => import("./features/libraryms/pages/libraryConfiguration.tsx"));
+const LibraryPolicy = lazy(() => import("./features/libraryms/pages/LibraryPolicy.tsx"));
+const ReturnBook = lazy(() => import("./features/libraryms/pages/returnBook.tsx"));
+const UpdateBook = lazy(() => import("./features/libraryms/pages/UpdateBook.tsx"));
+const EditDetails = lazy(() => import("./features/libraryms/pages/edit-details.tsx"));
+const AddBook=lazy(()=>import("./features/libraryms/pages/addBook.tsx"))
 
 const AppRoutes: React.FC = () => {
   return (
@@ -44,6 +50,12 @@ const AppRoutes: React.FC = () => {
         <Route path="/library/librarian/issue-book-student" element={<IssueBookStudent/>} />
         <Route path="/library/librarian/issue-book-employee" element={<IssueBookEmployee/>} />
         <Route path="/leave" element={<Studentleave/>}/>
+               <Route path="/library/librarian/add-book" element={<AddBook/>} />
+       <Route path="/library/librarian/library-config" element={<LibraryConfiguration/>} />
+       <Route path="/library/librarian/library-policy" element={<LibraryPolicy/>} />
+       <Route path="/library/librarian/return-book" element={<ReturnBook/>} />
+        <Route path="/library/librarian/update-book" element={<UpdateBook/>} />
+        <Route path="/library/librarian/edit-details/:isbn" element={<EditDetails/>} />
        
         {/* Add more routes as needed */}
         {/* Example: */}
