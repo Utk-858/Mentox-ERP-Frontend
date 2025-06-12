@@ -44,7 +44,7 @@ const Sidebar = () => {
       <aside
         className={`${
           sidebarOpen
-            ? "w-64 ml-0 rounded-lg mt-5"
+            ? "w-64 ml-0 rounded-lg mt-3"
             : "w-16 ml-14 mt-7 rounded-lg h-[650px] bg-[#702DFF]"
         } transition-all duration-300 p-4 drop-shadow-lg hidden md:flex flex-col relative`}
       >
@@ -69,7 +69,7 @@ const Sidebar = () => {
 
         {/* Nav Items */}
         {sidebarOpen ? (
-          <nav className="ml-6 flex flex-col gap-3 text-[15px] overflow-y-auto">
+          <nav className="ml-6 flex flex-col mt-4 gap-4 text-[15px] overflow-y-auto">
             {navItems.map((item) => (
               <NavLink
                 to={item.path}
