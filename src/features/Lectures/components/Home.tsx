@@ -7,6 +7,10 @@ import Hero2 from './Third/Hero2'
 import Hero4 from './Fourth/Hero4'
 import Hero5 from './Quiz/Hero5'
 import Quiz from './Quiz/Quiz'
+import Teacher from './Teacher/Teacher'
+import TeacherSecond from './Teacher/TeacherSecond'
+import CourseLandingPage from '../pages/CourseLanding'
+import IntendedCoursePage from '../pages/IntendedCoursePage'
 
 const Home = () => {
   return (
@@ -20,6 +24,10 @@ const Home = () => {
         <Route path="/fourth" element={<Hero4/>} />
         <Route path="/quiz" element={<Hero5/>} />
         <Route path="/quiz/first" element={<Quiz/>} />
+        <Route path="/teacher" element={<Teacher/>} />
+        <Route path="/teacher/second" element={<TeacherSecond/>} />
+        <Route path="/Course" element={<CourseLandingPage/>} />
+        <Route path="/CourseInt" element={<IntendedCoursePage/>} />
 
       </Routes>
     </div>

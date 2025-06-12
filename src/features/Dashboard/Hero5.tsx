@@ -20,7 +20,7 @@ import { Card } from "../Lectures/components/ui/Card";
 import Attendance from "./Attendance";
 import RankCard from "./RankCard";
 import type { RankData } from "./types";
-import BarChartCard from "./BarChartCard";
+import BarChartCard from "../../components/BarChart";
 
 interface Course {
   id: string;
@@ -230,7 +230,7 @@ const Hero5 = () => {
                 </div>
 
                 <div className="">
-                  <img src="test7.png" alt="" />
+                  <img src="/test7.png" alt="" />
                 </div>
               </div>
             </div>
