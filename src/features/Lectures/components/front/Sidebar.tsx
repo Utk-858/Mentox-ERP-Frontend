@@ -69,7 +69,7 @@ const Sidebar = () => {
 
         {/* Nav Items */}
         {sidebarOpen ? (
-          <nav className="ml-6 flex flex-col mt-4 gap-3 text-[15px] overflow-y-auto">
+          <nav className="ml-6 flex flex-col mt-4 gap-4 text-[15px] overflow-y-auto">
             {navItems.map((item) => (
               <NavLink
                 to={item.path}
