@@ -26,7 +26,7 @@ const ReturnBook = lazy(() => import("./features/libraryms/pages/returnBook.tsx"
 const UpdateBook = lazy(() => import("./features/libraryms/pages/UpdateBook.tsx"));
 const EditDetails = lazy(() => import("./features/libraryms/pages/edit-details.tsx"));
 const AddBook=lazy(()=>import("./features/libraryms/pages/addBook.tsx"))
-
+const Teacherleave=lazy(()=>import("./features/Leave/pages/Teacherleave.tsx"))
 const AppRoutes: React.FC = () => {
   return (
 
@@ -50,6 +50,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/library/librarian/issue-book-student" element={<IssueBookStudent/>} />
         <Route path="/library/librarian/issue-book-employee" element={<IssueBookEmployee/>} />
         <Route path="/leave" element={<Studentleave/>}/>
+         <Route path="/teacherleave" element={<Teacherleave/>}/>
                <Route path="/library/librarian/add-book" element={<AddBook/>} />
        <Route path="/library/librarian/library-config" element={<LibraryConfiguration/>} />
        <Route path="/library/librarian/library-policy" element={<LibraryPolicy/>} />
