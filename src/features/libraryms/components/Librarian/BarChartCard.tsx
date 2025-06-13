@@ -24,7 +24,7 @@ const BarChartCard: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [animationStarted, setAnimationStarted] = useState(false);
   const [data, setData] = useState<CategoryDemand[]>([]);
-  const chartHeight = 140; // increased height
+  const chartHeight = 140;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -48,13 +48,13 @@ const BarChartCard: React.FC = () => {
   }, [selectedPeriod]);
 
   const getBarHeight = (demand: number) => {
-    return (demand / 100) * chartHeight;
+    return Math.max((demand / 100) * chartHeight, 4); // minimum height of 4px
   };
 
   const timeRanges: TimeRange[] = ["Daily", "Weekly", "Monthly", "Annually"];
 
   return (
-    <div className="w-full max-w-sm bg-gray-100 p-4 rounded-xl shadow-md">
+    <div className="w-full max-w-lg bg-gray-100 p-4 rounded-xl shadow-md">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
         <h2 className="text-gray-800 font-semibold text-lg">Book Demand by Category</h2>
@@ -62,7 +62,7 @@ const BarChartCard: React.FC = () => {
         <div className="relative">
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="bg-purple-600 text-white px-3 py-1 rounded-md text-sm font-medium flex items-center gap-2"
+            className="bg-[#702DFF] text-white px-3 py-1 rounded-md text-sm font-medium flex items-center gap-2"
           >
             {selectedPeriod}
             <ChevronDown
@@ -89,52 +89,68 @@ const BarChartCard: React.FC = () => {
         </div>
       </div>
 
-      {/* Chart */}
-      <div className="flex gap-4 px-2">
+      {/* Chart Container */}
+      <div className="flex gap-3">
         {/* Y Axis Labels */}
         <div
-          className="flex flex-col justify-between pr-2 text-xs text-gray-500"
-          style={{ height: `${chartHeight + 40}px` }}
+          className="flex flex-col justify-between text-xs text-gray-500 py-2"
+          style={{ height: `${chartHeight}px` }}
         >
           {[100, 80, 60, 40, 20, 0].map((val) => (
-            <span key={val}>{val}%</span>
+            <div key={val} className="flex items-center h-0">
+              <span>{val}%</span>
+            </div>
           ))}
         </div>
 
-        {/* Bars */}
-        <div className="flex-1 overflow-x-auto">
-          <div
-            className="grid grid-cols-[repeat(auto-fit,_minmax(30px,_1fr))] items-end gap-[6px]"
-            style={{ height: `${chartHeight + 40}px`, minWidth: "10rem" }}
-          >
+        {/* Chart Area */}
+        <div className="flex-1 relative">
+          {/* Grid Lines */}
+          <div className="absolute inset-0 pointer-events-none">
+            {[100, 80, 60, 40, 20, 0].map((val, index) => (
+              <div
+                key={val}
+                className="absolute w-full border-t border-gray-300 opacity-30"
+                style={{ top: `${(index / 5) * 100}%` }}
+              />
+            ))}
+          </div>
+
+          {/* Bars Container */}
+          <div className="flex items-end justify-between gap-2 h-full px-1" style={{ height: `${chartHeight}px` }}>
             {data.map((item, index) => (
-              <div key={item.category} className="flex flex-col items-center group">
+              <div key={item.category} className="flex flex-col items-center group flex-1 min-w-0">
                 {/* Bar */}
-                <div className="relative mb-2">
+                <div className="relative w-full max-w-[13px] mx-auto">
+                  {/* Background Bar */}
                   <div
-                    className="bg-gray-200 rounded-full absolute bottom-0"
-                    style={{
-                      width: "14px",
-                      height: `${chartHeight + 25}px`, // increased background bar height
-                    }}
+                    className="bg-gray-200 rounded-full w-full"
+                    style={{ height: `${chartHeight}px` }}
                   />
+                  {/* Actual Bar */}
                   <div
-                    className="bg-purple-600 rounded-full transition-all duration-1000 ease-out hover:bg-purple-700 cursor-pointer relative z-10"
+                    className="bg-[#702DFF] rounded-full   cursor-pointer absolute bottom-0 w-full"
                     style={{
-                      width: "14px",
                       height: animationStarted ? `${getBarHeight(item.demand)}px` : "0px",
                       transitionDelay: `${index * 100}ms`,
-                      minHeight: "6px",
                     }}
                   >
                     {/* Tooltip */}
-                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
                       {item.demand}%
                     </div>
                   </div>
                 </div>
-                <div className="text-[0.6rem] text-gray-600 text-center">
-                  {item.category.length > 10 ? item.category.slice(0, 10) + "…" : item.category}
+              </div>
+            ))}
+          </div>
+
+          {/* Category Labels */}
+          <div className="flex items-start justify-between gap-2 mt-3 px-1">
+            {data.map((item) => (
+              <div key={item.category} className="flex-1 min-w-0 text-center">
+                <div className="text-xs text-gray-600 break-words leading-tight">
+                  {item.category.length > 8 ? item.category.slice(0, 8) + "…" : item.category}
                 </div>
               </div>
             ))}

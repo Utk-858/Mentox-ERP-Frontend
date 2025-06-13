@@ -209,7 +209,7 @@ const IssueBookStudent: React.FC = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex font-poppins">
       <Sidebar />
       <div className="flex-1 mt-4 p-4">
         <div className="relative flex w-full justify-center z-10 text-center mt-8 mb-2">
@@ -266,7 +266,7 @@ const IssueBookStudent: React.FC = () => {
                 value: userDetails.studentName,
                 onChange: (val) => setUserDetails({ ...userDetails, studentName: val }),
                 placeholder: 'Search by Name',
-                searchable: true
+                searchable: true,
               }
             ]}
             studentClass={userDetails.studentClass}

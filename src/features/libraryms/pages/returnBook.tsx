@@ -133,7 +133,7 @@ const ReturnBook: React.FC = () => {
             </button>
           </div>
 
-          <section className="bg-[#F5F5F7] ml-[-0.5rem] xl:ml-0 rounded-lg max-w-5xl ml-20 p-6">
+          <section className="bg-[#F5F5F7] ml-[-0.5rem] xl:ml-20 rounded-lg max-w-5xl ml-20 p-6">
             <div className="mb-6">
               <h2 className="text-xl font-bold text-gray-900 mb-2">
                 All Books in the Library
