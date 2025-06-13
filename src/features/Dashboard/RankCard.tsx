@@ -9,7 +9,7 @@ interface Props {
 
 const RankCard: React.FC<Props> = ({ data }) => {
   return (
-    <div className="bg-neutral-100 rounded-xl shadow-md p-5 w-80  flex flex-col justify-between">
+    <div className="bg-neutral-100 rounded-xl p-5 w-80  flex flex-col justify-between">
       <div className="flex justify-between items-start">
         <div className='flex-1/3'>
           <h3 className="text-sm text-gray-500">Class Rank</h3>

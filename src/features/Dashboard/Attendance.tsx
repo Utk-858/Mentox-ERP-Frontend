@@ -32,7 +32,7 @@ const Attendance: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="bg-[#F5F5F7] rounded-xl p-4 shadow-md flex items-center justify-center h-40">
+      <div className="bg-[#F5F5F7] rounded-xl p-4 flex items-center justify-center h-40">
         <span className="text-sm text-gray-500">Loading...</span>
       </div>
     );
@@ -40,14 +40,14 @@ const Attendance: React.FC = () => {
 
   if (!data) {
     return (
-      <div className="bg-[#F5F5F7] rounded-xl p-4 shadow-md flex items-center justify-center h-40">
+      <div className="bg-[#F5F5F7] rounded-xl p-4 flex items-center justify-center h-40">
         <span className="text-sm text-red-500">Error loading data</span>
       </div>
     );
   }
 
   return (
-    <div className="bg-neutral-100 rounded-xl p-4 shadow-md w-full max-w-xs h-50 flex items-center justify-between">
+    <div className="bg-neutral-100 rounded-xl p-4 w-full max-w-xs h-50 flex items-center justify-between">
       {/* Left: Text */}
       <div>
         <p className="text-gray-500 font-semibold text-lg">Monthly Attendance</p>

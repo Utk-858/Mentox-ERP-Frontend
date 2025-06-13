@@ -21,6 +21,10 @@ import Attendance from "./Attendance";
 import RankCard from "./RankCard";
 import type { RankData } from "./types";
 import BarChartCard from "../../components/BarChart";
+import Barchart from "./BarChart";
+import FeeCard from "./FeeCard";
+import ScheduleCard from "./ScheduleCard";
+import ActivityCard from "./ActivityCard";
 
 interface Course {
   id: string;
@@ -107,7 +111,7 @@ const Hero5 = () => {
         <Sidebar />
       </div>
       <div className="flex w-full flex-col">
-        <main className="w-full px-4 md:px-10 py-14 flex flex-col items-center justify-start space-y-12">
+        <main className="w-full px-4 md:px-10 py-10 flex flex-col items-center justify-start space-y-12">
           <div className="relative flex w-full justify-center z-10 text-center">
             <SearchTop />
           </div>
@@ -141,12 +145,16 @@ const Hero5 = () => {
                 <Attendance />
                 <RankCard data={rankData} />
               </div>
-              <div className="flex flex-row w-full">
-                <div className="flex-col flex-1 flex">
-                  {/* <BarChartCard/> */}
+              <div className="flex flex-row w-full mt-4 gap-10">
+                <div className="flex-col flex-[40%] flex gap-4">
+                  <Barchart/>
+                  <FeeCard/>
                 </div>
 
-                <div className="flex-1"></div>
+                <div className="flex-[40%] flex flex-col">
+                  <ScheduleCard/>
+                  <ActivityCard/>
+                </div>
               </div>
             </div>
 
