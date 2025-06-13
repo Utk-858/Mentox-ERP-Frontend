@@ -1,17 +1,36 @@
-import { lazy } from "react";
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { FaRegCirclePlay } from "react-icons/fa6";
 
+// Lazy loaded components
 const Sidebar = lazy(() => import("../../../components/Sidebar"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
 const StatCard = lazy(() => import("../components/StatCard"));
 const LeaveManager = lazy(() => import("../components/LeaveManager"));
-const LeaveCategoryManager = lazy(
-  () => import("../components/LeaveCategoryManager")
-);
+const LeaveCategoryManager = lazy(() => import("../components/LeaveCategoryManager"));
 const HolidayTable = lazy(() => import("../components/HolidayTable"));
+
+// Types
+interface Leave {
+  employeeName: string;
+  employeeId: string;
+  department: string;
+  position: string;
+  leaveType: string;
+  fromDate: string;
+  toDate: string;
+  days: number;
+  reason: string;
+}
+
+interface Holiday {
+  name: string;
+  from: string;
+  to: string;
+  duration: number;
+}
+
 const Teacherleave: React.FC = () => {
-  const mockLeaves = [
+  const mockLeaves: Leave[] = [
     {
       employeeName: "Navya Jain",
       employeeId: "Emp234",
@@ -123,7 +142,8 @@ const Teacherleave: React.FC = () => {
       reason: "Religious trip",
     },
   ];
-  const [holidays, setHolidays] = useState([
+
+  const [holidays, setHolidays] = useState<Holiday[]>([
     {
       name: "Diwali Break",
       from: "2020-12-31",
@@ -144,7 +164,7 @@ const Teacherleave: React.FC = () => {
     },
   ]);
 
-  const handleEdit = (index: number, updatedHoliday: any) => {
+  const handleEdit = (index: number, updatedHoliday: Holiday) => {
     const updated = [...holidays];
     updated[index] = updatedHoliday;
     setHolidays(updated);
@@ -155,82 +175,66 @@ const Teacherleave: React.FC = () => {
     setHolidays(updated);
   };
 
-  const handleAdd = (newHoliday: any) => {
+  const handleAdd = (newHoliday: Holiday) => {
     setHolidays([...holidays, newHoliday]);
   };
+
   return (
     <div className="max-w-screen flex">
       <div>
-        <Sidebar />
+        <Suspense fallback={<div>Loading Sidebar...</div>}>
+          <Sidebar />
+        </Suspense>
       </div>
       <div className="flex flex-col w-full ml-8">
         <div className="relative flex w-full justify-center z-10 text-center mt-8 mb-8">
-          <Searchbar />
+          <Suspense fallback={<div>Loading Searchbar...</div>}>
+            <Searchbar />
+          </Suspense>
         </div>
-        <div className="flex gap-6 ">
-          <StatCard
-            count={20}
-            labelLine1="Leave"
-            labelLine2="Requests"
-            bgColor="bg-[#D7F5E4]"
-            textColor="text-[#063123]"
-          />
-          <StatCard
-            count={50}
-            labelLine1="Approved"
-            labelLine2="Leaves"
-            bgColor="bg-[#D7F5E4]"
-            textColor="text-[#222222]"
-          />
-          <StatCard
-            count={16}
-            labelLine1="Leave"
-            labelLine2="Without Pay"
-            bgColor="bg-[#FFE3E3]"
-            textColor="text-[#7B0909]"
-          />
-          <StatCard
-            count={30}
-            labelLine1="Pending"
-            labelLine2="Requests"
-            bgColor="bg-[#FFE493]"
-            textColor="text-[#222222]"
-          />
+
+        <div className="flex gap-6">
+          <StatCard count={20} labelLine1="Leave" labelLine2="Requests" bgColor="bg-[#D7F5E4]" textColor="text-[#063123]" />
+          <StatCard count={50} labelLine1="Approved" labelLine2="Leaves" bgColor="bg-[#D7F5E4]" textColor="text-[#222222]" />
+          <StatCard count={16} labelLine1="Leave" labelLine2="Without Pay" bgColor="bg-[#FFE3E3]" textColor="text-[#7B0909]" />
+          <StatCard count={30} labelLine1="Pending" labelLine2="Requests" bgColor="bg-[#FFE493]" textColor="text-[#222222]" />
         </div>
+
         <div className="mt-6">
           <LeaveManager leaves={mockLeaves} />
         </div>
+
         <div className="flex mt-6 gap-6">
-          <div className="">
+          <div>
             <LeaveCategoryManager />
           </div>
           <div className="flex flex-col mr-4">
-            <div>
             <HolidayTable
               holidays={holidays}
               onEdit={handleEdit}
               onDelete={handleDelete}
               onAdd={handleAdd}
-            /></div>
-            <div><div className="w-full bg-[#702DFF] h-full flex flex-col rounded-[0.7rem] p-3 gap-2 relative ">
-                    <div className="text-[0.75rem] font-[400] text-white">
-                        YOUR PERSONALISED LEARNING PARTNER
-                    </div>
-                    <div className="absolute top-0 right-7 h-[3rem] w-[12rem] z-10"><img src="/container.png" alt="Banner" /></div>
-
-                    <div className="text-[1.5rem] font-[600] text-white ">
-                        Unlock your full potential <br></br>
-                        with Mentox AI Tutor
-                    </div>
-                    <button className="bg-black h-[1.3rem] w-fit rounded-[1.5rem] font-[500] text-[0.75rem] text-white flex gap-2 px-3 cursor-pointer">
-                        Discover AI learning <span className="mt-0.5"><FaRegCirclePlay/></span>
-                    </button>
-            
-                </div></div>
+            />
+            <div className="w-full bg-[#702DFF] h-full flex flex-col rounded-[0.7rem] p-3 gap-2 relative">
+              <div className="text-[0.75rem] font-[400] text-white">
+                YOUR PERSONALISED LEARNING PARTNER
+              </div>
+              <div className="absolute top-0 right-7 h-[3rem] w-[12rem] z-10">
+                <img src="/container.png" alt="Banner" />
+              </div>
+              <div className="text-[1.5rem] font-[600] text-white">
+                Unlock your full potential <br />
+                with Mentox AI Tutor
+              </div>
+              <button className="bg-black h-[1.3rem] w-fit rounded-[1.5rem] font-[500] text-[0.75rem] text-white flex gap-2 px-3 cursor-pointer">
+                Discover AI learning <span className="mt-0.5"><FaRegCirclePlay /></span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
 export default Teacherleave;
