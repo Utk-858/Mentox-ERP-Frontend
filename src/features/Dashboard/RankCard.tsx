@@ -12,7 +12,7 @@ const RankCard: React.FC<Props> = ({ data }) => {
     <div className="bg-neutral-100 rounded-xl p-5 w-80  flex flex-col justify-between">
       <div className="flex justify-between items-start">
         <div className='flex-1/3'>
-          <h3 className="text-sm text-gray-500">Class Rank</h3>
+          <h3 className="text-gray-500 font-semibold text-lg">Class Rank</h3>
           <h2 className="text-xl font-semibold mt-3 text-[#202224]">
             Rank: {data.rank} of {data.totalStudents}
           </h2>

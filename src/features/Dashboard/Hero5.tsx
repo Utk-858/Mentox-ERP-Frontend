@@ -145,7 +145,7 @@ const Hero5 = () => {
                 <Attendance />
                 <RankCard data={rankData} />
               </div>
-              <div className="flex flex-row w-full mt-4 gap-10">
+              <div className="flex flex-row w-full mt-4 gap-10 ">
                 <div className="flex-col flex-[40%] flex gap-4">
                   <Barchart/>
                   <FeeCard/>

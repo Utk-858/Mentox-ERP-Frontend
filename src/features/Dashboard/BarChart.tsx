@@ -17,9 +17,9 @@ const Barchart: React.FC = () => {
     { month: "Science", shortMonth: "Feb", hours: 100 },
     { month: "English", shortMonth: "Mar", hours: 200 },
     { month:"Science", shortMonth: "Apr", hours: 125 },
-    { month: "hindi", shortMonth: "May", hours: 170 },
+    { month: "Hindi", shortMonth: "May", hours: 170 },
     { month: "Computer", shortMonth: "Jun", hours: 220 },
-    { month: "Computer", shortMonth: "Jun", hours: 220 },
+
     
   ];
 
@@ -90,15 +90,15 @@ const Barchart: React.FC = () => {
             {[100,80,60,40,20,0].map((val) => (
               <span
                 key={val}
-                className="text-xs text-gray-500 text-right min-h-[20px]"
+                className="text-xs text-black text-right min-h-[20px]"
               >
-                {val}
+                {val}%
               </span>
             ))}
           </div>
 
           {/* Chart Area */}
-          <div className="flex-1 relative overflow-x-auto">
+          <div className="flex-1 relative scrollbar-hide">
             <div
               className="grid grid-cols-12 gap-1 min-w-[28rem]  items-end"
               style={{ height: `${chartHeight + 40}px` }}
