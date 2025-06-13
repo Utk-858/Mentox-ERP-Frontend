@@ -1,3 +1,5 @@
+// Teacherleave.tsx
+
 import { lazy, Suspense, useState } from "react";
 import { FaRegCirclePlay } from "react-icons/fa6";
 
@@ -9,13 +11,15 @@ const LeaveManager = lazy(() => import("../components/LeaveManager"));
 const LeaveCategoryManager = lazy(() => import("../components/LeaveCategoryManager"));
 const HolidayTable = lazy(() => import("../components/HolidayTable"));
 
-// Types
+// Union type for leave types
+type LeaveType = "Medical" | "Casual" | "Half Day" | "Special";
+
 interface Leave {
   employeeName: string;
   employeeId: string;
   department: string;
   position: string;
-  leaveType: string;
+  leaveType: LeaveType; // ✅ Fixed: leaveType must match expected LeaveType
   fromDate: string;
   toDate: string;
   days: number;
