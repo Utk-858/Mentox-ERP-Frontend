@@ -39,7 +39,7 @@ const Hero6 = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 p-4 font-sans w-full flex">
+    <div className="min-h-screen bg-gray-50 text-gray-800 font-sans w-full flex">
       <div className="sticky top-0 h-screen">
         <Sidebar />
       </div>
