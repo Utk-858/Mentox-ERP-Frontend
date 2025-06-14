@@ -133,13 +133,19 @@ const LibraryLibrarian: React.FC = () => {
             </div>
 
             {/* Second Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  sm:gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5">
               <DateTimeCard />
               <div className="ml-0 xl:ml-[-4rem]"><ActionButtons /></div>
               
-              <div className="w-full">
+              {/* Bar Chart - Only shows on XL screens in this row */}
+              <div className="hidden xl:block w-full">
                 <BarChartCard />
               </div>
+            </div>
+
+            {/* Bar Chart Row - Shows on small and tablet screens only */}
+            <div className="w-full xl:hidden">
+              <BarChartCard />
             </div>
 
             {/* Third Row */}

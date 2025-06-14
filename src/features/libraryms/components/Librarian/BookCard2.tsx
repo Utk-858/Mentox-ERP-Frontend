@@ -16,6 +16,8 @@ interface BookCardProps {
   onReturnBook?: () => void;
   showEditButton?: boolean;
   hideActionButtons?: boolean;
+  publisher?: string;
+  category?: string;
 }
 
 const BookCard2: React.FC<BookCardProps> = ({
@@ -33,15 +35,17 @@ const BookCard2: React.FC<BookCardProps> = ({
   onPayFine,
   onReturnBook,
   showEditButton = false,
-  hideActionButtons = false
+  hideActionButtons = false,
+  publisher = "Unknown",
+  category = "N/A",
 }) => {
   const isOverdue = daysOverdue && parseInt(daysOverdue) > 0;
   const hasFine = fine && parseFloat(fine.replace('₹ ', '')) > 0;
 
   return (
-    <div className="bg-white rounded-lg  border border-gray-200 p-4 flex gap-4 w-full max-w-screen">
+    <div className="bg-white rounded-lg border border-gray-200 p-4 flex gap-4 w-full max-w-screen">
       {/* Book Cover */}
-      <div className="flex-">
+      <div>
         <img
           src={coverImage}
           alt={title}
@@ -84,24 +88,40 @@ const BookCard2: React.FC<BookCardProps> = ({
 
         <div className="flex flex-wrap gap-x-20">
           <div>
-            <span className="font-semibold text-black">Issue date: </span>
+            <span className="font-semibold text-black">Issue Date: </span>
             <span className="text-gray-900">{issueDate}</span>
           </div>
-          <div>
-            <span className="font-semibold text-black">Due Date: </span>
-            <span className="text-gray-900">{dueDate}</span>
-          </div>
-          <div>
-            <span className="font-semibold text-black">Days Overdue: </span>
-            <span className={`font-semibold ${isOverdue ? 'text-red-600' : 'text-gray-500'}`}>
-              {daysOverdue || '0'} Days
-            </span>
-          </div>
+
+          {showEditButton ? (
+            <>
+              <div>
+                <span className="font-semibold text-black">Publisher: </span>
+                <span className="text-gray-900">{publisher}</span>
+              </div>
+              <div>
+                <span className="font-semibold text-black">Category: </span>
+                <span className="text-gray-900">{category}</span>
+              </div>
+            </>
+          ) : (
+            <>
+              <div>
+                <span className="font-semibold text-black">Due Date: </span>
+                <span className="text-gray-900">{dueDate}</span>
+              </div>
+              <div>
+                <span className="font-semibold text-black">Days Overdue: </span>
+                <span className={`font-semibold ${isOverdue ? 'text-red-600' : 'text-gray-500'}`}>
+                  {daysOverdue || '0'} Days
+                </span>
+              </div>
+            </>
+          )}
         </div>
 
         {hasFine && (
           <div>
-            <span className="font-semibold text-black">Fine(calculated): </span>
+            <span className="font-semibold text-black">Fine (calculated): </span>
             <span className="text-gray-900">{fine}</span>
           </div>
         )}

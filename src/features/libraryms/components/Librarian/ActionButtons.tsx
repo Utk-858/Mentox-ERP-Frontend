@@ -25,22 +25,31 @@ const ActionButtons: React.FC = () => {
       </div>
 
       {/* Add Book */}
-      <button className="flex items-center justify-center gap-2 bg-[#868688] text-white py-5 rounded-md font-medium hover:bg-gray-500 transition">
+      <Link to="/library/librarian/add-book" >
+      <button className="w-full flex justify-center items-center gap-2 bg-[#868688] text-white py-5 rounded-md font-medium hover:bg-gray-500 transition">
         <Plus className="w-5 h-5" />
         Add Book
       </button>
+      </Link>
+      
 
       {/* Return Book */}
-      <button className="flex items-center justify-center gap-2 bg-[#868688] text-white py-5 rounded-md font-medium hover:bg-gray-500 transition">
+      <Link to="/library/librarian/return-book" >
+      <button className="w-full flex items-center justify-center gap-2 bg-[#868688] text-white py-5 rounded-md font-medium hover:bg-gray-500 transition">
         <Undo2 className="w-5 h-5" />
         Return Book
       </button>
+      </Link>
+      
 
       {/* Update Book Details */}
-      <button className="flex items-center justify-center gap-2 bg-[#868688] text-white py-5 rounded-md font-medium hover:bg-gray-500 transition">
+      <Link to="/library/librarian/update-book" >
+      <button className="w-full flex items-center justify-center gap-2 bg-[#868688] text-white py-5 rounded-md font-medium hover:bg-gray-500 transition">
         <RotateCcw className="w-5 h-5" />
         Update Book Details
       </button>
+      </Link>
+      
 
       {/* Report Stolen/Missing Book */}
       <button className="flex items-center justify-center gap-2 bg-[#868688] text-white py-5 rounded-md font-medium hover:bg-gray-500 transition">

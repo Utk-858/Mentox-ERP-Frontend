@@ -131,7 +131,7 @@ const AddBookForm = () => {
                       <span className="text-gray-600">mat-graw</span>
                     </div>
                     <div className="text-sm lg:text-base">
-                      <span className="font-medium text-black">Year: </span>
+                      <span className="font-medium text-black">Year of Publication: </span>
                       <span className="text-gray-600">2019</span>
                     </div>
                   </div>
@@ -345,7 +345,9 @@ const AddBookForm = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div>
           <label className="block mb-2 font-medium">Language</label>
+          <label htmlFor="language" className="block mb-2 font-medium">Language</label>
           <select
+            id="language"
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
             className="border bg-gray-50 border-gray-400 rounded-md p-2 w-full outline-none focus:border-purple-500"
@@ -356,8 +358,9 @@ const AddBookForm = () => {
           </select>
         </div>
         <div>
-          <label className="block mb-2 font-medium">Category</label>
+          <label htmlFor="category" className="block mb-2 font-medium">Category</label>
           <select
+            id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             className="border border-gray-400 bg-gray-50 rounded-md p-2 w-full outline-none focus:border-purple-500"
@@ -380,8 +383,9 @@ const AddBookForm = () => {
           />
         </div>
         <div>
-          <label className="block mb-2 font-medium">Sub-Category</label>
+          <label htmlFor="subCategory" className="block mb-2 font-medium">Sub-Category</label>
           <select
+            id="subCategory"
             value={subCategory}
             onChange={(e) => setSubCategory(e.target.value)}
             className="border border-gray-400 bg-gray-50 rounded-md p-2 w-full outline-none focus:border-purple-500"

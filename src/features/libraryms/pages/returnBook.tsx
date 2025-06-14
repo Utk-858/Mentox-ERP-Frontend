@@ -4,7 +4,7 @@ import SearchBar from "@/components/SearchBar";
 import BookCard2 from "../components/Librarian/BookCard2";
 import { ContainerTextFlip } from "../../Lectures/components/ui/container-text-flip";
 import SuccessModal from "../components/SuccessModal";
-import PayFineModal from "../components/PayFineModal"; 
+import PayFineModal from "../components/PayFineModal";
 
 // Mock data
 const mockBooks = [
@@ -19,8 +19,7 @@ const mockBooks = [
     daysOverdue: "3",
     fine: "₹ 50",
     returned: false,
-    coverImage:
-      "https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png",
+    coverImage: "https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png",
   },
   {
     id: "23456790",
@@ -33,8 +32,7 @@ const mockBooks = [
     fine: "₹ 20",
     issueDate: "2025-10-20",
     returned: true,
-    coverImage:
-      "https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png",
+    coverImage: "https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png",
   },
   {
     id: "23456791",
@@ -47,8 +45,7 @@ const mockBooks = [
     dueDate: "2025-11-02",
     fine: "₹ 0",
     returned: false,
-    coverImage:
-      "https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png",
+    coverImage: "https://res.cloudinary.com/dikylfimn/image/upload/v1749026822/book1_z45nas.png",
   },
 ];
 
@@ -57,8 +54,6 @@ const ReturnBook: React.FC = () => {
   const [search, setSearch] = useState("");
   const [books] = useState(mockBooks);
   const [filter, setFilter] = useState<"toReturn" | "returned" | "all">("all");
-
-  // ✅ PayFine Modal state
   const [showPayFineModal, setShowPayFineModal] = useState(false);
   const [selectedBookId, setSelectedBookId] = useState<string | null>(null);
 
@@ -84,7 +79,7 @@ const ReturnBook: React.FC = () => {
     });
 
   return (
-    <div className="flex  min-h-screen w-full max-w-screen relative p-10">
+    <div className="flex w-full max-w-screen relative p-4 md:p-10">
       {/* Sidebar */}
       <div className="sticky top-0 h-screen">
         <Sidebar />
@@ -96,24 +91,28 @@ const ReturnBook: React.FC = () => {
           <SearchBar />
         </div>
 
-        <img
-          src="/sparkles.png"
-          alt="sparkles"
-          className="w-full px-6 mt-[-4rem] md:px-10 py-10"
-        />
-
-        <main className="flex-1 w-full absolute  max-w-6xl mx-auto px-4 top-20 z-10 space-y-10 py-6">
-          <div className="text-center">
-            <h1 className="text-3xl mt-10 md:text-5xl font-bold text-gray-900">
-              Search Books to Be <span className="flex flex-col">Returned</span>
-            </h1>
-            <p className="mt-4 text-gray-600 text-sm md:text-lg max-w-2xl mx-auto">
-              Easily search for books that are due for return by students and
-              employees. Filter results by name, ID, book title, or return date
-              to manage returns efficiently.
-            </p>
+        {/* Background image + overlaid heading */}
+        <div className="relative w-full">
+          <img
+            src="/sparkles.png"
+            alt="sparkles"
+            className="w-full px-6 md:px-10 "
+          />
+          <div className="absolute inset-0 flex flex-col mt-20 xl:mt-[-10rem] items-center justify-center px-4 md:px-10 py-10 z-10">
+            <div className="text-center">
+              <h1 className="text-3xl mt-10 xl:text-5xl leading-tight font-bold text-gray-900">
+                Search Books to Be <span className="flex flex-col">Returned</span>
+              </h1>
+              <p className="mt-4 text-gray-600 text-sm xl:text-lg max-w-2xl mx-auto">
+                Easily search for books that are due for return by students and employees.
+                Filter results by name, ID, book title, or return date to manage returns efficiently.
+              </p>
+            </div>
           </div>
+        </div>
 
+        {/* Main content below sparkles */}
+        <main className="flex-1 w-full xl:px-4 mt-20 xl:mt-[-10rem]  md:px-10 space-y-10">
           <div className="flex flex-wrap justify-center items-center mb-6 px-2 gap-4">
             <div className="flex items-center w-full md:w-auto border border-gray-300 rounded-lg overflow-hidden bg-white">
               <input
@@ -121,20 +120,20 @@ const ReturnBook: React.FC = () => {
                 placeholder="Pending & Returned Books Search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="px-4 py-3 text-sm w-full md:w-80 outline-none"
+                className="px-3 py-1 xl:px-4 xl:py-3 text-sm w-full md:w-80 outline-none"
               />
               <button className="bg-black text-white text-sm px-4 py-3">
                 Search
               </button>
             </div>
 
-            <button className="bg-[#702DFF] text-white text-lg px-6 py-2 rounded-sm w-55">
+            <button className="bg-[#702DFF] text-white text-lg px-3 py-1  xl:px-6 xl:py-2 rounded-sm w-55">
               Fines Collected
             </button>
           </div>
 
-          <section className="bg-[#F5F5F7] ml-[-0.5rem] xl:ml-20 rounded-lg max-w-5xl ml-20 p-6">
-            <div className="mb-6">
+          <section className="bg-[#F5F5F7] mt-10 lg:mt-0 xl:mt-30 rounded-lg max-w-screen p-6">
+            <div className="mb-6"> 
               <h2 className="text-xl font-bold text-gray-900 mb-2">
                 All Books in the Library
               </h2>
@@ -142,7 +141,7 @@ const ReturnBook: React.FC = () => {
                 View and edit all books in the Library
               </p>
 
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between flex-wrap items-center gap-4">
                 <div className="flex gap-2 mb-4 bg-black rounded p-1">
                   <button
                     className={`text-sm px-4 py-2 rounded ${filter === "toReturn" ? "bg-[#702DFF] text-white" : "bg-black text-white"}`}
@@ -163,7 +162,8 @@ const ReturnBook: React.FC = () => {
                     All Books
                   </button>
                 </div>
-                <div className="flex flex-wrap  justify-end items-center gap-4">
+
+                <div className="flex items-center gap-2">
                   <div className="flex items-center bg-black text-white rounded-lg overflow-hidden">
                     <div className="px-2 py-2">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -179,20 +179,15 @@ const ReturnBook: React.FC = () => {
                     />
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <button className="bg-black text-white text-sm px-4 py-2 rounded-lg flex items-center gap-2">
-                      <span>Overdue</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                  </div>
+                  <button className="bg-black text-white text-sm px-4 py-2 rounded-lg flex items-center gap-2">
+                    <span>Overdue</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
                 </div>
-             
               </div>
-
             </div>
-             
 
             {/* Book Cards */}
             <div className="space-y-4">
@@ -211,7 +206,7 @@ const ReturnBook: React.FC = () => {
                     fine={book.fine}
                     coverImage={book.coverImage}
                     onReportMissing={() => console.log("Missing: " + book.id)}
-                    onPayFine={() => handlePayFine(book.id)} // ✅ Triggers PayFineModal
+                    onPayFine={() => handlePayFine(book.id)}
                     onReturnBook={handleReturnBook}
                   />
                 ))
@@ -219,7 +214,6 @@ const ReturnBook: React.FC = () => {
                 <p>No books found matching your search.</p>
               )}
 
-              {/* ✅ Success Modal */}
               <SuccessModal
                 isOpen={showSuccessModal}
                 onClose={() => setShowSuccessModal(false)}
@@ -229,7 +223,6 @@ const ReturnBook: React.FC = () => {
                 onButtonClick={() => setShowSuccessModal(false)}
               />
 
-              {/* ✅ Pay Fine Modal */}
               <PayFineModal
                 isOpen={showPayFineModal}
                 onClose={() => setShowPayFineModal(false)}

@@ -73,7 +73,7 @@ const IssueBookForm: React.FC<IssueBookFormProps> = ({
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-white p-6">
+    <div className="max-w-5xl mx-auto bg-white p-6">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Issue Book - {userType}</h1>
@@ -93,7 +93,7 @@ const IssueBookForm: React.FC<IssueBookFormProps> = ({
                 <button
                   key={num}
                   onClick={() => handleClassClick(num)}
-                  className={`w-10 h-10 text-sm border rounded 
+                  className={`w-10 h-10 text-sm  bg-[#D2D2D233] border border-[#606060]rounded 
                     ${selectedClass === num.toString() 
                       ? 'bg-[#702DFF] text-white border-[#702DFF]' 
                       : 'border-gray-300 hover:bg-gray-100'}`}
@@ -113,7 +113,7 @@ const IssueBookForm: React.FC<IssueBookFormProps> = ({
               onChange={(e) =>
                 setUserDetails({ ...userDetails, studentSection: e.target.value })
               }
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 bg-[#D2D2D233] border border-[#606060] rounded"
             >
               <option value="">Select Section</option>
               {['A', 'B', 'C', 'D'].map((sec) => (
@@ -141,7 +141,7 @@ const IssueBookForm: React.FC<IssueBookFormProps> = ({
                     value={field.value}
                     onChange={(e) => field.onChange(e.target.value)}
                     placeholder={field.placeholder}
-                    className="w-full p-2 pr-8 border border-gray-300 rounded"
+                    className="w-full p-2 bg-[#D2D2D233] border border-[#606060] pr-8 rounded"
                   />
                   {field.searchable && (
                     <Search
@@ -188,7 +188,7 @@ const IssueBookForm: React.FC<IssueBookFormProps> = ({
                     setUserDetails({ ...userDetails, [field.key]: e.target.value })
                   }
                   placeholder={field.placeholder}
-                  className="w-full p-2 border border-gray-300 rounded"
+                  className="w-full bg-[#D2D2D233] border border-[#606060] p-2  rounded"
                 />
               )}
             </div>
@@ -210,7 +210,7 @@ const IssueBookForm: React.FC<IssueBookFormProps> = ({
                   setBookSearch({ ...bookSearch, bookId: e.target.value })
                 }
                 placeholder="Search book by ID"
-                className="w-full p-2 pr-8 border border-gray-300 rounded"
+                className="w-full p-2 pr-8 bg-[#D2D2D233] border border-[#606060] rounded"
               />
               <Search
                 className="absolute right-2 top-2.5 h-4 w-4 text-gray-400 cursor-pointer"
@@ -229,10 +229,10 @@ const IssueBookForm: React.FC<IssueBookFormProps> = ({
                   setBookSearch({ ...bookSearch, bookName: e.target.value })
                 }
                 placeholder="Search book by Name"
-                className="w-full p-2 pr-8 border border-gray-300 rounded"
+                className="w-full p-2 pr-8 bg-[#D2D2D233] border border-[#606060] rounded"
               />
               <Search
-                className="absolute right-2 top-2.5 h-4 w-4 text-gray-400 cursor-pointer"
+                className="absolute  right-2 top-2.5 h-4 w-4 text-gray-400 cursor-pointer"
                 onClick={onSearchBook}
               />
             </div>
@@ -256,7 +256,7 @@ const IssueBookForm: React.FC<IssueBookFormProps> = ({
                   setBookDetails({ ...bookDetails, [key]: e.target.value })
                 }
                 placeholder={key}
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full p-2 bg-[#D2D2D233] border border-[#606060] rounded"
               />
             </div>
           ))}
@@ -278,7 +278,7 @@ const IssueBookForm: React.FC<IssueBookFormProps> = ({
                 onChange={(e) =>
                   setIssueDetails({ ...issueDetails, [key]: e.target.value })
                 }
-                className="w-50 lg:w-80 p-2 border border-gray-300 rounded"
+                className="w-50 lg:w-80 p-2 bg-[#D2D2D233] border border-[#606060] rounded"
                 placeholder={`Select ${key.replace(/([A-Z])/g, ' $1')}`}
                 title={`Select ${key.replace(/([A-Z])/g, ' $1')}`}
               />
@@ -288,17 +288,17 @@ const IssueBookForm: React.FC<IssueBookFormProps> = ({
       </div>
 
       {/* Buttons */}
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div className="flex justify-between flex-col sm:flex-row gap-4">
         <button
           onClick={onIssueBook}
-          className="bg-[#702DFF] text-white px-8 py-2 rounded w-full sm:w-auto"
+          className="bg-[#702DFF] text-white px-20 py-2 xl:py-3 rounded-md w-full sm:w-auto"
           type="button"
         >
           Issue Book
         </button>
         <button
           onClick={onReset}
-          className="bg-[#702DFF] text-white px-8 py-2 rounded w-full sm:w-auto"
+          className="bg-[#702DFF] text-white px-20 py-2 xl:py-3 rounded-md w-full sm:w-auto"
           type="button"
         >
           Reset
