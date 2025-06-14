@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Home,
   BookOpen,
@@ -30,17 +30,28 @@ const navItems = [
 ];
 
 const Sidebar = () => {
- const location = useLocation();
+  const location = useLocation();
   const currentPath = location.pathname;
   const currentItem = navItems.find((item) => item.path === currentPath);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [activeItem, setActiveItem] = useState(currentItem?.label || "Lectures");
 
-  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const forceCollapsed = location.pathname === "/attempt"; // 👈 Add condition
+
+  useEffect(() => {
+    if (forceCollapsed) {
+      setSidebarOpen(false);
+    }
+  }, [forceCollapsed]);
+
+  const toggleSidebar = () => {
+    if (!forceCollapsed) {
+      setSidebarOpen(!sidebarOpen);
+    }
+  };
 
   return (
     <div className="flex flex-col max-h-screen">
-      {/* Sidebar */}
       <aside
         className={`${
           sidebarOpen
@@ -51,7 +62,9 @@ const Sidebar = () => {
         {/* Logo and Toggle */}
         <div
           onClick={toggleSidebar}
-          className="flex items-center gap-4 cursor-pointer mb-6"
+          className={`flex items-center gap-4 mb-6 ${
+            forceCollapsed ? "cursor-default" : "cursor-pointer"
+          }`}
         >
           <div
             className={`flex flex-row items-center ${
@@ -59,7 +72,7 @@ const Sidebar = () => {
             }`}
           >
             <img src="/dummy.png" alt="logo" className="w-8 h-8" />
-            {sidebarOpen && (
+            {sidebarOpen && !forceCollapsed && (
               <span className="text-2xl font-semibold text-center text-[#1F1F1F]">
                 MENTOX
               </span>
@@ -87,7 +100,7 @@ const Sidebar = () => {
         ) : (
           <nav className="flex flex-col justify-between items-center h-full overflow-y-auto">
             <div className="flex flex-col gap-6 mt-4">
-              {navItems.slice(0, navItems.length - 5).map((item, index) => (
+              {navItems.slice(0, navItems.length - 5).map((item) => (
                 <NavLink
                   to={item.path}
                   key={item.label}
