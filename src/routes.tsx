@@ -3,6 +3,7 @@ import { Routes, Route, } from "react-router-dom";
 import Home from "./features/Lectures/components/Home";
 import Hero5 from "./features/Dashboard/Hero5.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
+import Hero6 from "./features/Course/Hero6.tsx";
 
 
 // const ClassroomDashboard = lazy(()=> import ("./features/classroom/pages/Dashboard"));
@@ -65,6 +66,7 @@ const AppRoutes: React.FC = () => {
         {/* Catch-all route for 404 Not Found */}
         <Route path="*" element={<div>404 - Not Found</div>} />
 
+        <Route path="/Courses" element={<Hero6/>} />    
          <Route path="/" element={<Hero5/>} />
         
       </Routes>

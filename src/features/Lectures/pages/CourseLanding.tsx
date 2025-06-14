@@ -108,7 +108,7 @@ const CourseLandingPage: React.FC = () => {
   return (
     <div className="flex min-h-screen w-full bg-gray-50">
       {/* Sidebar */}
-      <div className="sticky top-0 h-screen w-[250px] bg-white border-r shadow-sm">
+      <div className="sticky top-0 h-screen">
         <Sidebar />
       </div>
 
