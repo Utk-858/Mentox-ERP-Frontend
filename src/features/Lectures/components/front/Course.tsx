@@ -21,7 +21,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
   lessons,
   instructor,
 }) => (
-  <div className="flex flex-col gap-6">
+  <div className="flex flex-col gap-6 rounded-2xl">
     <div className="flex gap-4 p-4 bg-white ">
       {/* Thumbnail */}
       <div className="w-28 h-20 bg-gray-200 rounded-md"></div>
