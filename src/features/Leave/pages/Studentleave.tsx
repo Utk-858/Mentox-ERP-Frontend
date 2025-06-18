@@ -102,7 +102,7 @@ const Studentleave: React.FC = () => {
           <StatCard
             count={2}
             labelLine1="Pending"
-            labelLine2="Leave requests"
+            labelLine2="Leave request"
             bgColor="bg-[#FFE493]"
             textColor="text-[#222222]"
           />
