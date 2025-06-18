@@ -25,8 +25,8 @@ const ToDoStudent:React.FC = () => {
 
             {/* second row */}
             <div className='flex max-w-screen'>
-              <div className='ml-10'><TaskForm></TaskForm></div>
-              <div className='ml-[-10px]'><CalenderSchedule></CalenderSchedule></div>
+              <div className='ml-7'><TaskForm></TaskForm></div>
+              <div className='ml-[-15px]'><CalenderSchedule></CalenderSchedule></div>
             </div>
             {/* third row */}
             <div className='flex mt-[3rem] xl:ml-[-32rem] xl:mt-[-22rem]'>

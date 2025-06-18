@@ -28,6 +28,10 @@ const UpdateBook = lazy(() => import("./features/libraryms/pages/UpdateBook.tsx"
 const EditDetails = lazy(() => import("./features/libraryms/pages/edit-details.tsx"));
 const AddBook=lazy(()=>import("./features/libraryms/pages/addBook.tsx"))
 const Teacherleave=lazy(()=>import("./features/Leave/pages/Teacherleave.tsx"))
+const ToDoStudent=lazy(()=>import("./features/To-Do/pages/ToDoStudent.tsx"))
+const ToDoTeacher=lazy(()=>import("./features/To-Do/pages/ToDoTeacher.tsx"))
+const ExamManagementTeacher=lazy(()=>import("./features/To-Do/pages/ExamManagementTeacher.tsx"))
+const ExamManagementStudent=lazy(()=>import("./features/To-Do/pages/ExamManagementStudent.tsx"))
 const AppRoutes: React.FC = () => {
   return (
 
@@ -58,6 +62,10 @@ const AppRoutes: React.FC = () => {
        <Route path="/library/librarian/return-book" element={<ReturnBook/>} />
         <Route path="/library/librarian/update-book" element={<UpdateBook/>} />
         <Route path="/library/librarian/edit-details/:isbn" element={<EditDetails/>} />
+        <Route path="/todo/student" element={<ToDoStudent/>} />
+        <Route path="/todo/teacher" element={<ToDoTeacher/>} />
+        <Route path="/todo/teacher/exam-management" element={<ExamManagementTeacher/>} />
+        <Route path="/todo/student/exam-management" element={<ExamManagementStudent/>} />
        
         {/* Add more routes as needed */}
         {/* Example: */}

@@ -183,7 +183,7 @@ const CalenderSchedule: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-lg ml-10 rounded-xl bg-[#F5F5F7] px-10 pb-3 pt-0 overflow-y-auto scrollbar-hide ">
+    <div className="w-lg h-[83vh] xl:h-[120vh] ml-10 rounded-xl bg-[#F5F5F7] px-10 pb-3 pt-0 overflow-y-auto scrollbar-hide ">
       {/* Header */}
       <div className="flex items-center mt-5 justify-between px-4 py-3  bg-[#F5F5F7]">
         <ChevronLeft
