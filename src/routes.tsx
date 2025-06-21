@@ -32,6 +32,27 @@ const ToDoStudent=lazy(()=>import("./features/To-Do/pages/ToDoStudent.tsx"))
 const ToDoTeacher=lazy(()=>import("./features/To-Do/pages/ToDoTeacher.tsx"))
 const ExamManagementTeacher=lazy(()=>import("./features/To-Do/pages/ExamManagementTeacher.tsx"))
 const ExamManagementStudent=lazy(()=>import("./features/To-Do/pages/ExamManagementStudent.tsx"))
+const Exammanagement = lazy(
+  () => import("./features/Exam Management/pages/Exammanagement.tsx")
+);
+const Datesheet = lazy(
+  () => import("./features/Exam Management/pages/Datesheet.tsx")
+);
+const ExamAnalyticsPage = lazy(
+  () => import("./features/Exam Management/pages/ExamAnalyticsPage.tsx")
+);
+const TeacherExam = lazy(
+  () => import("./features/Exam Management/pages/TeacherExam.tsx")
+);
+const MarksUpload = lazy(
+  () => import("./features/Exam Management/pages/MarksUpload.tsx")
+);
+const TeacherAssignedMarks = lazy(
+  () => import("./features/Exam Management/pages/TeacherAssignedMarks.tsx")
+);
+const StudentResult = lazy(
+  () => import("./features/Exam Management/pages/StudentResult.tsx")
+);
 const AppRoutes: React.FC = () => {
   return (
 
@@ -66,6 +87,13 @@ const AppRoutes: React.FC = () => {
         <Route path="/todo/teacher" element={<ToDoTeacher/>} />
         <Route path="/todo/teacher/exam-management" element={<ExamManagementTeacher/>} />
         <Route path="/todo/student/exam-management" element={<ExamManagementStudent/>} />
+         <Route path="/exam" element={<Exammanagement />} />
+          <Route path="/exam/datesheet" element={<Datesheet />} />
+          <Route path="/teacherexam" element={<TeacherExam />} />
+          <Route path="/exam/analytics" element={<ExamAnalyticsPage />} />
+          <Route path="/exam/teacherassign" element={<TeacherAssignedMarks />} />
+          <Route path="/teacherexam/marks" element={<MarksUpload />} />
+          <Route path="/result" element={<StudentResult />} />
        
         {/* Add more routes as needed */}
         {/* Example: */}
