@@ -38,6 +38,7 @@ interface Course {
 
 const Hero5 = () => {
   const [search, setSearch] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const rankData: RankData = {
     rank: 5,
@@ -108,7 +109,7 @@ const Hero5 = () => {
   return (
     <div className="flex min-h-screen w-full">
       <div className="sticky top-0 h-screen">
-        <Sidebar />
+        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       </div>
       <div className="flex w-full flex-col">
         <main className="w-full px-4 md:px-10 py-10 flex flex-col items-center justify-start space-y-12">
@@ -244,16 +245,16 @@ const Hero5 = () => {
             </div>
           </div>
  
-          <section className="w-full max-w-6xl mx-auto z-10">
+          <section className={`w-full ${sidebarOpen ? "max-w-[1180px]" : "w-full"} mx-auto z-10`}>
             <ContinueWatching />
           </section>
 
           {/* Free Courses Section */}
-          <section className="w-full max-w-6xl mx-auto">
+          <section className={`w-full ${sidebarOpen ? "max-w-[1180px]" : "w-full"} mx-auto z-10`}>
             <FreeCourses />
           </section>
 
-          <section className="w-full max-w-6xl mx-auto">
+          <section className={`w-full ${sidebarOpen ? "max-w-[1180px]" : "w-full"} mx-auto z-10`}>
             <Course />
           </section>
         </main>
