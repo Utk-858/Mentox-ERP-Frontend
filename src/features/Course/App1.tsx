@@ -116,7 +116,6 @@ const App1: React.FC = () => (
           type="text"
           placeholder="Announce something to your class"
           className="w-full border-none bg-transparent focus:ring-0 text-gray-700"
-          disabled
         />
         <button className="ml-2 text-gray-400 hover:text-gray-600">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

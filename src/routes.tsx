@@ -12,6 +12,7 @@ import Leaveroutes from "./features/Leave/Leaveroutes.tsx";
 import ClassTeacher from "./features/Class Teacher/ClassTeacherroutes.tsx";
 
 import Profileroutes from "./features/profile/Profileroutes.tsx";
+import Hero7 from "./features/HelpSupp/Hero7.tsx";
 
 // const ClassroomDashboard = lazy(()=> import ("./features/classroom/pages/Dashboard"));
 const Quizattempt=lazy(()=>import("./features/qms/pages/Quizattempt"))
@@ -133,6 +134,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/Classteacher/*" element={<ClassTeacher/>} />
           <Route path="/" element={<Hero5 />} />
           <Route path="*" element={<div>404 - Not Found</div>} />
+          <Route path="/Help" element={<Hero7/>} />
         </Routes>
       </Suspense>
     </>
