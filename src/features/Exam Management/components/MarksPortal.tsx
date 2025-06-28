@@ -11,7 +11,7 @@ const MarksPortal: React.FC = () => {
       alert("Please select all fields.");
       return;
     }
-      navigate("/exam/teacherassign", {
+      navigate("/exam/teacher-assigned-marks", {
       state: {
         session,
         examType,

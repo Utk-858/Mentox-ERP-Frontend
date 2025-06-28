@@ -9,7 +9,7 @@ import Examroutes from "./features/Exam Management/Examroutes.tsx";
 import Todoroutes from "./features/To-Do/Todoroutes.tsx";
 import Qmsroutes from "./features/qms/Qmsroutes.tsx";
 import Leaveroutes from "./features/Leave/Leaveroutes.tsx";
-
+import ClassTeacher from "./features/Class Teacher/ClassTeacherroutes.tsx"
 // const ClassroomDashboard = lazy(()=> import ("./features/classroom/pages/Dashboard"));
 const Quizattempt=lazy(()=>import("./features/qms/pages/Quizattempt"))
 const Quizreview=lazy(()=>import("./features/qms/pages/Quizreview"))
@@ -126,6 +126,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/classroom/latesubmission" element={<LateSubmission/>} />
           <Route path="/classroom/submission/view" element={<SubmissionView/>} />
           <Route path="/Courses" element={<Hero6 />} />
+          <Route path="/Classteacher/*" element={<ClassTeacher/>} />
           <Route path="/" element={<Hero5 />} />
           <Route path="*" element={<div>404 - Not Found</div>} />
         </Routes>
