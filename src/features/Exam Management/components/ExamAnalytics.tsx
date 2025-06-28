@@ -16,7 +16,7 @@ const ExamAnalytics: React.FC = () => {
 
     // Navigate with query parameters
     navigate(
-      `/exam/analytics?session=${encodeURIComponent(session)}&class=${encodeURIComponent(
+      `/Exam/exam-analytics?session=${encodeURIComponent(session)}&class=${encodeURIComponent(
         className
       )}&type=${encodeURIComponent(examType)}`
     );

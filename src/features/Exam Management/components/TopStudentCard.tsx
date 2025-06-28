@@ -12,7 +12,7 @@ type TopStudentsCardProps = {
 
 const TopStudentCard: React.FC<TopStudentsCardProps> = ({ students }) => {
   return (
-    <div className="bg-[#f7f7f9] rounded-2xl px-6 py-4 w-[20rem]">
+    <div className="bg-[#f7f7f9] rounded-2xl px-6 py-4 w-full ">
       <div className="text-[1.13rem] font-[500] text-gray-900">Top Students</div>
       <div className="text-[0.9rem] text-[#363636] font-[400] mb-4">Students with highest Marks</div>
       <div className="flex flex-col gap-4">
