@@ -9,7 +9,10 @@ import Examroutes from "./features/Exam Management/Examroutes.tsx";
 import Todoroutes from "./features/To-Do/Todoroutes.tsx";
 import Qmsroutes from "./features/qms/Qmsroutes.tsx";
 import Leaveroutes from "./features/Leave/Leaveroutes.tsx";
-import ClassTeacher from "./features/Class Teacher/ClassTeacherroutes.tsx"
+import ClassTeacher from "./features/Class Teacher/ClassTeacherroutes.tsx";
+
+import Profileroutes from "./features/profile/Profileroutes.tsx";
+
 // const ClassroomDashboard = lazy(()=> import ("./features/classroom/pages/Dashboard"));
 const Quizattempt=lazy(()=>import("./features/qms/pages/Quizattempt"))
 const Quizreview=lazy(()=>import("./features/qms/pages/Quizreview"))
@@ -83,6 +86,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/Exam/*" element={<Examroutes />} />
           <Route path="/To-Do/*" element={<Todoroutes />} />
           <Route path="/Leave/*" element={<Leaveroutes />} />
+          <Route path="/profile/*" element={<Profileroutes />} />
           <Route path="/attempt" element={<Quizattempt />} />
           <Route path="/review" element={<Quizreview />} />
           <Route path="/homepage" element={<Homepage/>}/>

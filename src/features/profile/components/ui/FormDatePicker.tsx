@@ -26,7 +26,7 @@ const CustomInput = forwardRef<HTMLButtonElement, { value?: string; onClick?: ()
       className="w-full flex justify-between items-center px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blueviolet"
     >
       <span>{value}</span>
-      <CalendarIcon className="h-4 w-4 text-gray-500" />
+      <CalendarIcon className="h-4 w-4 text-gray-500 ml-5" />
     </button>
   )
 );
