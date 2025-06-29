@@ -43,7 +43,7 @@ const LoginPage: React.FC = () => {
     try {
       // Real API call
       const response = await axios.post<LoginResponse>(
-        "https://mentox-authservice.onrender.com/api/auth/login", 
+        "/auth/login", 
         {
           username,
           password,
