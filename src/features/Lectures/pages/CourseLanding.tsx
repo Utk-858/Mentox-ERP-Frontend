@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Sidebar from "../components/front/Sidebar";
-import axiosInstance from "@/api/axios";
+import axiosInstance from "@/api/axios";    
 
 interface CourseData {
   title: string;
@@ -80,31 +80,31 @@ const CourseLandingPage: React.FC = () => {
   const handleFileChange = (name: string, file: File | null) => {
     setFormData((prev) => ({ ...prev, [name]: file }));
   };
+const handleSubmit = async () => {
+  const payload = new FormData();
 
-  const handleSubmit = async () => {
-    const payload = new FormData();
-    for (const key in formData) {
-      const value = formData[key as keyof CourseData];
-      if (value instanceof File) {
-        payload.append(key, value);
-      } else if (typeof value === "string") {
-        payload.append(key, value);
-      }
+  for (const key in formData) {
+    const value = formData[key as keyof CourseData];
+    if (value instanceof File) {
+      payload.append(key, value);
+    } else if (typeof value === "string") {
+      payload.append(key, value);
     }
+  }
 
-    try {
-      setLoading(true);
-      await axios.put("/api/course/update", payload, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      alert("Course updated successfully!");
-    } catch (error) {
-      console.error("Error updating course:", error);
-      alert("Update failed!");
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    setLoading(true);
+    await axiosInstance.post("/lectures/createCourse", payload, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    alert("Course created successfully!");
+  } catch (error) {
+    console.error("Error creating course:", error);
+    alert("Creation failed!");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="flex min-h-screen w-full bg-gray-50">
