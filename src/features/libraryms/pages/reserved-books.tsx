@@ -5,6 +5,7 @@ import Categories from "../components/Student/categories";
 import BookCard from "../components/Student/BookCard";
 import {FaArrowRight} from "react-icons/fa";
 
+
 // Define the Book type
 interface Book {
   id: string;
