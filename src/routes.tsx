@@ -10,7 +10,7 @@ import Todoroutes from "./features/To-Do/Todoroutes.tsx";
 import Qmsroutes from "./features/qms/Qmsroutes.tsx";
 import Leaveroutes from "./features/Leave/Leaveroutes.tsx";
 import ClassTeacher from "./features/Class Teacher/ClassTeacherroutes.tsx";
-
+import EmployeeRoutes from "./features/Employee/EmployeeRoutes.tsx";
 import Profileroutes from "./features/profile/Profileroutes.tsx";
 import Hero7 from "./features/HelpSupp/Hero7.tsx";
 import  Login from "./features/Login/login.tsx";
@@ -138,6 +138,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/Help" element={<Hero7/>} />
           <Route path="/login" element={<Login />} />
 
+          <Route path="/employee/*" element={<EmployeeRoutes />} />
         </Routes>
       </Suspense>
     </>
