@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState } from "react"
-import Sidebar from "@/components/Sidebar"
+import Sidebar from "@/components/SidebarStudent"
 import { ChevronDown, ChevronLeft, ChevronRight, X } from "lucide-react"
 import FileViewer from "../components/FileViewer"
 

@@ -29,7 +29,7 @@ const navItems = [
   { icon: <LogOut size={16} />, label: "Sign Out", path: "/SignOut" },
 ];
 
-const Sidebar = () => {
+const SidebarTeacher = () => {
   const location = useLocation();
   const currentPath = location.pathname;
   const currentItem = navItems.find((item) => item.path === currentPath);
@@ -156,4 +156,4 @@ const NavItem = ({ icon, label, active }: any) => (
   </div>
 );
 
-export default Sidebar;
+export default SidebarTeacher;

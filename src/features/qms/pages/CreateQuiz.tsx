@@ -1,7 +1,7 @@
 import React, { useState, Suspense } from "react";
 import { lazy } from "react";
 const Thankyoupopup=lazy(()=>import("../components/createquiz/Thankyoupopup"))
-const Sidebar = lazy(() => import("../../../components/Sidebar"));
+const Sidebar = lazy(() => import("../../../components/SidebarStudent"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
 const CreateQuizPage3 = lazy(() => import('../components/createquiz/Createquizpage3'));
 const CreateQuizPage4 = lazy(() => import('../components/createquiz/Createquizpage4'));

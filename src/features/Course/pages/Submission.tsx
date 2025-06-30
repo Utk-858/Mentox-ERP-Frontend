@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/SidebarStudent";
 import SearchBar from "@/components/SearchBar";
 import { Send, UsersRound } from "lucide-react";
 import SubmissionPanel from "../component/SubmissionPanel";

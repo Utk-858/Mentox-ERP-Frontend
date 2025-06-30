@@ -3,7 +3,7 @@ import { useState } from "react";
 import AttendanceCalendar from "../components/AttendanceCalendar";
 import LeaveTable from "../components/LeaveTable";
 
-const Sidebar = lazy(() => import("../../../components/Sidebar"));
+const Sidebar = lazy(() => import("../../../components/SidebarStudent"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
 const StatCard = lazy(() => import("../components/StatCard"));
 const LeaveBalanceChart = lazy(() => import("../components/LeaveBalanceChart"));

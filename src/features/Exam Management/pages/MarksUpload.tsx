@@ -1,7 +1,7 @@
 import React, { lazy } from "react";
 import type { StudentMarks } from "../components/MarksEntryComponent";
 
-const Sidebar = lazy(() => import("../../../components/Sidebar"));
+const Sidebar = lazy(() => import("../../../components/SidebarStudent"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
 const MarksEntryComponent = lazy(() => import("../components/MarksEntryComponent"));
 

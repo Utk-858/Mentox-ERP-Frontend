@@ -4,7 +4,7 @@ import SummaryStats from "../components/Summarystats";
 import QuestionReviewCard from "../components/QuestionReviewCard";
 import QuestionReviewNavigation from "../components/QuestionReviewNavigation";
 import MentoxBanner from "../components/MentoxBanner";
-const Sidebar = lazy(() => import("../../../components/Sidebar"));
+const Sidebar = lazy(() => import("../../../components/SidebarStudent"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
 import { IoBookOutline } from "react-icons/io5";
 import { MdOutlineCalendarToday } from "react-icons/md";

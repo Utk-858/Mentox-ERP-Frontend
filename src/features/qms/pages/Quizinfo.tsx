@@ -1,5 +1,5 @@
 import { lazy } from "react"
-const Sidebar=lazy(()=>import("../../../components/Sidebar"))
+const Sidebar=lazy(()=>import("../../../components/SidebarStudent"))
 const Searchbar=lazy(()=>import("../../../components/SearchBar"))
 const Quizinfosubject=lazy(()=>import("../components/Quizinfosubject"))
 const Quizinfo:React.FC=()=>{

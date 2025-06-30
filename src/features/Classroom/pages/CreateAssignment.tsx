@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/SidebarStudent";
 import AssignmentBar from "../components/AssignmentBar";
 import AssignmentForm from "../components/AssignmentForm";
 

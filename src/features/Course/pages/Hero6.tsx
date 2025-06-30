@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Bell, Search, MessageCircle } from "lucide-react";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/SidebarStudent";
 import SearchBar from "@/components/SearchBar";
 import App1 from "./App1";
 

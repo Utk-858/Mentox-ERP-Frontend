@@ -1,7 +1,7 @@
 import React, { lazy } from "react";
 import { useState } from "react";
 const QuestionCard = lazy(() => import("../components/QuestionCard"));
-const Sidebar = lazy(() => import("../../../components/Sidebar"));
+const Sidebar = lazy(() => import("../../../components/SidebarStudent"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
 const QuestionNavigation = lazy(
   () => import("../components/QuestionNavigation")

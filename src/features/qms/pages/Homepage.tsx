@@ -1,5 +1,5 @@
 import { lazy } from "react"
-const Sidebar = lazy(() => import("../../../components/Sidebar"));
+const Sidebar = lazy(() => import("../../../components/SidebarStudent"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
 const Quizlistsection=lazy(()=>import("../components/Homepage/Quizlistsection"))
 const Quizdashboard=lazy(()=>import("../components/Homepage/Quizdashboard"))

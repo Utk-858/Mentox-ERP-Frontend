@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/SidebarStudent";
 import SearchBar from "@/components/SearchBar";
 import QuizComponent from "../components/QuizComponent";
 import { Play, Settings } from "lucide-react";

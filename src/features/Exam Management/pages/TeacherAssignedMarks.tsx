@@ -1,5 +1,5 @@
 import { lazy, useState } from "react";
-const Sidebar = lazy(() => import("../../../components/Sidebar"));
+const Sidebar = lazy(() => import("../../../components/SidebarStudent"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
 import { useLocation } from "react-router-dom";
 const MarksAssignFilterBar = lazy(

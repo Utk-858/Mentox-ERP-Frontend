@@ -1,6 +1,6 @@
 import type React from "react"
 import { useEffect, useState } from "react"
-import Sidebar from "@/components/Sidebar"
+import Sidebar from "@/components/SidebarStudent"
 import SearchTop from "@/components/SearchBar"
 import AttendanceCard from "../components/Librarian/AttendanceCard"
 import StatsCard from "../components/Librarian/StatsCard"

@@ -5,7 +5,7 @@ import { MdCoPresent } from "react-icons/md";
 import { IoIosStats } from "react-icons/io";
 import type { AttendanceRow } from "../components/AttendanceOverviewTable";
 import type { LeaveRequest } from "../components/LeaveRequests";
-const Sidebar = lazy(() => import("../../../components/Sidebar"));
+const Sidebar = lazy(() => import("../../../components/SidebarStudent"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
 const DateTime = lazy(() => import("../components/DateTime"));
 const AttendanceStatCard = lazy(

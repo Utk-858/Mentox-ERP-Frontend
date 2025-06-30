@@ -4,7 +4,7 @@ import { lazy, Suspense, useState } from "react";
 import { FaRegCirclePlay } from "react-icons/fa6";
 
 // Lazy loaded components
-const Sidebar = lazy(() => import("../../../components/Sidebar"));
+const Sidebar = lazy(() => import("../../../components/SidebarStudent"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
 const StatCard = lazy(() => import("../components/StatCard"));
 const LeaveManager = lazy(() => import("../components/LeaveManager"));
