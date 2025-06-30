@@ -1,7 +1,7 @@
 // components/RankCard.tsx
 import React from 'react';
 import { ArrowDown, ArrowUp, TrendingDown, TrendingUp } from 'lucide-react';
-import type { RankData } from './types';
+import type { RankData } from '../types';
 
 interface Props {
   data: RankData;

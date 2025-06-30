@@ -1,6 +1,6 @@
 import React from 'react'
 import Sidebar from '../Lectures/components/front/Sidebar'
-import SearchTop from '../Dashboard/SearchTop'
+import SearchTop from '../Dashboard/components/SearchTop'
 import SupportTickets from './SupportTickets'
 import SupportTicketsStudent from './SupportTicketsStudent'
 

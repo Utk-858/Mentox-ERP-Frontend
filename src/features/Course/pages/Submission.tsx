@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Sidebar from "@/components/Sidebar";
 import SearchBar from "@/components/SearchBar";
 import { Send, UsersRound } from "lucide-react";
-import SubmissionPanel from "./SubmissionPanel";
+import SubmissionPanel from "../component/SubmissionPanel";
 
 interface AssignmentData {
   title: string;

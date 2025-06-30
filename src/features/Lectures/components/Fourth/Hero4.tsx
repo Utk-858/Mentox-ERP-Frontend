@@ -11,7 +11,7 @@ import { Bell, MessageCircle, Plus } from "lucide-react";
 import SetGoalModal from "../Second/SetGoalModel";
 import Curriculum from "../Third/Curriculum";
 import { NavLink } from "react-router-dom";
-import SearchTop from "@/features/Dashboard/SearchTop";
+import SearchTop from "@/features/Dashboard/components/SearchTop";
 
 const lessons = [
   { title: "Lesson title – not purchased course", time: "30 minutes" },

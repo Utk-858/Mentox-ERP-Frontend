@@ -5,7 +5,7 @@ import FreeCourses from "./FreeCourses";
 import Course from "./Course";
 import ContinueWatching from "./ContinueWatching";
 import Sidebar from "./Sidebar";
-import SearchTop from "@/features/Dashboard/SearchTop";
+import SearchTop from "@/features/Dashboard/components/SearchTop";
 
 const Hero = () => {
   const [search, setSearch] = useState("");

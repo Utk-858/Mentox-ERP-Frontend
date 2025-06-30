@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import App2 from "./App2";
+import App2 from "../component/App2";
+
 
 // AnnouncementCard Component with comment functionality
 const AnnouncementCard: React.FC<{

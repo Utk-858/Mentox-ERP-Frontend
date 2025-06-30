@@ -1,8 +1,7 @@
 import React from "react";
 import { ClipboardList, Clock, Calendar, MoreVertical } from "lucide-react";
-import FreeCourses from "../Lectures/components/front/FreeCourses";
-import Course from "../Lectures/components/front/Course";
-import ContinueWatching from "../Lectures/components/front/ContinueWatching";
+import ContinueWatching from "@/features/Lectures/components/front/ContinueWatching";
+import Course from "@/features/Lectures/components/front/Course";
 
 interface QuizCardProps {
   title: string;

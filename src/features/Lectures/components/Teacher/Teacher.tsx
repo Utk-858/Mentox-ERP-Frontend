@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Plus, Bell, MessageCircle } from "lucide-react";
 import { ContainerTextFlip } from '../ui/container-text-flip';
 
-import SearchTop from "@/features/Dashboard/SearchTop";
+import SearchTop from "@/features/Dashboard/components/SearchTop";
 import Sidebar from "../front/Sidebar";
 import ContinueWatching from "../front/ContinueWatching";
 import FreeCourses from "../front/FreeCourses";

@@ -3,7 +3,7 @@ import { Bell, Search, MessageCircle } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
 import SearchBar from "@/components/SearchBar";
 import App1 from "./App1";
-import App2 from "./App2";
+
 import Assignments from "./Assignments";
 import QuizList from "./QuizList";
 import Lectures from "./Lectures";

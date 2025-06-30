@@ -1,6 +1,6 @@
 // Hero5.tsx
 import React, { useState } from "react";
-import Sidebar from "../Lectures/components/front/Sidebar";
+import Sidebar from "../../Lectures/components/front/Sidebar";
 import {
   Bell,
   Clock,
@@ -10,21 +10,21 @@ import {
   Plus,
   Star,
 } from "lucide-react";
-import ContinueWatching from "../Lectures/components/front/ContinueWatching";
-import FreeCourses from "../Lectures/components/front/FreeCourses";
-import Course from "../Lectures/components/front/Course";
-import SearchTop from "./SearchTop";
+import ContinueWatching from "../../Lectures/components/front/ContinueWatching";
+import FreeCourses from "../../Lectures/components/front/FreeCourses";
+import Course from "../../Lectures/components/front/Course";
+import SearchTop from "../components/SearchTop";
 import { FaPlayCircle } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import { Card } from "../Lectures/components/ui/Card";
-import Attendance from "./Attendance";
-import RankCard from "./RankCard";
-import type { RankData } from "./types";
-import BarChartCard from "../../components/BarChart";
-import Barchart from "./BarChart";
-import FeeCard from "./FeeCard";
-import ScheduleCard from "./ScheduleCard";
-import ActivityCard from "./ActivityCard";
+import { Card } from "../../Lectures/components/ui/Card";
+import Attendance from "../components/Attendance";
+import RankCard from "../components/RankCard";
+import type { RankData } from "../types";
+import BarChartCard from "../../../components/BarChart";
+import Barchart from "../components/BarChart";
+import FeeCard from "../components/FeeCard";
+import ScheduleCard from "../components/ScheduleCard";
+import ActivityCard from "../components/ActivityCard";
 
 interface Course {
   id: string;

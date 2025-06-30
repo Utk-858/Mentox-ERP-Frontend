@@ -1,9 +1,8 @@
 import React, { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./features/Lectures/components/Home";
-import Hero5 from "./features/Dashboard/Hero5.tsx";
+import Hero5 from "./features/Dashboard/page/Hero5.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
-import Hero6 from "./features/Course/Hero6.tsx";
 import Libraryroutes from "./features/libraryms/Libroutes.tsx";
 import Examroutes from "./features/Exam Management/Examroutes.tsx";
 import Todoroutes from "./features/To-Do/Todoroutes.tsx";
@@ -14,6 +13,8 @@ import EmployeeRoutes from "./features/Employee/EmployeeRoutes.tsx";
 import Profileroutes from "./features/profile/Profileroutes.tsx";
 import Hero7 from "./features/HelpSupp/Hero7.tsx";
 import  Login from "./features/Login/login.tsx";
+import Hero6 from "./features/Course/pages/Hero6.tsx";
+import Submission from "./features/Course/pages/Submission.tsx";
 
 // const ClassroomDashboard = lazy(()=> import ("./features/classroom/pages/Dashboard"));
 const Quizattempt=lazy(()=>import("./features/qms/pages/Quizattempt"))
@@ -65,7 +66,6 @@ const StudentResult = lazy(
   () => import("./features/Exam Management/pages/StudentResult.tsx")
 );
 
-const Submission= lazy(() => import("./features/Course/Submission.tsx"));
 const Classroom = lazy(() => import("./features/Classroom/pages/Classroom.tsx"));
 const Classroom2 = lazy(() => import("./features/Classroom/pages/Classroom2.tsx"));
 const SettingsTeacher = lazy(() => import("./features/Classroom/pages/SettingsTeacher.tsx"));
