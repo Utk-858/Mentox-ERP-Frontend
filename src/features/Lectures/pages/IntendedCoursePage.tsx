@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "../components/front/Sidebar";
+import Sidebar from "../../../components/SidebarTeacher";
 
 const IntendedCoursePage: React.FC = () => {
   const [learningObjectives, setLearningObjectives] = useState<string[]>(["", "", ""]);

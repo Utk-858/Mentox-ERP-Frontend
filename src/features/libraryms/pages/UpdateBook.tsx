@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "@/components/SidebarStudent";
+import Sidebar from "@/components/SidebarTeacher";
 import SearchBar from "@/components/SearchBar";
 import BookCard2 from "../components/Librarian/BookCard2";
 import SuccessModal from "../components/SuccessModal";

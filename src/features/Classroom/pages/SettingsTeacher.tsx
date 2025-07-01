@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "@/components/SidebarStudent";
+import Sidebar from "@/components/SidebarTeacher";
 import SearchBar from "@/components/SearchBar";
 import { Play, Settings,MoreVertical } from "lucide-react";
 import ClassroomSettings from "../components/ClassroomSettings";

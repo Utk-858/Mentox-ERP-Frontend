@@ -1,18 +1,34 @@
-// AFTER (in MainLayout.tsx)
+import { Outlet, useLocation } from 'react-router-dom';
 
-import { Outlet } from 'react-router-dom';
-import Sidebar from '../../../../components/SidebarStudent';
+import SidebarStudent from '../../../../components/SidebarStudent';
+import SidebarTeacher from '../../../../components/SidebarTeacher';
+
+import SidebarAdmin from '../../../../components/SidebarAdmin';
+
 
 const MainLayout = () => {
+ 
+  const location = useLocation();
+
+  const renderSidebar = () => {
+    if (location.pathname.includes('/profile/student')) {
+      return <SidebarStudent />;
+    }
+    if (location.pathname.includes('/profile/teacher')) {
+      return <SidebarTeacher />;
+    }
+
+    return <SidebarAdmin />; 
+  };
+
   return (
     <div className="bg-white min-h-screen">
       <div className="flex">
-        
-    <aside className="h-screen sticky top-0 hidden lg:block">
-      <Sidebar />
-    </aside>
+    
+        <aside className="h-screen sticky top-0 hidden lg:block">
+          {renderSidebar()}
+        </aside>
 
-        {/* Main Content Area */}
         <div className="flex-1 p-3 sm:p-4 md:p-6">
           <main>
             <Outlet />

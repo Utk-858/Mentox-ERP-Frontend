@@ -1,6 +1,6 @@
 // Hero5.tsx
 import React, { useState } from "react";
-import Sidebar from "../../Lectures/components/front/Sidebar";
+import Sidebar from "../../../components/SidebarStudent";
 import {
   Bell,
   Clock,

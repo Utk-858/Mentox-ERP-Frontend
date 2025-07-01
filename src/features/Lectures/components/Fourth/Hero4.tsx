@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
-import Sidebar from "../front/Sidebar";
+import Sidebar from "../../../../components/SidebarStudent";
 import { Bell, MessageCircle, Plus } from "lucide-react";
 import SetGoalModal from "../Second/SetGoalModel";
 import Curriculum from "../Third/Curriculum";

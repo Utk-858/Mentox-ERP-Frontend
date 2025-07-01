@@ -3,7 +3,7 @@ import { Plus, Bell, MessageCircle } from "lucide-react";
 import { ContainerTextFlip } from '../ui/container-text-flip';
 
 import SearchTop from "@/features/Dashboard/components/SearchTop";
-import Sidebar from "../front/Sidebar";
+import Sidebar from "../../../../components/SidebarTeacher";
 import ContinueWatching from "../front/ContinueWatching";
 import FreeCourses from "../front/FreeCourses";
 import Course from "../front/Course";

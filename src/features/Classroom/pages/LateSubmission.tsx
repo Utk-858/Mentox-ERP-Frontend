@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import Sidebar from "@/components/SidebarStudent";
+import Sidebar from "@/components/SidebarTeacher";
 import LateSubmissionContent from "../components/LateSubmissionContent";
 import { ArrowLeft, MoreVertical } from "lucide-react";
 

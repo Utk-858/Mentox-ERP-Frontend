@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import type { StudentRow } from "../components/StudentDetailsTable";
-const Sidebar = lazy(() => import("../../../components/SidebarStudent"));
+const Sidebar = lazy(() => import("../../../components/SidebarTeacher"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
 const StudentDetailsTable = lazy(() => import("../components/StudentDetailsTable"));
 const StudentDetails: React.FC = () => {

@@ -3,7 +3,7 @@ import { IoBookOutline } from "react-icons/io5";
 import { MdOutlineCalendarToday } from "react-icons/md";
 import { MdOutlinePeople } from "react-icons/md";
 import { VscGraph } from "react-icons/vsc";
-const Sidebar = lazy(() => import("../../../components/SidebarStudent"));
+const Sidebar = lazy(() => import("../../../components/SidebarTeacher"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
 const SummaryStats = lazy(() => import("../../qms/components/Summarystats"));
 const ScoreDistribution = lazy(() => import("../components/ScoreDistribution"));

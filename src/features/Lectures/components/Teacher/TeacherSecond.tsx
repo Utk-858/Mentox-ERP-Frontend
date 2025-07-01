@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
-import Sidebar from "../front/Sidebar";
+import Sidebar from "../../../../components/SidebarTeacher";
 import { Bell, MessageCircle, Plus, Share2, Target } from "lucide-react";
 import SetGoalModal from './SetGoal'; // Make sure the path is correct
 

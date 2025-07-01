@@ -1,5 +1,5 @@
 import { lazy } from "react";
-const Sidebar = lazy(() => import("../../../components/SidebarStudent"));
+const Sidebar = lazy(() => import("../../../components/SidebarTeacher"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
 const DatesheetTable = lazy(() => import("../components/DatesheetTable"));
 const Datesheet: React.FC = () => {

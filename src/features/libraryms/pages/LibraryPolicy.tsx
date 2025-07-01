@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Sidebar from '@/components/SidebarStudent';
+import Sidebar from '@/components/SidebarTeacher';
 import SearchBar from '@/components/SearchBar';
 // TimePicker is imported but not used in the provided JSX.
 // If you intend to use it, ensure its usage aligns with its documentation.

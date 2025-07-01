@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "@/components/SidebarStudent";
+import Sidebar from "@/components/SidebarAdmin";
 import SearchBar from "@/components/SearchBar";
 import StatsComponent from "../components/StatsComponent";
 import Attendance from "../components/Attendance";

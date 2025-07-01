@@ -1,5 +1,5 @@
 import { lazy, useState } from "react";
-const Sidebar = lazy(() => import("../../../components/SidebarStudent"));
+const Sidebar = lazy(() => import("../../../components/SidebarTeacher"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
 const StatCard = lazy(() => import("../components/StatCard"));
 const DailyAttendance = lazy(() => import("../components/DailyAttendance"));

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "@/components/SidebarStudent";
 import SearchBar from "../components/search-bar";
 import Categories from "../components/Student/categories";
 import { FaStar, FaRegStar, FaDownload } from "react-icons/fa";

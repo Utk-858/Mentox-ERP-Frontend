@@ -4,7 +4,7 @@ import { ContainerTextFlip } from '../ui/container-text-flip';
 import FreeCourses from "./FreeCourses";
 import Course from "./Course";
 import ContinueWatching from "./ContinueWatching";
-import Sidebar from "./Sidebar";
+import Sidebar from "../../../../components/SidebarStudent";
 import SearchTop from "@/features/Dashboard/components/SearchTop";
 
 const Hero = () => {

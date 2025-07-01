@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "@/components/SidebarStudent";
+import Sidebar from "@/components/SidebarAdmin";
 import SearchBar from "@/components/SearchBar";
 import DashboardCards from "../components/DashboardCards";
 import CalendarSchedule from "../components/CalendarSchedule";

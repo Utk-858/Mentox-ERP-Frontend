@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Sidebar from "../components/front/Sidebar";
+import Sidebar from "../../../components/SidebarTeacher";
 import axiosInstance from "@/api/axios";    
 
 interface CourseData {

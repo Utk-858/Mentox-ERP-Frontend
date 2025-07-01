@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidebar from '@/components/SidebarStudent'
+import Sidebar from '@/components/SidebarTeacher'
 import SearchBar from '@/components/SearchBar'
 import ExamManagement from '../components/ExamManagement'
 
