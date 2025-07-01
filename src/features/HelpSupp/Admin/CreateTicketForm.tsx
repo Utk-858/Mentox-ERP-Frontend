@@ -1,6 +1,9 @@
-import React, { useState,type DragEvent, type ChangeEvent } from "react";
+import React, { useState, type DragEvent, type ChangeEvent } from "react";
 
-interface FilePreview {
+export interface FilePreview {
+  url: string;
+  name: string;
+  type: "image" | "pdf" | "doc" | "other";
   file: File;
   previewUrl?: string;
 }
@@ -12,6 +15,7 @@ interface CreateTicketFormProps {
     priority: "Low" | "Medium" | "High";
     to: string;
     description: string;
+    attachments?: FilePreview[];
   }) => void;
   onCancel: () => void;
 }
@@ -22,7 +26,7 @@ const CreateTicketForm: React.FC<CreateTicketFormProps> = ({ onSubmit, onCancel 
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
   const [dragOver, setDragOver] = useState(false);
- const [files, setFiles] = useState<FilePreview[]>([]);
+  const [files, setFiles] = useState<FilePreview[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,18 +34,27 @@ const CreateTicketForm: React.FC<CreateTicketFormProps> = ({ onSubmit, onCancel 
       subject,
       category,
       to,
-      priority: "Low", // You can add a priority selector if you want
+      priority: "Low",
       description,
+      attachments: files,
     });
   };
 
-   const handleFiles = (selectedFiles: FileList) => {
-    const fileArray: FilePreview[] = [];
-
+  const handleFiles = (selectedFiles: FileList) => {
     Array.from(selectedFiles).forEach((file) => {
-      const preview: FilePreview = { file };
-
-      if (file.type.startsWith("image/")) {
+      const url = URL.createObjectURL(file);
+      const ext = file.name.split(".").pop()?.toLowerCase();
+      let type: FilePreview["type"] = "other";
+      if (file.type.startsWith("image/")) type = "image";
+      else if (ext === "pdf") type = "pdf";
+      else if (["doc", "docx"].includes(ext || "")) type = "doc";
+      const preview: FilePreview = {
+        file,
+        name: file.name,
+        url,
+        type,
+      };
+      if (type === "image") {
         const reader = new FileReader();
         reader.onloadend = () => {
           preview.previewUrl = reader.result as string;
@@ -49,20 +62,9 @@ const CreateTicketForm: React.FC<CreateTicketFormProps> = ({ onSubmit, onCancel 
         };
         reader.readAsDataURL(file);
       } else {
-        fileArray.push(preview);
+        setFiles((prev) => [...prev, preview]);
       }
     });
-
-       // Add non-image files immediately
-    const nonImageFiles = Array.from(selectedFiles).filter(
-      (f) => !f.type.startsWith("image/")
-    );
-    if (nonImageFiles.length) {
-      setFiles((prev) => [
-        ...prev,
-        ...nonImageFiles.map((f) => ({ file: f })),
-      ]);
-    }
   };
 
   const handleDrop = (e: DragEvent<HTMLLabelElement>) => {
@@ -73,12 +75,11 @@ const CreateTicketForm: React.FC<CreateTicketFormProps> = ({ onSubmit, onCancel 
     }
   };
 
- const handleFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-  if (e.target.files) {
-    handleFiles(e.target.files);
-  }
-};
-
+  const handleFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      handleFiles(e.target.files);
+    }
+  };
 
   return (
     <div className="max-w-md mx-auto bg-white p-10 rounded-lg shadow">
@@ -146,30 +147,28 @@ const CreateTicketForm: React.FC<CreateTicketFormProps> = ({ onSubmit, onCancel 
               setDragOver(true);
             }}
             onDragLeave={() => setDragOver(false)}
-            className={`w-full  rounded px-3 py-6 text-center text-sm cursor-pointer transition ${
+            onDrop={handleDrop}
+            className={`w-full rounded px-3 py-6 text-center text-sm cursor-pointer transition ${
               dragOver ? "border-blue-400 bg-blue-50" : "text-gray-500"
             }`}
           >
-
             <div className="text-center border-2 border-dashed py-2">
-            <div className="text-3xl mb-2 text-purple-500">🔗</div>
-            <p className="text-sm text-gray-600">Drop files here or click to browse</p>
-            <span className="text-xs text-gray-400">PNG, JPG, PDF up to 10MB</span>
-            <input
-              type="file"
-              accept=".png,.jpg,.jpeg,.pdf"
-              multiple
-              className="hidden"
-              id="fileInput"
-              onChange={handleFileInputChange}
-              // You can add file handling logic here if needed
-            />
+              <div className="text-3xl mb-2 text-purple-500">🔗</div>
+              <p className="text-sm text-gray-600">Drop files here or click to browse</p>
+              <span className="text-xs text-gray-400">PNG, JPG, PDF up to 10MB</span>
+              <input
+                type="file"
+                accept=".png,.jpg,.jpeg,.pdf,.doc,.docx"
+                multiple
+                className="hidden"
+                id="fileInput"
+                onChange={handleFileInputChange}
+              />
             </div>
           </label>
         </div>
 
-
-         {files.length > 0 && (
+        {files.length > 0 && (
           <div className="grid gap-3 mt-3">
             {files.map((fp, idx) => (
               <div
@@ -179,11 +178,11 @@ const CreateTicketForm: React.FC<CreateTicketFormProps> = ({ onSubmit, onCancel 
                 {fp.previewUrl ? (
                   <img
                     src={fp.previewUrl}
-                    alt={`file-preview-${idx}`}
+                    alt={fp.name}
                     className="w-16 h-16 object-cover rounded"
                   />
                 ) : (
-                  <div className="text-sm">📄 {fp.file.name}</div>
+                  <div className="text-sm">📄 {fp.name}</div>
                 )}
                 <div className="text-xs text-gray-600">
                   {(fp.file.size / 1024 / 1024).toFixed(2)} MB

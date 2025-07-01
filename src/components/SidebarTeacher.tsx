@@ -25,7 +25,7 @@ const navItems = [
   { icon: <BookOpen size={16} />, label: "Library", path: "/Library" },
   { icon: <User size={16} />, label: "Profile", path: "/Profile" },
   { icon: <Settings size={16} />, label: "Settings", path: "/Settings" },
-  { icon: <HelpCircle size={16} />, label: "Help & Support", path: "/Help" },
+  { icon: <HelpCircle size={16} />, label: "Help & Support", path: "/Help/teacher" },
   { icon: <LogOut size={16} />, label: "Sign Out", path: "/SignOut" },
 ];
 

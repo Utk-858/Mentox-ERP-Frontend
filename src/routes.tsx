@@ -11,10 +11,13 @@ import Leaveroutes from "./features/Leave/Leaveroutes.tsx";
 import ClassTeacher from "./features/Class Teacher/ClassTeacherroutes.tsx";
 import EmployeeRoutes from "./features/Employee/EmployeeRoutes.tsx";
 import Profileroutes from "./features/profile/Profileroutes.tsx";
-import Hero7 from "./features/HelpSupp/Hero7.tsx";
 import  Login from "./features/Login/login.tsx";
 import Hero6 from "./features/Course/pages/Hero6.tsx";
 import Submission from "./features/Course/pages/Submission.tsx";
+
+import Hero8 from "./features/HelpSupp/teacher/page/Hero8.tsx";
+import Hero9 from "./features/HelpSupp/Admin/Hero9.tsx";
+import Hero7 from "./features/HelpSupp/student/page/Hero7.tsx";
 
 // const ClassroomDashboard = lazy(()=> import ("./features/classroom/pages/Dashboard"));
 const Quizattempt=lazy(()=>import("./features/qms/pages/Quizattempt"))
@@ -135,7 +138,9 @@ const AppRoutes: React.FC = () => {
           <Route path="/Classteacher/*" element={<ClassTeacher/>} />
           <Route path="/" element={<Hero5 />} />
           <Route path="*" element={<div>404 - Not Found</div>} />
-          <Route path="/Help" element={<Hero7/>} />
+          <Route path="/Help/student" element={<Hero7/>} />
+           <Route path="/Help/teacher" element={<Hero8/>} />
+           <Route path="/Help/admin" element={<Hero9/>} />
           <Route path="/login" element={<Login />} />
 
           <Route path="/employee/*" element={<EmployeeRoutes />} />
