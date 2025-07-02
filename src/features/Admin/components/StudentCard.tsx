@@ -29,36 +29,52 @@ const StudentDemographicsChart: React.FC = () => {
   const girlsPercent = ((data.girlsCount / total) * 100).toFixed(2);
 
   return (
-    <div className="w-64 h-90 bg-[#F5F5F7] rounded-xl p-6 font-sans">
+    <div className="w-[260px] h-[280px] bg-[#F5F5F7] rounded-xl p-3 font-sans">
       {/* Header */}
-      <h1 className="text-2xl font-bold text-gray-800 mb-8">Students</h1>
+      <h1 className="text-xl font-semibold text-gray-800 mb-2 text-center">
+        Avg Attendance
+      </h1>
 
       {/* Chart Container */}
-      <div className="flex justify-center mb-8">
-        <div className="relative w-40 h-40">
+      <div className="flex justify-center mb-2">
+        <div className="relative w-[140px] h-[140px]">
           {/* Outer Ring - Background */}
           <svg className="w-full h-full absolute" viewBox="0 0 160 160">
-            <circle cx="80" cy="80" r="70" fill="none" stroke="#e5e7eb" strokeWidth="14" />
+            <circle
+              cx="80"
+              cy="80"
+              r="70"
+              fill="none"
+              stroke="#e5e7eb"
+              strokeWidth="14"
+            />
           </svg>
 
           {/* Boys Ring (Green) - Outer */}
           <svg className="w-full h-full absolute" viewBox="0 0 160 160">
             <circle
               cx="80"
-    cy="80"
-    r="70"
-    fill="none"
-    stroke="#86efac"
-    strokeWidth="14"
-    strokeDasharray={`${+boysPercent * 4.4} 440`}
-    strokeDashoffset="0"
-    transform="rotate(90 80 80)"
+              cy="80"
+              r="70"
+              fill="none"
+              stroke="#86efac"
+              strokeWidth="14"
+              strokeDasharray={`${+boysPercent * 4.4} 440`}
+              strokeDashoffset="0"
+              transform="rotate(90 80 80)"
             />
           </svg>
 
           {/* Inner Ring - Background */}
           <svg className="w-full h-full absolute" viewBox="0 0 160 160">
-            <circle cx="80" cy="80" r="40" fill="none" stroke="#e5e7eb" strokeWidth="16" />
+            <circle
+              cx="80"
+              cy="80"
+              r="40"
+              fill="none"
+              stroke="#e5e7eb"
+              strokeWidth="16"
+            />
           </svg>
 
           {/* Girls Ring (Yellow) - Inner */}
@@ -76,34 +92,40 @@ const StudentDemographicsChart: React.FC = () => {
             />
           </svg>
 
-     <div className="absolute inset-0 flex items-center justify-center">
-  <img
-    src="/girl-and-boy 1.png"
-    alt="Center Image"
-    className="w-13 h-13 object-contain"
-  />
-</div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <img
+              src="/girl-and-boy 1.png"
+              alt="Center Image"
+              className="w-8 h-8 object-contain"
+            />
+          </div>
         </div>
       </div>
 
       {/* Legend */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center px-2">
         {/* Boys */}
         <div className="text-center">
-          <div className="w-4 h-4 bg-green-300 rounded-full mx-auto mb-2"></div>
-          <div className="text-lg font-bold text-gray-800">{data.boysCount.toLocaleString()}</div>
-          <div className="text-sm text-gray-600">Boys ({boysPercent}%)</div>
+          <div className="w-2 h-2 bg-green-300 rounded-full mx-auto mb-1"></div>
+          <div className="text-base font-bold text-gray-800">
+            {data.boysCount.toLocaleString()}
+          </div>
+          <div className="text-xs text-gray-600">
+            Boys ({boysPercent}%)
+          </div>
         </div>
 
         {/* Girls */}
         <div className="text-center">
-          <div className="w-4 h-4 bg-yellow-200 rounded-full mx-auto mb-2"></div>
-          <div className="text-lg font-bold text-gray-800">{data.girlsCount.toLocaleString()}</div>
-          <div className="text-sm text-gray-600">Girls ({girlsPercent}%)</div>
+          <div className="w-2 h-2 bg-yellow-200 rounded-full mx-auto mb-1"></div>
+          <div className="text-base font-bold text-gray-800">
+            {data.girlsCount.toLocaleString()}
+          </div>
+          <div className="text-xs text-gray-600">
+            Girls ({girlsPercent}%)
+          </div>
         </div>
       </div>
-
-   
     </div>
   );
 };

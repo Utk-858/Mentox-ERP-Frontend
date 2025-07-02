@@ -18,6 +18,7 @@ import Submission from "./features/Course/pages/Submission.tsx";
 import Hero8 from "./features/HelpSupp/teacher/page/Hero8.tsx";
 import Hero9 from "./features/HelpSupp/Admin/Hero9.tsx";
 import Hero7 from "./features/HelpSupp/student/page/Hero7.tsx";
+import AdminRoutes from "./features/Admin/AdminRoutes.tsx";
 
 // const ClassroomDashboard = lazy(()=> import ("./features/classroom/pages/Dashboard"));
 const Quizattempt=lazy(()=>import("./features/qms/pages/Quizattempt"))
@@ -144,6 +145,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/login" element={<Login />} />
 
           <Route path="/employee/*" element={<EmployeeRoutes />} />
+          <Route path="/admin/*" element={<AdminRoutes />} />
         </Routes>
       </Suspense>
     </>
