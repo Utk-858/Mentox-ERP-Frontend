@@ -191,10 +191,10 @@ const LoginPage: React.FC = () => {
                   disabled={isLoading}
                 >
                   <option value="">Select your role</option>
-                  <option value="admin">Administrator</option>
+                  <option value="Admin">Administrator</option>
                   <option value="Faculty">Faculty</option>
-                  <option value="employee">Employee</option>
-                  <option value="client">Client</option>
+                  <option value="Employee">Employee</option>
+                  <option value="Client">Client</option>
                 </select>
                 <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
                   <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

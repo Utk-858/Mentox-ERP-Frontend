@@ -94,7 +94,7 @@ const handleSubmit = async () => {
 
   try {
     setLoading(true);
-    await axiosInstance.post("/lectures/createCourse", payload, {
+    await axiosInstance.post("/lectures/", payload, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     alert("Course created successfully!");
