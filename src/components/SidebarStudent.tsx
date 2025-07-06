@@ -29,13 +29,18 @@ const navItems = [
   { icon: <LogOut size={16} />, label: "Sign Out", path: "/SignOut" },
 ];
 
-const SidebarStudent = () => {
+interface SidebarStudentProps {
+  activeLabel?: string; // The new optional prop
+}
+
+const SidebarStudent: React.FC<SidebarStudentProps> = ({ activeLabel }) => {
   const location = useLocation();
   const currentPath = location.pathname;
   const currentItem = navItems.find((item) => item.path === currentPath);
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [activeItem, setActiveItem] = useState(currentItem?.label || "Lectures");
-
+  const [activeItem, setActiveItem] = useState(
+    activeLabel || currentItem?.label || "Lectures"
+  );
   const forceCollapsed = location.pathname === "/attempt"; // 👈 Add condition
 
   useEffect(() => {

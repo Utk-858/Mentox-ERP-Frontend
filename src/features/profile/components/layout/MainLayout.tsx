@@ -11,11 +11,11 @@ const MainLayout = () => {
   const location = useLocation();
 
   const renderSidebar = () => {
-    if (location.pathname.includes('/profile/student')) {
-      return <SidebarStudent />;
+    if (location.pathname.includes('/Profile/student')) {
+      return <SidebarStudent activeLabel="Profile" />;
     }
-    if (location.pathname.includes('/profile/teacher')) {
-      return <SidebarTeacher />;
+    if (location.pathname.includes('/Profile/teacher')) {
+      return <SidebarTeacher activeLabel="Profile" />;
     }
 
     return <SidebarAdmin />; 

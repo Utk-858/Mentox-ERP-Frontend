@@ -28,13 +28,17 @@ const navItems = [
   { icon: <HelpCircle size={16} />, label: "Help & Support", path: "/Help/admin" },
   { icon: <LogOut size={16} />, label: "Sign Out", path: "/SignOut" },
 ];
-
-const SidebarAdmin = () => {
+interface SidebarAdminProps {
+  activeLabel?: string; // The new optional prop
+}
+const SidebarAdmin: React.FC<SidebarAdminProps> = ({ activeLabel }) => {
   const location = useLocation();
   const currentPath = location.pathname;
   const currentItem = navItems.find((item) => item.path === currentPath);
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [activeItem, setActiveItem] = useState(currentItem?.label || "Lectures");
+  const [activeItem, setActiveItem] = useState(
+    activeLabel || currentItem?.label || "Lectures"
+  );
 
   const forceCollapsed = location.pathname === "/attempt"; // 👈 Add condition
 

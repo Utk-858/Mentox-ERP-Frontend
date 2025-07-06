@@ -29,7 +29,11 @@ const navItems = [
   { icon: <LogOut size={16} />, label: "Sign Out", path: "/SignOut" },
 ];
 
-const SidebarTeacher = () => {
+interface SidebarTeacherProps {
+  activeLabel?: string; 
+}
+
+const SidebarTeacher: React.FC<SidebarTeacherProps> = ({ activeLabel }) => {
   const location = useLocation();
   const currentPath = location.pathname;
   const currentItem = navItems.find((item) => item.path === currentPath);

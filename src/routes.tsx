@@ -14,7 +14,7 @@ import Profileroutes from "./features/profile/Profileroutes.tsx";
 import  Login from "./features/Login/login.tsx";
 import Hero6 from "./features/Course/pages/Hero6.tsx";
 import Submission from "./features/Course/pages/Submission.tsx";
-
+import SalaryRoutes from "./features/Salary/SalaryRoutes.tsx";
 import Hero8 from "./features/HelpSupp/teacher/page/Hero8.tsx";
 import Hero9 from "./features/HelpSupp/Admin/Hero9.tsx";
 import Hero7 from "./features/HelpSupp/student/page/Hero7.tsx";
@@ -93,6 +93,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/To-Do/*" element={<Todoroutes />} />
           <Route path="/Leave/*" element={<Leaveroutes />} />
           <Route path="/profile/*" element={<Profileroutes />} />
+          <Route path="/salary/*" element={<SalaryRoutes />} />
           <Route path="/attempt" element={<Quizattempt />} />
           <Route path="/review" element={<Quizreview />} />
           <Route path="/homepage" element={<Homepage/>}/>
