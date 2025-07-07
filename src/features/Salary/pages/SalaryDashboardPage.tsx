@@ -31,9 +31,13 @@ const SalaryDashboardPage: React.FC = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <PaymentStatusCard />
-        <ProcessSalaryCard />
+      <div className="flex flex-col lg:flex-row gap-6">
+        <div className="lg:w-1/2">
+          <PaymentStatusCard />
+        </div>
+        <div className="lg:w-1/2">
+          <ProcessSalaryCard />
+        </div>
       </div>
 
       <div>
