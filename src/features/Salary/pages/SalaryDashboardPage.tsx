@@ -7,7 +7,7 @@ import SalaryTable from '../components/SalaryTable';
 
 const SalaryDashboardPage: React.FC = () => {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 pt-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard 
           icon={<Users size={20} className="text-[#702DFF]" />} 

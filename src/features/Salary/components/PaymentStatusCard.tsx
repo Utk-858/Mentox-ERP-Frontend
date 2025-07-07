@@ -31,7 +31,7 @@ const PaymentStatusCard: React.FC = () => {
         {/* 2. Replace the <button> with the <Link> component */}
         {/* 3. We'll point this to "process" as well for now. */}
         <Link
-          to="process"
+          to="/salary/report"
           className="mt-8 bg-black text-white font-semibold py-2.5 px-5 rounded-full self-start hover:bg-gray-800 transition-all flex items-center gap-3 text-sm"
         >
           <span>Report Page</span>

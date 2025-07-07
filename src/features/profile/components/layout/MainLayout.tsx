@@ -14,11 +14,11 @@ const MainLayout = () => {
     if (location.pathname.includes('/Profile/student')) {
       return <SidebarStudent activeLabel="Profile" />;
     }
-    if (location.pathname.includes('/Profile/teacher')) {
+    if (location.pathname.includes('/profile/teacher')) {
       return <SidebarTeacher activeLabel="Profile" />;
     }
 
-    return <SidebarAdmin />; 
+    return <SidebarAdmin activeLabel="Profile" />; 
   };
 
   return (

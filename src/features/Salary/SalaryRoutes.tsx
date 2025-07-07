@@ -6,6 +6,8 @@ import { SalaryProvider } from './context/SalaryContext';
 const SalaryDashboardPage = lazy(() => import('./pages/SalaryDashboardPage'));
 const ProcessSalaryPage = lazy(() => import('./pages/ProcessSalaryPage'));
 const PaySalaryPage = lazy(() => import('./pages/PaySalaryPage'));
+// We no longer import AdvanceSalaryPage
+const SalaryReportPage = lazy(() => import('./pages/SalaryReportPage'));
 
 const SalaryRoutes: React.FC = () => {
   return (
@@ -15,8 +17,9 @@ const SalaryRoutes: React.FC = () => {
           <Route element={<SalaryLayout />}>
             <Route index element={<SalaryDashboardPage />} />
             <Route path="process" element={<ProcessSalaryPage />} /> 
-            {/* The only route needed for payments */}
+            {/* This is now the ONLY route for all payments */}
             <Route path="pay/:employeeId" element={<PaySalaryPage />} />
+            <Route path="report" element={<SalaryReportPage />} />
           </Route>
         </Routes>
       </Suspense>
