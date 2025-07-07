@@ -41,7 +41,7 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({ pageTitle, pageSubtitl
   };
 
   return (
-    <div className="bg-white p-4 sm:p-6 lg:p-8 font-poppins">
+    <div className="font-poppins">
       <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
         <div>
           <h1 className="text-2xl md:text-3xl font-semibold text-gray-800">{pageTitle}</h1>
