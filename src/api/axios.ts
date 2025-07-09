@@ -1,7 +1,11 @@
+
 import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
 
 const instance = axios.create({
-  baseURL: "https://mentox-api-gateway.onrender.com/api/v1",
+  baseURL: `${process.env.API_GATEWAY_URL}/api/v1`,
+  withCredentials: true, // ✅ important for CORS, cookies, secure auth
 });
 
 instance.interceptors.request.use((config) => {

@@ -1,6 +1,7 @@
+
+
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Sidebar from "../../../components/SidebarTeacher";
+import Sidebar from "@/components/SidebarTeacher";
 import axiosInstance from "@/api/axios";    
 
 interface CourseData {
@@ -34,30 +35,30 @@ const CourseLandingPage: React.FC = () => {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        setLoading(true);
-        const response = await axios.get("/api/course");
-        const data = response.data;
+        // setLoading(true);
+        // const response = await axiosInstance.get("/api/course");
+        // const data = response.data;
 
-        const {
-          title,
-          subtitle,
-          description,
-          language,
-          level,
-          subcategory,
-          primaryTopic,
-        } = data;
+        // const {
+        //   title,
+        //   subtitle,
+        //   description,
+        //   language,
+        //   level,
+        //   subcategory,
+        //   primaryTopic,
+        // } = data;
 
-        setFormData((prev) => ({
-          ...prev,
-          title,
-          subtitle,
-          description,
-          language,
-          level,
-          subcategory,
-          primaryTopic,
-        }));
+        // setFormData((prev) => ({
+        //   ...prev,
+        //   title,
+        //   subtitle,
+        //   description,
+        //   language,
+        //   level,
+        //   subcategory,
+        //   primaryTopic,
+        // }));
       } catch (error) {
         console.error("Error fetching course:", error);
       } finally {
@@ -94,7 +95,7 @@ const handleSubmit = async () => {
 
   try {
     setLoading(true);
-    await axiosInstance.post("/lectures/", payload, {
+    await axiosInstance.post("/lectures/create", payload, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     alert("Course created successfully!");
