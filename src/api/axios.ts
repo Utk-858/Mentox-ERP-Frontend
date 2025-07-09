@@ -1,10 +1,8 @@
 
 import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
 
 const instance = axios.create({
-  baseURL: `${process.env.API_GATEWAY_URL}/api/v1`,
+  baseURL: `${import.meta.env.VITE_API_GATEWAY_URL}/api/v1`,
   withCredentials: true, // ✅ important for CORS, cookies, secure auth
 });
 
