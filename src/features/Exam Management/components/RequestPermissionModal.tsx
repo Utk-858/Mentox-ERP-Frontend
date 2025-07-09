@@ -61,6 +61,7 @@ const RequestPermissionModal: React.FC<RequestPermissionModalProps> = ({ onClose
         >
           <option value="Change For Marks">Change For Marks</option>
           <option value="Edit Submission">Edit Submission</option>
+          <option value="Edit School Profile permission ">Edit School Profile permission </option>
         </select>
 
         {/* Reason */}

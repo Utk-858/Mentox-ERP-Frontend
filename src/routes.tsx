@@ -20,7 +20,7 @@ import Hero9 from "./features/HelpSupp/Admin/Hero9.tsx";
 import Hero7 from "./features/HelpSupp/student/page/Hero7.tsx";
 import AdminRoutes from "./features/Admin/AdminRoutes.tsx";
 import TimeTablePage from "./features/TimeTable/page/TimeTable.tsx";
-
+import SchoolRoutes from "./features/School/Schoolroutes.tsx";
 // const ClassroomDashboard = lazy(()=> import ("./features/classroom/pages/Dashboard"));
 const Quizattempt=lazy(()=>import("./features/qms/pages/Quizattempt"))
 const Quizreview=lazy(()=>import("./features/qms/pages/Quizreview"))
@@ -91,6 +91,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/Lectures/*" element={<Home />} />
           <Route path="/Library/*" element={<Libraryroutes />} />
           <Route path="/Exam/*" element={<Examroutes />} />
+          <Route path="/school/*" element={<SchoolRoutes />} />
           <Route path="/To-Do/*" element={<Todoroutes />} />
           <Route path="/Leave/*" element={<Leaveroutes />} />
           <Route path="/profile/*" element={<Profileroutes />} />
