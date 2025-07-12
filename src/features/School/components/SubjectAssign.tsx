@@ -88,7 +88,7 @@ const SubjectAssign: React.FC = () => {
       </div>
 
       <div className="overflow-x-auto">
-        <div className="max-h-[460px] overflow-y-auto">
+        <div className="max-h-[490px] overflow-y-auto">
           <table className="w-full text-left border-separate border-spacing-y-2">
             <thead className="bg-gray-100 text-[#616188] text-[1rem] font-[600] sticky top-0 z-10">
               <tr>

@@ -14,10 +14,14 @@ type ClassItem = {
 const ClassesAndSectionsTable: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [classes, setClasses] = useState<ClassItem[]>([
-    { className: "1", numOfSections: "3", totalSeats: "50", createdOn: "01-June-2024" },
-    { className: "2", numOfSections: "3", totalSeats: "50", createdOn: "01-June-2024" },
-    { className: "3", numOfSections: "3", totalSeats: "50", createdOn: "01-June-2024" },
-    { className: "4", numOfSections: "3", totalSeats: "50", createdOn: "01-June-2024" },
+    { className: "1", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
+    { className: "2", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
+    { className: "3", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
+    { className: "4", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
+    { className: "5", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
+    { className: "6", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
+    { className: "7", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
+    { className: "8", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
   ]);
   const [isSectionModalOpen, setIsSectionModalOpen] = useState(false);
   const [currentClass, setCurrentClass] = useState("");
@@ -25,24 +29,31 @@ const ClassesAndSectionsTable: React.FC = () => {
   const [selectedClass, setSelectedClass] = useState("");
 
   const handleCreateClass = () => {
-    if (selectedClass) {
-      setClasses((prev) => [
-        ...prev,
-        {
-          className: selectedClass,
-          numOfSections: "-",
-          totalSeats: "-",
-          createdOn: new Date().toLocaleDateString("en-GB", {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-          }),
-        },
-      ]);
-      setSelectedClass("");
-      setIsModalOpen(false);
-    }
-  };
+  if (!selectedClass) return;
+
+  const isDuplicate = classes.some(cls => cls.className === selectedClass);
+  if (isDuplicate) {
+    alert(`Class "${selectedClass}" already exists.`);
+    return;
+  }
+
+  setClasses((prev) => [
+    ...prev,
+    {
+      className: selectedClass,
+      numOfSections: "-",
+      totalSeats: "-",
+      createdOn: new Date().toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }),
+    },
+  ]);
+  setSelectedClass("");
+  setIsModalOpen(false);
+};
+
 
   const handleEditToggle = (idx: number) => {
     setClasses((prev) =>
@@ -91,7 +102,7 @@ const ClassesAndSectionsTable: React.FC = () => {
       </div>
 
       <div className="overflow-x-auto">
-        <div className="max-h-[360px] overflow-y-auto">
+        <div className="max-h-[460px] overflow-y-auto">
           <table className="w-full table-fixed border-separate border-spacing-y-3 min-w-[700px]">
             <thead className="sticky top-0 bg-[#F8F8FC] text-[#616188] font-[600] text-[1rem] text-left z-10">
               <tr>

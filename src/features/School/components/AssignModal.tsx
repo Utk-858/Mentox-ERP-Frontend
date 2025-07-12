@@ -18,7 +18,7 @@ interface AssignPopupProps {
 }
 
 const sampleSubjects = ["Mathematics", "Science", "English", "History", "Geography"];
-const teachers = ["Sunil Panday", "Himanshu Sharma", "Rishabh Shrivastava", "Anita Mehra"];
+const teachers = ["Not Assigned","Sunil Panday", "Himanshu Sharma", "Rishabh Shrivastava", "Anita Mehra"];
 const sections = ["Section-A", "Section-B", "Section-C"];
 
 const AssignModal: React.FC<AssignPopupProps> = ({

@@ -74,7 +74,7 @@ const CreateSubjectsDatabase: React.FC = () => {
         <table className="w-full text-left border-separate border-spacing-y-2 min-w-[800px]">
           <thead className="bg-gray-100 text-[#616188] text-[1rem] font-[600] sticky top-0 z-10">
             <tr>
-              <th className="p-2">Created Year</th>
+              <th className="p-2">Academic Year</th>
               <th className="p-2">Class</th>
               <th className="p-2">Class Strength</th>
               <th className="p-2">Subject Count</th>

@@ -4,24 +4,32 @@ import PermissionPopup from "./PermissionPopup";
 
 interface RequestPermissionModalProps {
   onClose: () => void;
+  onPermissionGranted: () => void; // ✅ Add this line
 }
 
-const RequestPermissionModal: React.FC<RequestPermissionModalProps> = ({ onClose }) => {
+
+const RequestPermissionModal: React.FC<RequestPermissionModalProps> = ({ onClose,onPermissionGranted }) => {
   const [to, setTo] = useState("Admin");
   const [requestType, setRequestType] = useState("Change For Marks");
   const [reason, setReason] = useState("");
  const [showSuccess, setShowSuccess] = useState(false);
-  const handleSubmit = () => {
-    if (!to || !requestType || !reason.trim()) {
-      alert("Please fill all the fields.");
-      return;
-    }
+ const handleSubmit = () => {
+  if (!to || !requestType || !reason.trim()) {
+    alert("Please fill all the fields.");
+    return;
+  }
 
-    console.log("Request submitted:", { to, requestType, reason });
-    
-    setShowSuccess(true);
-    
-  };
+  console.log("Request submitted:", { to, requestType, reason });
+
+  setShowSuccess(true); // show success popup
+
+  // ⏳ Delay permission grant until after popup is visible
+  setTimeout(() => {
+    onPermissionGranted(); // this triggers onClose() from parent
+  }, 2000); // 2 seconds to allow PermissionPopup to render
+};
+
+
 
   return (
     <div className="fixed inset-0 backdrop-blur-sm bg-white/30 bg-opacity-40 z-50 flex justify-center items-center">

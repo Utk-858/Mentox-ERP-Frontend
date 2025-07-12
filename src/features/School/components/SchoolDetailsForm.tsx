@@ -48,6 +48,8 @@ const SchoolDetailsForm: React.FC = () => {
     registrationNumber: "",
     recognizedBy: "",
   });
+  const [isEditable, setIsEditable] = useState(false); // allows partial editing
+const [fullPermission, setFullPermission] = useState(false); // allows full editing
 
   const [showPopup, setShowPopup] = useState(false);
   const panFileRef = useRef<HTMLInputElement>(null);
@@ -72,7 +74,20 @@ const [cityList, setCityList] = useState<ICity[]>([]);
     setFormData({ ...formData, schoolLogo: e.target.files?.[0] || null });
   };
 
-  
+  const isEditableForField = (field: keyof FormData) => {
+  const editableWithoutPermission: (keyof FormData)[] = [
+    "recognizedBy",
+    "officialEmail",
+    "website",
+    "primaryPhone",
+    "secondaryPhone",
+    "registrationNumber"
+
+    // Add more fields as needed
+  ];
+  return fullPermission || (isEditable && editableWithoutPermission.includes(field));
+};
+
 
   
 
@@ -119,9 +134,14 @@ const [cityList, setCityList] = useState<ICity[]>([]);
 >
   Request Permission from Admin
 </a>
-          <button className="bg-black text-white text-[1.25rem] font-[400] px-8 py-1 cursor-pointer rounded-md">
-            Edit
-          </button>
+          <button
+  type="button"
+  className="bg-black text-white text-[1.25rem] font-[400] px-8 py-1 cursor-pointer rounded-md"
+  onClick={() => setIsEditable(true)} // this allows partial editing
+>
+  Edit
+</button>
+
         </div>
       </div>
 
@@ -140,6 +160,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
               placeholder="XYZ ABC Public Schools"
               value={formData.schoolName}
               onChange={handleChange("schoolName")}
+              disabled={!isEditableForField("schoolName")}
+
             />
           </div>
           <div className="flex gap-4 mt-4">
@@ -151,6 +173,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
                 className="border border-[#60606099] bg-[#D2D2D233] text-[#0000004D] text-[1.25rem] font-[500] p-2 rounded"
                 value={formData.schoolType}
                 onChange={handleChange("schoolType")}
+                disabled={!isEditableForField("schoolType")}
+
               >
                 <option value="">Select</option>
                 <option value="Government">Government</option>
@@ -167,6 +191,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
                 className="border border-[#60606099] bg-[#D2D2D233] text-[#0000004D] text-[1.25rem] font-[500] p-2 rounded"
                 value={formData.managementType}
                 onChange={handleChange("managementType")}
+                disabled={!isEditableForField("managementType")}
+
               >
                 <option value="">Select</option>
                 <option value="Trust">Trust</option>
@@ -186,6 +212,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
                 placeholder="Enter UDISE Code"
                 value={formData.udiseCode}
                 onChange={handleChange("udiseCode")}
+                disabled={!isEditableForField("udiseCode")}
+
               />
             </div>
             <div className="flex flex-col w-1/3">
@@ -197,6 +225,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
                 placeholder="Board affiliation number"
                 value={formData.affiliationNumber}
                 onChange={handleChange("affiliationNumber")}
+                disabled={!isEditableForField("affiliationNumber")}
+
               />
             </div>
             <div className="flex flex-col w-1/3">
@@ -208,6 +238,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
                 type="date"
                 value={formData.establishmentDate}
                 onChange={handleChange("establishmentDate")}
+                disabled={!isEditableForField("establishmentDate")}
+
               />
             </div>
           </div>
@@ -247,6 +279,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
         accept="image/*"
         className="hidden"
         onChange={handleFileChange}
+        disabled={!isEditableForField("schoolLogo")}
+
       />
     </div>
   </div>
@@ -281,6 +315,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
       setCityList(stateCities);
     }}
     className="border bg-[#D2D2D233] p-2 rounded text-[#0000004D] text-[1.25rem] font-[500]"
+    disabled={!isEditableForField("state")}
+
   >
     <option value="">Select State</option>
     {stateList.map((state) => (
@@ -300,6 +336,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
     value={formData.district}
     onChange={(e) => setFormData({ ...formData, district: e.target.value })}
     disabled={!cityList.length}
+    
+
     className="border bg-[#D2D2D233] p-2 rounded text-[#0000004D] text-[1.25rem] font-[500]"
   >
     <option value="">Select District</option>
@@ -339,6 +377,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
               className="border border-[#60606099] bg-[#D2D2D233] text-[#0000004D] text-[1.25rem] font-[500] p-2 rounded"
               value={formData.pincode}
               onChange={handleChange("pincode")}
+              disabled={!isEditableForField("pincode")}
+
             />
           </div>
 
@@ -351,6 +391,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
               type="email"
               value={formData.officialEmail}
               onChange={handleChange("officialEmail")}
+              disabled={!isEditableForField("officialEmail")}
+
             />
           </div>
 
@@ -363,6 +405,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
               type="url"
               value={formData.website}
               onChange={handleChange("website")}
+              disabled={!isEditableForField("website")}
+
             />
           </div>
 
@@ -374,6 +418,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
               className="border border-[#60606099] bg-[#D2D2D233] text-[#0000004D] text-[1.25rem] font-[500] p-2 rounded"
               value={formData.primaryPhone}
               onChange={handleChange("primaryPhone")}
+              disabled={!isEditableForField("primaryPhone")}
+
             />
           </div>
 
@@ -385,6 +431,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
               className="border border-[#60606099] bg-[#D2D2D233] text-[#0000004D] text-[1.25rem] font-[500] p-2 rounded"
               value={formData.secondaryPhone}
               onChange={handleChange("secondaryPhone")}
+              disabled={!isEditableForField("secondaryPhone")}
+
             />
           </div>
         </div>
@@ -403,6 +451,7 @@ const [cityList, setCityList] = useState<ICity[]>([]);
                 className="border border-[#60606099] bg-[#D2D2D233] text-[#0000004D] text-[1.25rem] font-[500] p-2 rounded"
                 value={formData.panNumber}
                 onChange={handleChange("panNumber")}
+                disabled={!isEditableForField("panNumber")}
               />
             </div>
              <div className="flex gap-2 justify-end mt-2">
@@ -412,6 +461,7 @@ const [cityList, setCityList] = useState<ICity[]>([]);
       style={{ display: "none" }}
       ref={panFileRef}
       onChange={handlePanFileChange}
+      
     />
     <button
       type="button"
@@ -438,6 +488,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
                 className="border border-[#60606099] bg-[#D2D2D233] text-[#0000004D] text-[1.25rem] font-[500] p-2 rounded"
                 value={formData.gstin}
                 onChange={handleChange("gstin")}
+               disabled={!isEditableForField("gstin")}
+
               />
             </div>
               <div className="flex gap-2 justify-end mt-2">
@@ -448,6 +500,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
       style={{ display: "none" }}
       ref={gstFileRef}
       onChange={handleGstFileChange}
+      disabled={!isEditable && !fullPermission}
+
     />
     <button
       type="button"
@@ -473,6 +527,8 @@ const [cityList, setCityList] = useState<ICity[]>([]);
               className="border border-[#60606099] bg-[#D2D2D233] text-[#0000004D] text-[1.25rem] font-[500] p-2 rounded"
               value={formData.registrationNumber}
               onChange={handleChange("registrationNumber")}
+              disabled={!isEditableForField("registrationNumber")}
+
             />
           </div>
 
@@ -484,6 +540,7 @@ const [cityList, setCityList] = useState<ICity[]>([]);
                 className="border border-[#60606099] bg-[#D2D2D233] text-[#0000004D] text-[1.25rem] font-[500] p-2 rounded"
                 value={formData.recognizedBy}
                 onChange={handleChange("recognizedBy")}
+                disabled={!isEditableForField("recognizedBy")}
               >
                 <option value="">Select</option>
                 <option value="Education department/board">Education department/board</option>
@@ -512,11 +569,13 @@ const [cityList, setCityList] = useState<ICity[]>([]);
       </form>
       {showPopup && (
         <RequestPermissionModal
-          onClose={() => {
-            setShowPopup(false);
-            // Enable editing again
-          }}
-        />
+  onClose={() => setShowPopup(false)}
+  onPermissionGranted={() => {
+    setFullPermission(true);
+    setShowPopup(false);
+  }}
+/>
+
       )}
     </div>
   );

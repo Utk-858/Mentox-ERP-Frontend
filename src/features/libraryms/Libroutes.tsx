@@ -32,18 +32,18 @@ const Libraryroutes = () => {
           Notice no leading slashes for child routes, unless you want them to be absolute again (which defeats the purpose of nesting/wildcard)
         */}
         <Route path="/" element={<LibraryDashboard />} />
-        <Route path="issued-books" element={<IssuedBooks />} />
-        <Route path="reserved-books" element={<ReservedBooks />} />
-        <Route path="book-details/:id" element={<BookDetails />} />
-        <Route path="issue-book-student" element={<IssueBookStudent />} />
-        <Route path="issue-book-employee" element={<IssueBookEmployee />} />
-        <Route path="librarian" element={<LibraryLibrarian />} /> {/* Grouped librarian routes */}
-        <Route path="library-configuration" element={<LibraryConfiguration />} />
-        <Route path="library-policy" element={<LibraryPolicy />} />
-        <Route path="return-book/:id" element={<ReturnBook />} />
-        <Route path="update-book/:id" element={<UpdateBook />} />
-        <Route path="edit-details/:id" element={<EditDetails />} />
-        <Route path="add-book" element={<AddBook />} />
+        <Route path="/issued-books" element={<IssuedBooks />} />
+        <Route path="/reserved-books" element={<ReservedBooks />} />
+        <Route path="/book-details/:id" element={<BookDetails />} />
+        <Route path="/librarian/issue-book-student" element={<IssueBookStudent />} />
+        <Route path="/librarian/issue-book-employee" element={<IssueBookEmployee />} />
+        <Route path="/librarian" element={<LibraryLibrarian />} /> {/* Grouped librarian routes */}
+        <Route path="/librarian/library-configuration" element={<LibraryConfiguration />} />
+        <Route path="/librarian/library-policy" element={<LibraryPolicy />} />
+        <Route path="/librarian/return-book/:id" element={<ReturnBook />} />
+        <Route path="/librarian/update-book/:id" element={<UpdateBook />} />
+        <Route path="/librarian/edit-details/:id" element={<EditDetails />} />
+        <Route path="/librarian/add-book" element={<AddBook />} />
 
         {/* Catch-all route for any undefined paths within /Library/* */}
         {/* Place this last in your internal Routes */}

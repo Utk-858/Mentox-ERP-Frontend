@@ -28,7 +28,7 @@ const SubjectModal: React.FC<SubjectModalProps> = ({
   }, [existingSubjects]);
 
   const handleAddRow = () => {
-    setEditingRows([...editingRows, { name: "", type: "Extra Curricular" }]);
+    setEditingRows([...editingRows, { name: "", type: "Core" }]);
   };
 
   const handleRowChange = (index: number, field: keyof SubjectEntry, value: string) => {
