@@ -214,11 +214,10 @@ const MarksEntryComponent: React.FC<MarksEntryProps> = ({
       {/* Popup */}
       {showPopup && (
         <RequestPermissionModal
-          onClose={() => {
-            setShowPopup(false);
-            setIsSubmitted(false); // Enable editing again
-          }}
-        />
+  onClose={() => setShowPopup(false)}
+  onPermissionGranted={() => {}}
+/>
+
       )}
     </div>
   );
