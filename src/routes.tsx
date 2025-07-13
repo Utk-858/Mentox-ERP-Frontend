@@ -21,6 +21,9 @@ import Hero7 from "./features/HelpSupp/student/page/Hero7.tsx";
 import AdminRoutes from "./features/Admin/AdminRoutes.tsx";
 import TimeTablePage from "./features/TimeTable/page/TimeTable.tsx";
 import SchoolRoutes from "./features/School/Schoolroutes.tsx";
+import TCRoutes from "./features/TC Generation/TCRoutes.tsx";
+import QRRoutes from "./features/Student Section/StudentRoutes.tsx";
+
 // const ClassroomDashboard = lazy(()=> import ("./features/classroom/pages/Dashboard"));
 const Quizattempt = lazy(() => import("./features/qms/pages/Quizattempt"));
 const Quizreview = lazy(() => import("./features/qms/pages/Quizreview"));
@@ -28,7 +31,6 @@ const Homepage = lazy(() => import("./features/qms/pages/Homepage"));
 const LibraryDashboard = lazy(
   () => import("./features/libraryms/pages/library-dashboard.tsx")
 );
-
 const Quizinfo = lazy(() => import("./features/qms/pages/Quizinfo.tsx"));
 const CreateQuiz = lazy(() => import("./features/qms/pages/CreateQuiz.tsx"));
 const Teacherdashboard = lazy(
@@ -183,6 +185,8 @@ const AppRoutes: React.FC = () => {
           <Route path="/employee/*" element={<EmployeeRoutes />} />
           <Route path="/admin/*" element={<AdminRoutes />} />
           <Route path="/time" element={<TimeTablePage />} />
+          <Route path="/TC/*" element={<TCRoutes />} />
+          <Route path="/Student/*" element={<QRRoutes />} />
         </Routes>
       </Suspense>
     </>
