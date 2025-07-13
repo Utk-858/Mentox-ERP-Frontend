@@ -31,6 +31,7 @@ const Homepage = lazy(() => import("./features/qms/pages/Homepage"));
 const LibraryDashboard = lazy(
   () => import("./features/libraryms/pages/library-dashboard.tsx")
 );
+const ScholarshipRoutes = lazy(() => import("./features/Student Fee/ScholarshipRoutes.tsx"));
 const Quizinfo = lazy(() => import("./features/qms/pages/Quizinfo.tsx"));
 const CreateQuiz = lazy(() => import("./features/qms/pages/CreateQuiz.tsx"));
 const Teacherdashboard = lazy(
@@ -120,6 +121,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/Leave/*" element={<Leaveroutes />} />
           <Route path="/profile/*" element={<Profileroutes />} />
           <Route path="/salary/*" element={<SalaryRoutes />} />
+          <Route path="/scholarships/*" element={<ScholarshipRoutes />} />
           <Route path="/attempt" element={<Quizattempt />} />
           <Route path="/review" element={<Quizreview />} />
           <Route path="/homepage" element={<Homepage />} />
