@@ -12,6 +12,7 @@ interface Quiz {
   questions: number;
   duration: number;
   time: string;
+  date: string; // 👈 new
   status: QuizStatus;
 }
 
@@ -20,7 +21,8 @@ const quizzes: Quiz[] = [
     title: "Science Mid-term Quiz",
     desc: "Basic concepts of biology for beginners",
     questions: 15,
-    duration: 30,
+    duration: 20,
+    date: "2nd April 2025", // 👈 added
     time: "2:00 PM",
     status: "Active",
   },
@@ -29,6 +31,7 @@ const quizzes: Quiz[] = [
     desc: "Basic concepts of biology for beginners",
     questions: 8,
     duration: 20,
+    date: "5th April 2025",
     time: "2:00 PM",
     status: "Upcoming",
   },
@@ -37,6 +40,7 @@ const quizzes: Quiz[] = [
     desc: "Basic concepts of biology for beginners",
     questions: 12,
     duration: 25,
+    date: "10th April 2025",
     time: "2:00 PM",
     status: "Completed",
   }
@@ -109,7 +113,9 @@ const Quizlistsection: React.FC = () => {
           />
           <select className="bg-black text-white text-[0.9rem] rounded-[0.5rem] px-3 py-2 w-[12rem]">
             <option>All Quizzes</option>
-            <option>My Quizzes</option>
+            <option>Active</option>
+            <option>Upcoming</option>
+            <option>Completed</option>
           </select>
         </div>
       </div>
@@ -140,11 +146,12 @@ const Quizlistsection: React.FC = () => {
       </span>
     </div>
     <p className="text-sm text-gray-500">{quiz.desc}</p>
-    <div className="flex gap-4 text-xs text-gray-400 mt-2">
-      <span>📘 {quiz.questions} Questions</span>
-      <span>⏱️ {quiz.duration} min</span>
-      <span>🕒 Start Time: {quiz.time}</span>
-    </div>
+   <div className="flex gap-4 text-xs text-gray-400 mt-2 flex-wrap">
+  <span>📘 {quiz.questions} Questions</span>
+  <span>⏱️ {quiz.duration} min</span>
+  <span>📅 Date: {quiz.date}</span>
+  <span>🕒 Start Time: {quiz.time}</span>
+</div>
   </div>
 </div>
 

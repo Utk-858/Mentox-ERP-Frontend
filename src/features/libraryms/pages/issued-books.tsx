@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "@/components/SidebarStudent";
 import SearchBar from "../components/search-bar";
-import Categories from "../components/categories";
-import BookCard from "../components/BookCard";
+import Categories from "../components/Student/categories";
+import BookCard from "../components/Student/BookCard";
 import {FaArrowRight} from "react-icons/fa";
 
 // Define the Book type
@@ -61,9 +61,13 @@ const IssuedBooks: React.FC = () => {
           setIssuedBooks(data);
           setIsUsingFallback(false);
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error("Error fetching issued books:", error);
-        setError(error.message);
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError("An unknown error occurred");
+        }
         // fallback 
         setIssuedBooks(fallbackBooks);
         setIsUsingFallback(true);

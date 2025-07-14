@@ -14,7 +14,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
   instructorRole,
 }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-sm p-3 w-64 shrink-0">
+    <div className="bg-white rounded-2xl shadow-sm p-3 w-64 shrink-0 scrollbar-hide">
       <div className="w-full h-32 bg-gray-200 rounded-xl mb-3 relative" />
       <span className="text-xs bg-purple-100 text-purple-700 font-semibold px-2 py-0.5 rounded-md">
         {tag}

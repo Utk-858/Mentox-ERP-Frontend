@@ -9,6 +9,7 @@ export type Category = {
 export interface Book {
   ISBN: string;
   title?: string;
+  available?: number;
   author?: string;
   category?: string;
   description?: string;

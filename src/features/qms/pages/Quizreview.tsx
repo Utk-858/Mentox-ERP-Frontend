@@ -4,8 +4,12 @@ import SummaryStats from "../components/Summarystats";
 import QuestionReviewCard from "../components/QuestionReviewCard";
 import QuestionReviewNavigation from "../components/QuestionReviewNavigation";
 import MentoxBanner from "../components/MentoxBanner";
-const Sidebar = lazy(() => import("../../../components/Sidebar"));
+const Sidebar = lazy(() => import("../../../components/SidebarStudent"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
+import { IoBookOutline } from "react-icons/io5";
+import { MdOutlineCalendarToday } from "react-icons/md";
+import { MdOutlinePeople } from "react-icons/md";
+import { VscGraph } from "react-icons/vsc";
 
 const quizData = {
   title: "Science & Technology Quiz",
@@ -71,41 +75,57 @@ const QuizReviewPage: React.FC = () => {
   const maxMarks = quizData.questions.reduce((sum, q) => sum + q.marks, 0);
 
   return (
-    <div className="min-h-screen w-full flex px-8 ">
-      <div className=""><Sidebar/></div>
-      <div className="w-full ml-[2rem]">
-        <div className="mt-4 w-full"><Searchbar/></div>
+    <div className="min-h-screen w-full flex  ">
+      <div className="">
+        <Sidebar />
+      </div>
+      <div className="w-full ml-[2rem] flex flex-col">
+        <div className="relative flex w-full justify-center z-10 text-center mt-8 mb-4">
+            <Searchbar />
+          </div>
         <h1 className="sm:text-[2.2rem] lg:text-[2.2rem] xl:text-[2.5rem] font-bold text-center mt-4">
           {quizData.title}
         </h1>
         <div className="flex gap-2">
           <div className="flex flex-col">
             <div>
-            <SummaryStats
-              totalMarks={totalMarks}
-              maxMarks={maxMarks}
-              time="12 min"
-              averageMarks="15/30"
-              topScore="30/30"
-            />
+              <SummaryStats
+                stats={[
+                  {
+                    label: "Total Marks",
+                    value: `${totalMarks}/${maxMarks}`,
+                    icon: <IoBookOutline />,
+                  },
+                  {
+                    label: "Time Taken",
+                    value: "12 min",
+                    icon: <MdOutlineCalendarToday />,
+                  },
+                  {
+                    label: "Average Marks",
+                    value: "15/30",
+                    icon: <MdOutlinePeople />,
+                  },
+                  { label: "Top Score", value: "30/30", icon: <VscGraph /> },
+                ]}
+              />
             </div>
             <div className="flex  ">
-          <div className="flex-1 space-y-2">
-            {quizData.questions.map((q, idx) => (
-              <QuestionReviewCard
-                key={idx}
-                index={idx}
-                question={{
-                  ...q,
-                  questionType: q.questionType as "mcq" | "subjective",
-                }}
-                userAnswer={userAnswers[idx]}
-                evaluated={evaluatedAnswers[idx]}
-              />
-            ))}
-          </div>
-        </div>
-
+              <div className="flex-1 mt-6 space-y-2 w-full">
+                {quizData.questions.map((q, idx) => (
+                  <QuestionReviewCard
+                    key={idx}
+                    index={idx}
+                    question={{
+                      ...q,
+                      questionType: q.questionType as "mcq" | "subjective",
+                    }}
+                    userAnswer={userAnswers[idx]}
+                    evaluated={evaluatedAnswers[idx]}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
           <div className="flex flex-col gap-8">
             <div>

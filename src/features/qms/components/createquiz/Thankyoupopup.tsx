@@ -1,5 +1,14 @@
-import '../../../../App.css'
+import { useNavigate } from 'react-router-dom';
+import '../../../../App.css';
+
 const Thankyoupopup: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+  const navigate = useNavigate();
+
+  const handleBackToHome = () => {
+    onClose(); // Close the popup first (optional)
+    navigate('/homepage'); // Navigate to home or change to your desired route
+  };
+
   return (
     <div className="fixed inset-0 backdrop-blur-sm bg-white/30 flex items-start justify-center z-50 pt-24">
       <div className="bg-[#606060] p-8 rounded-xl w-96 text-center text-white shadow-xl transform transition-all duration-500 translate-y-[-50px] animate-slideDown">
@@ -23,7 +32,7 @@ const Thankyoupopup: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           </div>
         </div>
         <button
-          onClick={onClose}
+          onClick={handleBackToHome}
           className="mt-2 px-6 py-2 bg-white text-black font-medium rounded-full"
         >
           Back To Home

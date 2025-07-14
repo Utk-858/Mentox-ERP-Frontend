@@ -1,5 +1,5 @@
 import { lazy } from "react"
-const Sidebar=lazy(()=>import("../../../components/Sidebar"))
+const Sidebar=lazy(()=>import("../../../components/SidebarStudent"))
 const Searchbar=lazy(()=>import("../../../components/SearchBar"))
 const Quizinfosubject=lazy(()=>import("../components/Quizinfosubject"))
 const Quizinfo:React.FC=()=>{
@@ -7,7 +7,9 @@ const Quizinfo:React.FC=()=>{
         <div className="w-full h-screen flex">
             <div><Sidebar/></div>
             <div className="w-full mt-4 flex flex-col">
-                <div className="w-full"><Searchbar/></div>
+                <div className="relative flex w-full justify-center z-10 text-center mt-8 mb-4">
+            <Searchbar />
+          </div>
                 <div> <Quizinfosubject
       courseTitle="Computer Communication Networks"
       quizTitle="Computer Communication Quiz 2"

@@ -9,6 +9,7 @@ import {
   Heart,
   Share2,
 } from "lucide-react";
+import { NavLink } from 'react-router-dom';
 
 const Container = () => {
   return (
@@ -88,10 +89,11 @@ const Container = () => {
     All levels
   </li>
 </ul>
-
-              <button className="w-full bg-purple-600 text-white py-2 rounded font-semibold hover:bg-purple-700 transition mb-2">
+              <NavLink to="/Lectures/side">
+              <button className="w-full bg-purple-600 text-white py-2 cursor-pointer rounded font-semibold hover:bg-purple-700 transition mb-2">
                 Start Learning
               </button>
+              </NavLink>
               <div className="flex justify-between text-sm text-gray-500">
                 <button className="hover:text-purple-600">♡ Wishlist</button>
                 <button className="flex items-center gap-1 hover:text-purple-600">

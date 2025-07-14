@@ -1,5 +1,4 @@
-import {  useState } from "react";
-
+import { useState } from "react";
 import {
   Home,
   BookOpen,
@@ -13,137 +12,135 @@ import {
   FileText,
   File,
 } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const navItems = [
-  { icon: <Home size={16} />, label: "Dashboard" },
-  { icon: <BookOpen size={16} />, label: "Courses" },
-  { icon: <ClipboardList size={16} />, label: "To-Do" },
-  { icon: <FileText size={16} />, label: "Quiz" },
-  { icon: <Play size={16} />, label: "Lectures" },
-  { icon: <BarChart size={16} />, label: "Progress" },
-  { icon: <File size={16} />, label: "Grade" },
-  { icon: <BookOpen size={16} />, label: "Library" },
-  { icon: <User size={16} />, label: "Profile" },
-  { icon: <Settings size={16} />, label: "Settings" },
-  { icon: <HelpCircle size={16} />, label: "Help & Support" },
-  { icon: <LogOut size={16} />, label: "Sign-Out" },
+  { icon: <Home size={16} />, label: "Dashboard", path: "/" },
+  { icon: <BookOpen size={16} />, label: "Courses", path: "/Courses" },
+  { icon: <ClipboardList size={16} />, label: "To-Do", path: "/To-Do" },
+  { icon: <FileText size={16} />, label: "Quiz", path: "/Quiz" },
+  { icon: <Play size={16} />, label: "Lectures", path: "/Lectures" },
+  { icon: <BarChart size={16} />, label: "Progress", path: "/Progress" },
+  { icon: <File size={16} />, label: "Grade", path: "/Grade" },
+  { icon: <BookOpen size={16} />, label: "Library", path: "/Library" },
+  { icon: <User size={16} />, label: "Profile", path: "/Profile" },
+  { icon: <Settings size={16} />, label: "Settings", path: "/Settings" },
+  { icon: <HelpCircle size={16} />, label: "Help & Support", path: "/Help" },
+  { icon: <LogOut size={16} />, label: "Sign Out", path: "/SignOut" },
 ];
+
 const Sidebar = () => {
+ const location = useLocation();
+  const currentPath = location.pathname;
+  const currentItem = navItems.find((item) => item.path === currentPath);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [activeItem, setActiveItem] = useState(currentItem?.label || "Lectures");
 
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
-     const [sidebarOpen, setSidebarOpen] = useState(true);
-      const [activeItem, setActiveItem] = useState("Lectures");
-    
-      const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
-    
   return (
-    <div className="flex flex-col">
-        {/* Sidebar */}
-        <aside
-          className={`${
-            sidebarOpen
-              ? "w-64 ml-0 rounded-lg"
-              : "w-16 ml-8 mt-7 rounded-lg h-[500px] bg-[#702DFF] shadow-[0_10px_30px_rgba(112,45,255,0.8)]"
-          } transition-all duration-300 p-4 drop-shadow-lg shadow-2xl hidden md:flex flex-col relative `}
+    <div className="flex flex-col max-h-screen">
+      {/* Sidebar */}
+      <aside
+        className={`${
+          sidebarOpen
+            ? "w-64 ml-0 rounded-lg mt-3"
+            : "w-16 ml-14 mt-7 rounded-lg h-[650px] bg-[#702DFF]"
+        } transition-all duration-300 p-4 drop-shadow-lg hidden md:flex flex-col relative`}
+      >
+        {/* Logo and Toggle */}
+        <div
+          onClick={toggleSidebar}
+          className="flex items-center gap-4 cursor-pointer mb-6"
         >
-          {/* Logo and Toggle */}
           <div
-            onClick={toggleSidebar}
-            className="flex items-center gap-4 cursor-pointer mb-6"
+            className={`flex flex-row items-center ${
+              sidebarOpen ? "ml-7 mt-1 gap-3" : "gap-0"
+            }`}
           >
-            <div
-              className={`flex flex-row items-center ${
-                sidebarOpen ? "ml-7 mt-10 gap-6" : "gap-0"
-              }`}
-            >
-              <img src="/dummy.png" alt="logo" className="w-8 h-8" />
-              {sidebarOpen && (
-                <span className="text-2xl font-semibold text-[#1F1F1F]">
-                  MENTOX
-                </span>
-              )}
-            </div>
+            <img src="/dummy.png" alt="logo" className="w-8 h-8" />
+            {sidebarOpen && (
+              <span className="text-2xl font-semibold text-center text-[#1F1F1F]">
+                MENTOX
+              </span>
+            )}
           </div>
+        </div>
 
-          {/* Nav Items */}
-          {sidebarOpen ? (
-            <nav className="ml-6 flex flex-col gap-3 overflow-y-auto">
-              {navItems.map((item) => (
-                <NavLink to={`/${item.label}`}>
+        {/* Nav Items */}
+        {sidebarOpen ? (
+          <nav className="ml-6 flex flex-col mt-4 gap-3.5 text-[15px] overflow-y-auto">
+            {navItems.map((item) => (
+              <NavLink
+                to={item.path}
+                key={item.label}
+                onClick={() => setActiveItem(item.label)}
+              >
                 <NavItem
-                  key={item.label}
                   icon={item.icon}
                   label={item.label}
                   active={activeItem === item.label}
-                  onClick={() => setActiveItem(item.label)}
                 />
+              </NavLink>
+            ))}
+          </nav>
+        ) : (
+          <nav className="flex flex-col justify-between items-center h-full overflow-y-auto">
+            <div className="flex flex-col gap-6 mt-4">
+              {navItems.slice(0, navItems.length - 5).map((item, index) => (
+                <NavLink
+                  to={item.path}
+                  key={item.label}
+                  onClick={() => setActiveItem(item.label)}
+                >
+                  <button
+                    className={`${
+                      activeItem === item.label
+                        ? "bg-white/20"
+                        : "hover:bg-white/10"
+                    } text-white p-2 rounded-lg transition cursor-pointer`}
+                  >
+                    {item.icon}
+                  </button>
                 </NavLink>
               ))}
-            </nav>
-          ) : (
-            <nav className="flex flex-col justify-between items-center h-full">
-              <div className="flex flex-col gap-6 mt-4">
-                 {navItems.slice(0, navItems.length - 7).map((item, index) => (
-      <NavLink
-        to={`/${item.label.toLowerCase().replace(/\s+/g, '-')}`}
-        key={index}
-        className={({ isActive }) =>
-          `p-2 rounded-lg transition text-white hover:bg-white/10 ${
-            isActive ? "bg-white/20" : ""
-          }`
-        }
-        onClick={() => setActiveItem(item.label)}
-      >
-        {item.icon}
-      </NavLink>
-    ))}
-              </div>
+            </div>
 
-              {/* Logout at bottom */}
-              <div className="mb-4">
-
-                <NavLink to={`/Sign-Out`}>
+            {/* Logout at bottom */}
+            <div className="mt-20">
+              <NavLink
+                to="/SignOut"
+                onClick={() => setActiveItem("Sign Out")}
+              >
                 <button
-                  className="text-white hover:bg-white/10 p-2 rounded-lg transition"
-                  onClick={() => setActiveItem("Sign-Out")}
+                  className={`${
+                    activeItem === "Sign Out"
+                      ? "bg-white/20"
+                      : "hover:bg-white/10"
+                  } text-white p-2 rounded-lg transition`}
                 >
-                  {navItems.find((item) => item.label === "Sign-Out")?.icon}
+                  {navItems.find((item) => item.label === "Sign Out")?.icon}
                 </button>
-                </NavLink>
-              </div>
-            </nav>
-          )}
-        </aside>
-
-        {/* Promo Section */}
-        {sidebarOpen && (
-          <div className="w-64 mt-7 p-4 bg-[#702DFF] rounded-xl text-white text-center space-y-2 mx-1 flex flex-col items-center">
-            <img src="/dummy.png" alt="promo" />
-            <div className="font-bold text-lg">MENTOX</div>
-            <p className="text-xs">Get access to all features on Mentox</p>
-            <button className="bg-white text-[#702DFF] font-semibold text-sm py-1 px-3 rounded-full">
-              Get Pro
-            </button>
-          </div>
+              </NavLink>
+            </div>
+          </nav>
         )}
-      </div>
-  )
-}
+      </aside>
+    </div>
+  );
+};
 
-
-const NavItem = ({ icon, label, active, onClick }: any) => (
-  <a
+const NavItem = ({ icon, label, active }: any) => (
+  <div
     className={`flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer ${
       active
         ? "bg-[#702DFF] text-white font-semibold"
         : "text-gray-600 hover:bg-gray-100"
     }`}
-    onClick={onClick}
   >
     {icon}
     <span>{label}</span>
-  </a>
+  </div>
 );
 
-export default Sidebar
+export default Sidebar;

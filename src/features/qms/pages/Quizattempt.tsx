@@ -1,7 +1,7 @@
 import React, { lazy } from "react";
 import { useState } from "react";
 const QuestionCard = lazy(() => import("../components/QuestionCard"));
-const Sidebar = lazy(() => import("../../../components/Sidebar"));
+const Sidebar = lazy(() => import("../../../components/SidebarStudent"));
 const Searchbar = lazy(() => import("../../../components/SearchBar"));
 const QuestionNavigation = lazy(
   () => import("../components/QuestionNavigation")
@@ -97,9 +97,9 @@ const Quizattempt: React.FC = () => {
         <Sidebar />
       </div>
       <div className="flex flex-col max-w-6xl">
-        <div className="mt-4 ">
-          <Searchbar />
-        </div>
+        <div className="relative flex w-full justify-center z-10 text-center mt-8 mb-4">
+            <Searchbar />
+          </div>
         <div className="mt-[2rem] ml-[4.5rem]">
           <div className="sm:text-[2.2rem] lg:text-[2.5rem] xl:text-[3rem]  font-[600] leading-[1.3rem] ">
             {quizData.title}

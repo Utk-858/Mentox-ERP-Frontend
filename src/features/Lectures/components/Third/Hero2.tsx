@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "../front/Sidebar";
+import Sidebar from "../../../../components/SidebarStudent";
 import Container from "./Container";
 import BlackBox from "./BlackBox";
 import Learn from "./Learn";
