@@ -22,6 +22,9 @@ import ClassroomRoutes from "./features/Classroom/ClassroomRoutes.tsx";
 import ScholarshipRoutes from "./features/Student-Fee/ScholarshipRoutes.tsx";
 import HelpandSupportRoutes from "./features/HelpSupp/Help.support.routes.tsx";
 import CourseRoutes from "./features/Course/CourseRoutes.tsx";
+import { ProtectedRoute } from "./lib/ProtectedRoute.tsx";
+import { RoleProtectedRoute } from "./lib/RoleProtectedRoute.tsx";
+import UnauthorizedPage from "./components/Unauthorized.tsx";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -47,10 +50,15 @@ const AppRoutes: React.FC = () => {
           <Route path="*" element={<div>404 - Not Found</div>} />
           <Route path="/login" element={<Login />} />
           <Route path="/employee/*" element={<EmployeeRoutes />} />
-          <Route path="/admin/*" element={<AdminRoutes />} />
+
+          <Route element={<RoleProtectedRoute allowedRoles={['Admin']} />}>
+            <Route path="/admin/*" element={<AdminRoutes />} />
+          </Route>
+
           <Route path="/time" element={<TimeTablePage />} />
           <Route path="/TC/*" element={<TCRoutes />} />
           <Route path="/Student/*" element={<QRRoutes />} />
+          <Route path="/unauthorized" element={<UnauthorizedPage />} />
         </Routes>
       </Suspense>
     </>
