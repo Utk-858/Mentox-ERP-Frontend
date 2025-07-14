@@ -17,7 +17,7 @@ const PaymentHistory: React.FC = () => {
           <SearchBar />
         </div>
         <div className="px-10   mt-10"    >
-                <HistoryTable />
+            <HistoryTable />
         </div>
       </div>
     </div>

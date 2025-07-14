@@ -45,6 +45,15 @@ const PaymentHistory = lazy(
   () => import("./pages/Payment/PaymentHistory")
 );
 
+const OnlineFeePayment = lazy(
+  () => import("./pages/Payment/OnlineFeePayment")
+);
+
+const FeePage = lazy(
+  () => import("./pages/Payment/FeePage")
+);
+
+
 const QRRoutes = () => {
   return (
     <Suspense fallback={<div>Loading Employee Section...</div>}>
@@ -64,6 +73,9 @@ const QRRoutes = () => {
         <Route path="/admission/payment/offline" element={<Offline />} />
         <Route path="/admission/payment/refund" element={<Refund />} />
         <Route path="/admission/payment/history" element={<PaymentHistory />} />
+        
+        <Route path="/admission/payment/online-payment" element={<OnlineFeePayment />} />
+        <Route path="/admission/payment/fee-page" element={<FeePage />} />
       </Routes>
     </Suspense>
   );
