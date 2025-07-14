@@ -7,10 +7,16 @@ import CreateCouponForm from '../components/CreateCouponForm';
 import IssuedDiscountsTable from '../components/IssuedDiscountsTable';
 import { useScholarships } from '../context/ScholarshipContext';
 
+// Define a reusable type for the coupon tabs
+type CouponType = 'student' | 'general';
+
 const ScholarshipsPage: React.FC = () => {
   const { scholarships } = useScholarships();
   const [activeTab, setActiveTab] = useState<'programs' | 'coupons'>('programs');
-  const [couponSubTab, setCouponSubTab] = useState<'student' | 'discount'>('student');
+  
+  // --- This is the key change: One state to rule them all ---
+  const [couponType, setCouponType] = useState<CouponType>('student');
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -38,7 +44,11 @@ const ScholarshipsPage: React.FC = () => {
             Scholarship Programs
           </button>
           <button
-            onClick={() => setActiveTab('coupons')}
+            // When clicking the main tab, reset the coupon type to its default
+            onClick={() => {
+              setActiveTab('coupons');
+              setCouponType('student');
+            }}
             className={`w-full px-4 py-2 text-sm font-medium rounded-md transition-colors ${
               activeTab === 'coupons' ? 'bg-[#702DFF] text-white' : 'text-gray-300 hover:bg-gray-800'
             }`}
@@ -48,7 +58,6 @@ const ScholarshipsPage: React.FC = () => {
         </div>
 
         {activeTab === 'programs' && (
-          // ... Scholarship programs section is unchanged ...
           <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
               <div>
@@ -74,29 +83,31 @@ const ScholarshipsPage: React.FC = () => {
         {activeTab === 'coupons' && (
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
                 <div className="lg:col-span-3 bg-white p-4 sm:p-6 rounded-xl shadow-sm">
-                    {/* --- The classes for the buttons are updated here --- */}
+                    {/* This sub-tab switcher now uses the unified 'couponType' state */}
                     <div className="flex items-center gap-1 bg-black rounded-lg p-1 max-w-sm mb-6">
                         <button
-                            onClick={() => setCouponSubTab('student')}
+                            onClick={() => setCouponType('student')}
                             className={`w-full px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
-                                couponSubTab === 'student' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800'
+                                couponType === 'student' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800'
                             }`}
                         >
                             Student Coupons
                         </button>
                         <button
-                            onClick={() => setCouponSubTab('discount')}
+                            onClick={() => setCouponType('general')}
                             className={`w-full px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
-                                couponSubTab === 'discount' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800'
+                                couponType === 'general' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800'
                             }`}
                         >
                             Discounts
                         </button>
                     </div>
-                    {couponSubTab === 'student' ? <IssuedCodesTable /> : <IssuedDiscountsTable />}
+                    {/* The correct table is rendered based on the unified state */}
+                    {couponType === 'student' ? <IssuedCodesTable /> : <IssuedDiscountsTable />}
                 </div>
                 <div className="lg:col-span-2">
-                    <CreateCouponForm />
+                    {/* Pass the unified state and its setter down to the form */}
+                    <CreateCouponForm activeTab={couponType} setActiveTab={setCouponType} />
                 </div>
             </div>
         )}

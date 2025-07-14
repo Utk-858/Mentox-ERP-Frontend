@@ -2,6 +2,8 @@ import React, { useState, type FunctionComponent } from 'react';
 import { useScholarships } from '../context/ScholarshipContext';
 import { mockStudents } from '../data/mockData';
 
+type CouponType = 'student' | 'general';
+
 const FormField: FunctionComponent<{ label: string; required?: boolean; children: React.ReactNode; }> = ({ label, required, children }) => (
   <div>
     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -12,9 +14,14 @@ const FormField: FunctionComponent<{ label: string; required?: boolean; children
   </div>
 );
 
-const CreateCouponForm: React.FC = () => {
+// The props interface is updated to use the shared CouponType
+interface CreateCouponFormProps {
+    activeTab: CouponType;
+    setActiveTab: (tab: CouponType) => void;
+}
+
+const CreateCouponForm: React.FC<CreateCouponFormProps> = ({ activeTab, setActiveTab }) => {
   const { createCoupon } = useScholarships();
-  const [activeTab, setActiveTab] = useState<'student' | 'general'>('student');
   
   const initialState = {
     studentId: '',
@@ -24,6 +31,7 @@ const CreateCouponForm: React.FC = () => {
   };
   const [formData, setFormData] = useState(initialState);
 
+  // ... (All handler functions like handleInputChange, handleSubmit remain the same) ...
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({...prev, [name]: value}));
@@ -58,9 +66,10 @@ const CreateCouponForm: React.FC = () => {
       <h3 className="text-xl font-semibold text-gray-800">Create New Code</h3>
       <p className="text-sm text-gray-500 mb-4">Create a new student-specific coupon or a general discount code.</p>
 
-      {/* --- The classes for the buttons are updated here --- */}
+      {/* The buttons now call the unified state setter from props */}
       <div className="flex items-center gap-1 bg-black rounded-lg p-1 mb-6">
         <button
+          type="button"
           onClick={() => setActiveTab('student')}
           className={`w-full px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
             activeTab === 'student' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800'
@@ -69,6 +78,7 @@ const CreateCouponForm: React.FC = () => {
           Student-Specific Coupon
         </button>
         <button
+          type="button"
           onClick={() => setActiveTab('general')}
           className={`w-full px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
             activeTab === 'general' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800'
@@ -79,7 +89,7 @@ const CreateCouponForm: React.FC = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-5">
-        {/* ... form content remains the same ... */}
+        {/* ... (The rest of the form remains unchanged) ... */}
         {activeTab === 'student' && (
           <FormField label="Select Student" required>
             <select name="studentId" value={formData.studentId} onChange={handleInputChange} className="w-full p-3 border border-gray-300 rounded-lg">
