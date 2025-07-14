@@ -32,6 +32,74 @@
 
 6.  Add a `README.md` inside the feature folder if the logic or structure grows complex.
 
+
+## 🚀 1️⃣ `AuthProvider`
+
+- Decodes JWT on app load.
+- Stores `user` in context.
+- Wraps entire app in `App.tsx`.
+
+```tsx
+<AuthProvider>
+  <AppRoutes />
+</AuthProvider>
+```
+
+## 🚧 2️⃣ `ProtectedRoute`
+
+- Restricts pages to **authenticated users only**.
+- If `user` is `null` → redirects to `/login`.
+
+```tsx
+<Route element={<ProtectedRoute />}>
+  <Route path="/profile/*" element={<Profileroutes />} />
+</Route>
+```
+
+## 🔑 3️⃣ `RoleProtectedRoute`
+
+- Restricts pages to **specific roles**.
+
+```tsx
+<Route element={<RoleProtectedRoute allowedRoles={["admin"]} />}>
+  <Route path="/admin/*" element={<AdminRoutes />} />
+</Route>
+
+<Route element={<RoleProtectedRoute allowedRoles={["teacher","student"]} />}>
+  <Route path="/Leave/*" element={<Leaveroutes />} />
+</Route>
+```
+
+## ✅ Rules:
+
+- Place all **feature routes** inside their own folder: `src/features/featureName`.
+- Register feature in `src/routes.tsx` using `<Route>` + `React.lazy`.
+- Always wrap `Routes` with `<Suspense>`.
+- Wrap `AppRoutes` with `AuthProvider` in `App.tsx`.
+- Use `BrowserRouter` at root (`main.tsx`).
+
+## ✅ Example structure
+
+```
+📂 src
+ ┣ 📂 lib (AuthProvider, ProtectedRoute, RoleProtectedRoute)
+ ┣ 📂 features (each feature isolated)
+ ┣ App.tsx (wraps with AuthProvider)
+ ┣ routes.tsx (maps all routes)
+ ┣ main.tsx (root with BrowserRouter)
+```
+
+## ✅ Install
+
+```bash
+npm install jwt-decode react-router-dom
+```
+
+✅ This keeps your frontend protected and modular. Always verify role/permissions on the backend too!
+
+*Last Updated: 14-July-2025*
+
+
 ## Tools and Conventions:
 
 *   Use TypeScript strictly.
