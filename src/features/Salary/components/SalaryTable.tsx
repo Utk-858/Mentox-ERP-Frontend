@@ -1,8 +1,9 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MoreHorizontal, Download, Calendar as CalendarIcon, ChevronDown, Search, Eye, IndianRupee, Edit, ChevronLeft, ChevronRight } from 'lucide-react';
-import { type SalaryRecord, salaryData as initialEmployeeList } from '../data/mockData';
 import { useSalary } from '../context/SalaryContext';
+import { type SalaryRecord } from '../types/salary';
+import { salaryData as initialEmployeeList } from '../data/mockData';
 
 export interface SalaryTableProps {
   title: string;
@@ -20,15 +21,14 @@ const getStatusClasses = (status: SalaryRecord['status']) => {
 };
 
 const SalaryTableRow = ({ record, onStatusChange }: { record: SalaryRecord; onStatusChange: (newStatus: SalaryRecord['status']) => void; }) => {
+  // We no longer need the isStatusMenuOpen state
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [isStatusMenuOpen, setStatusMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setMenuOpen(false);
-        setStatusMenuOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -40,20 +40,14 @@ const SalaryTableRow = ({ record, onStatusChange }: { record: SalaryRecord; onSt
   const handleStatusClick = (newStatus: SalaryRecord['status']) => {
     onStatusChange(newStatus);
     setMenuOpen(false);
-    setStatusMenuOpen(false);
   };
 
   const renderPayLink = () => {
-    // If status for this row is 'Paid', there is no payment action.
-    if (record.status === 'Paid') {
-      return null;
-    }
-    
-    // For any other status, link to the single, smart payment page.
+    if (record.status === 'Paid') return null;
     return (
       <>
         <div className="border-t border-white/20"></div>
-        <Link to={`/salary/pay/${record.employeeId}`} className="w-full text-left px-4 py-2.5 hover:bg-white/10 transition-colors flex items-center gap-3 text-sm">
+        <Link to={`/salary/pay/${record.employeeId}/${record.month.replace(' ', '-')}`} className="w-full text-left px-4 py-2.5 hover:bg-white/10 transition-colors flex items-center gap-3 text-sm">
           <IndianRupee size={16} />
           <span>Pay Salary</span>
         </Link>
@@ -95,31 +89,25 @@ const SalaryTableRow = ({ record, onStatusChange }: { record: SalaryRecord; onSt
           </button>
           
           {isMenuOpen && (
+            // --- THIS IS THE SIMPLIFIED AND FIXED MENU ---
             <div className="absolute right-0 top-full mt-2 w-48 bg-[#18181A] text-white rounded-lg shadow-xl z-10 overflow-hidden font-poppins">
-              <button className="w-full text-left px-4 py-2.5 hover:bg-white/10 transition-colors flex items-center gap-3 text-sm">
+              <Link to={`/salary/slip/${record.employeeId}/${record.month.replace(' ', '-')}`} className="w-full text-left px-4 py-2.5 hover:bg-white/10 transition-colors flex items-center gap-3 text-sm">
                 <Eye size={16} />
                 <span>View Slip</span>
-              </button>
+              </Link>
               
               {renderPayLink()}
 
+              {/* Status change options are now directly in the main menu */}
               <div className="border-t border-white/20"></div>
-              <div className="relative">
-                <button 
-                  onClick={() => setStatusMenuOpen(!isStatusMenuOpen)}
-                  className="w-full text-left px-4 py-2.5 hover:bg-white/10 transition-colors flex items-center justify-between text-sm"
-                >
-                  <span className="flex items-center gap-3"><Edit size={16} /><span>Change Status</span></span>
-                  <span className="text-xs">&rsaquo;</span>
-                </button>
-                {isStatusMenuOpen && (
-                  <div className="absolute left-full -top-1 ml-1 w-40 bg-[#18181A] text-white rounded-lg shadow-xl z-20 overflow-hidden font-poppins">
-                    <button onClick={() => handleStatusClick('Unpaid')} className="w-full text-left px-4 py-2.5 hover:bg-white/10">Unpaid</button>
-                    <div className="border-t border-white/20"></div>
-                    <button onClick={() => handleStatusClick('On Hold')} className="w-full text-left px-4 py-2.5 hover:bg-white/10">On Hold</button>
-                  </div>
-                )}
-              </div>
+              <button onClick={() => handleStatusClick('Unpaid')} className="w-full text-left px-4 py-2.5 hover:bg-white/10 transition-colors flex items-center gap-3 text-sm">
+                 <Edit size={16} />
+                 <span>Set as Unpaid</span>
+              </button>
+              <button onClick={() => handleStatusClick('On Hold')} className="w-full text-left px-4 py-2.5 hover:bg-white/10 transition-colors flex items-center gap-3 text-sm">
+                 <Edit size={16} />
+                 <span>Set as On Hold</span>
+              </button>
             </div>
           )}
         </div>

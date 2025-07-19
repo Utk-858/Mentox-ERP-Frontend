@@ -1,9 +1,8 @@
 import React from 'react';
 import SalaryTable from '../components/SalaryTable';
+// The useSalary hook is removed from this file as the table now fetches its own data.
 
 const SalaryReportPage: React.FC = () => {
-  // This page is very simple. It just renders our powerful SalaryTable
-  // component with the specific title and description for this report view.
   return (
     <SalaryTable 
       title="Salary Payment Status Report"

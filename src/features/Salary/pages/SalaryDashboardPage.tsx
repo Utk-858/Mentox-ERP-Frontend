@@ -4,8 +4,11 @@ import StatCard from '../components/StatCard';
 import PaymentStatusCard from '../components/PaymentStatusCard';
 import ProcessSalaryCard from '../components/ProcessSalaryCard';
 import SalaryTable from '../components/SalaryTable';
+// The useSalary hook is no longer needed here
 
 const SalaryDashboardPage: React.FC = () => {
+  // The useSalary hook has been removed from this page.
+  
   return (
     <div className="space-y-8 pt-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -41,6 +44,7 @@ const SalaryDashboardPage: React.FC = () => {
       </div>
 
       <div>
+        {/* The extra props have been removed from SalaryTable */}
         <SalaryTable 
           title="Salary Payment Status Report"
           description="View and export salary payment status reports"

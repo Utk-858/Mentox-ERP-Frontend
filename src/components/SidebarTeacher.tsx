@@ -38,7 +38,9 @@ const SidebarTeacher: React.FC<SidebarTeacherProps> = ({ activeLabel }) => {
   const currentPath = location.pathname;
   const currentItem = navItems.find((item) => item.path === currentPath);
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [activeItem, setActiveItem] = useState(currentItem?.label || "Lectures");
+  const [activeItem, setActiveItem] = useState(
+    activeLabel || currentItem?.label || "Lectures"
+  );
 
   const forceCollapsed = location.pathname === "/attempt"; // 👈 Add condition
 
