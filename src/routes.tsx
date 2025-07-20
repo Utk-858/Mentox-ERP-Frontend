@@ -25,6 +25,7 @@ import CourseRoutes from "./features/Course/CourseRoutes.tsx";
 import { ProtectedRoute } from "./lib/ProtectedRoute.tsx";
 import { RoleProtectedRoute } from "./lib/RoleProtectedRoute.tsx";
 import UnauthorizedPage from "./components/Unauthorized.tsx";
+import Home1 from "./features/GatePass/Home1.tsx";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -43,8 +44,8 @@ const AppRoutes: React.FC = () => {
           <Route path="/salary/*" element={<SalaryRoutes />} />
           <Route path="/scholarships/*" element={<ScholarshipRoutes />} />
           <Route path="/classroom/*" element={<ClassroomRoutes />} />
-          <Route path="/help-support/*" element={<HelpandSupportRoutes />} />
-          <Route path="/Course/*" element={<CourseRoutes />} />
+          <Route path="/Help/*" element={<HelpandSupportRoutes />} />
+          <Route path="/Courses/*" element={<CourseRoutes />} />
           <Route path="/Classteacher/*" element={<ClassTeacher />} />
           <Route path="/" element={<Hero5 />} />
           <Route path="*" element={<div>404 - Not Found</div>} />
@@ -55,6 +56,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/admin/*" element={<AdminRoutes />} />
           </Route>
 
+          <Route path="/gate/*" element={<Home1/>} />
           <Route path="/time" element={<TimeTablePage />} />
           <Route path="/TC/*" element={<TCRoutes />} />
           <Route path="/Student/*" element={<QRRoutes />} />
