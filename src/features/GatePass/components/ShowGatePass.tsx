@@ -22,11 +22,13 @@ interface VisitorEntry {
   whomToMeet: string;
   reason: string;
 }
+const visitorStatuses = ['All', 'Entered', 'Rejected', 'Requested', 'Approved'] as const;
+type VisitorStatus = typeof visitorStatuses[number];
 
 const GatePassVisitorSystem: React.FC = () => {
   const [gatePassFilter, setGatePassFilter] = useState<'All' | 'Pending' | 'Approved'>('All');
-  const [visitorFilter, setVisitorFilter] = useState<'All' | 'Entered' | 'Rejected' | 'Requested' | 'Entered'>('All');
   const [gatePassSearch, setGatePassSearch] = useState('');
+  const [visitorFilter, setVisitorFilter] = useState<VisitorStatus>('All');
   const [visitorSearch, setVisitorSearch] = useState('');
   const [selectedDate, setSelectedDate] = useState('25 July 2023');
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -246,17 +248,17 @@ const GatePassVisitorSystem: React.FC = () => {
 
           <div className="text-sm text-[#1e1e1e] leading-5">
             <div className="flex flex-wrap gap-x-6">
-              <p><strong>Adm No:</strong> {pass.admNo}</p>
-              <p><strong>Class:</strong> {pass.class}</p>
+              {/* <p><strong>Adm No:</strong> {pass.admNo}</p>
+              <p><strong>Class:</strong> {pass.class}</p> */}
               <p><strong>Section:</strong> {pass.section}</p>
               <p><strong>Date:</strong> {pass.date}</p>
               <p><strong>Roll Number:</strong> {pass.rollNumber}</p>
             </div>
 
             <div className="flex flex-wrap gap-x-6 mt-1">
-              <p><strong>Parent's Name:</strong> {pass.parentName}</p>
+              {/* <p><strong>Parent's Name:</strong> {pass.parentName}</p> */}
               <p><strong>Parents Contact:</strong> {pass.parentContact}</p>
-              <p><strong>Parent Approval:</strong> {pass.parentApproval}</p>
+              {/* <p><strong>Parent Approval:</strong> {pass.parentApproval}</p> */}
             </div>
 
             <p className="mt-1">
