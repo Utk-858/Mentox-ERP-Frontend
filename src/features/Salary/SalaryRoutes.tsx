@@ -3,11 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import SalaryLayout from './SalaryLayout';
 import { SalaryProvider } from './context/SalaryContext';
 
+// Lazily import all the pages for this feature
 const SalaryDashboardPage = lazy(() => import('./pages/SalaryDashboardPage'));
 const ProcessSalaryPage = lazy(() => import('./pages/ProcessSalaryPage'));
-const PaySalaryPage = lazy(() => import('./pages/PaySalaryPage'));
-// We no longer import AdvanceSalaryPage
 const SalaryReportPage = lazy(() => import('./pages/SalaryReportPage'));
+const PaySalaryPage = lazy(() => import('./pages/PaySalaryPage'));
+const EditableSalarySlipPage = lazy(() => import('./pages/EditableSalarySlipPage'));
 
 const SalaryRoutes: React.FC = () => {
   return (
@@ -17,9 +18,9 @@ const SalaryRoutes: React.FC = () => {
           <Route element={<SalaryLayout />}>
             <Route index element={<SalaryDashboardPage />} />
             <Route path="process" element={<ProcessSalaryPage />} /> 
-            {/* This is now the ONLY route for all payments */}
-            <Route path="pay/:employeeId" element={<PaySalaryPage />} />
             <Route path="report" element={<SalaryReportPage />} />
+            <Route path="pay/:employeeId/:month" element={<PaySalaryPage />} />
+            <Route path="slip/:employeeId/:month" element={<EditableSalarySlipPage />} />
           </Route>
         </Routes>
       </Suspense>

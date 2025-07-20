@@ -1,21 +1,21 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import SidebarAdmin from '../../components/SidebarAdmin'; // Or your specific sidebar
+// Make sure this path is correct for your project structure
+import SidebarTeacher from '../../components/SidebarTeacher'; 
 
-const SalaryLayout: React.FC = () => {
+const TeacherSalaryLayout: React.FC = () => {
   return (
     <div className="flex min-h-screen"> 
       <aside className="h-screen sticky top-0">
-        <SidebarAdmin activeLabel ="Dashboard"/>
+        <SidebarTeacher activeLabel="Dashboard"/>
       </aside>
       <div className="flex-1 flex flex-col"> 
-        
         <main className="flex-1 p-6">
-          <Outlet /> 
+          <Outlet />
         </main>
       </div>
     </div>
   );
 };
 
-export default SalaryLayout;
+export default TeacherSalaryLayout;

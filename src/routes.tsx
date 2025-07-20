@@ -13,6 +13,7 @@ import EmployeeRoutes from "./features/Employee/EmployeeRoutes.tsx";
 import Profileroutes from "./features/profile/Profileroutes.tsx";
 import Login from "./features/Login/login.tsx";
 import SalaryRoutes from "./features/Salary/SalaryRoutes.tsx";
+import TeacherSalaryRoutes from "./features/Salary/TeacherSalaryRoutes.tsx";
 import AdminRoutes from "./features/Admin/AdminRoutes.tsx";
 import TimeTablePage from "./features/TimeTable/page/TimeTable.tsx";
 import SchoolRoutes from "./features/School/Schoolroutes.tsx";
