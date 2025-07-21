@@ -1,8 +1,9 @@
-import React, { useState, useEffect,useRef } from "react";
-
+import React, { useState, useEffect, useRef } from "react";
 import RequestPermissionModal from "../../Exam Management/components/RequestPermissionModal";
-import {  State, City} from "country-state-city";
-import type { IState, ICity} from "country-state-city"
+import { State, City } from "country-state-city";
+import type { IState, ICity } from "country-state-city";
+import axiosInstance from "@/api/axios"; // ✅ your custom axios instance
+
 interface FormData {
   schoolName: string;
   schoolType: string;
@@ -25,8 +26,9 @@ interface FormData {
   registrationNumber: string;
   recognizedBy: string;
 }
+
 const SchoolDetailsForm: React.FC = () => {
-    const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<FormData>({
     schoolName: "",
     schoolType: "",
     managementType: "",
@@ -48,20 +50,31 @@ const SchoolDetailsForm: React.FC = () => {
     registrationNumber: "",
     recognizedBy: "",
   });
-  const [isEditable, setIsEditable] = useState(false); // allows partial editing
-const [fullPermission, setFullPermission] = useState(false); // allows full editing
 
+  const [isEditable, setIsEditable] = useState(false);
+  const [fullPermission, setFullPermission] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+
   const panFileRef = useRef<HTMLInputElement>(null);
   const gstFileRef = useRef<HTMLInputElement>(null);
 
   const [stateList, setStateList] = useState<IState[]>([]);
-const [cityList, setCityList] = useState<ICity[]>([]);
-  
+  const [cityList, setCityList] = useState<ICity[]>([]);
 
+  // ✅ Fetch school details and states
   useEffect(() => {
-    const indianStates = State.getStatesOfCountry("IN");
-    setStateList(indianStates);
+    const fetchInitialData = async () => {
+      try {
+        const res = await axiosInstance.get("/school-details");
+        setFormData(res.data);
+      } catch (err) {
+        console.error("Error loading school data", err);
+      }
+    };
+
+    const states = State.getStatesOfCountry("IN");
+    setStateList(states);
+    fetchInitialData();
   }, []);
 
   const handleChange =
@@ -75,31 +88,32 @@ const [cityList, setCityList] = useState<ICity[]>([]);
   };
 
   const isEditableForField = (field: keyof FormData) => {
-  const editableWithoutPermission: (keyof FormData)[] = [
-    "recognizedBy",
-    "officialEmail",
-    "website",
-    "primaryPhone",
-    "secondaryPhone",
-    "registrationNumber"
+    const editableFields: (keyof FormData)[] = [
+      "recognizedBy",
+      "officialEmail",
+      "website",
+      "primaryPhone",
+      "secondaryPhone",
+      "registrationNumber",
+    ];
+    return fullPermission || (isEditable && editableFields.includes(field));
+  };
 
-    // Add more fields as needed
-  ];
-  return fullPermission || (isEditable && editableWithoutPermission.includes(field));
-};
-
-
-  
-
-  
   const handlePanUploadClick = () => {
     panFileRef.current?.click();
   };
 
-  const handlePanFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePanFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      console.log("PAN file selected:", file.name);
+      try {
+        const data = new FormData();
+        data.append("file", file);
+        await axiosInstance.post("/upload/pan", data);
+        console.log("✅ PAN uploaded");
+      } catch (err) {
+        console.error("❌ PAN upload failed", err);
+      }
     }
   };
 
@@ -107,16 +121,31 @@ const [cityList, setCityList] = useState<ICity[]>([]);
     gstFileRef.current?.click();
   };
 
-  const handleGstFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleGstFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      console.log("GST file selected:", file.name);
+      try {
+        const data = new FormData();
+        data.append("file", file);
+        await axiosInstance.post("/upload/gstin", data);
+        console.log("✅ GST uploaded");
+      } catch (err) {
+        console.error("❌ GST upload failed", err);
+      }
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // ✅ Save updated form
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    try {
+      const payload = { ...formData };
+      await axiosInstance.put("/school-details", payload);
+      alert("✅ School details updated successfully");
+    } catch (err) {
+      console.error("❌ Failed to save school details", err);
+      alert("Error saving data");
+    }
   };
   return (
     <div className="p-8 w-full  mx-auto rounded-md">

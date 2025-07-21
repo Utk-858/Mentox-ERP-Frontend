@@ -1,36 +1,62 @@
-import React, { useState } from "react";
-import PopupModal from "../components/PopupModal"; // Adjust the path if needed
+import React, { useEffect, useState } from "react";
+import axiosInstance from "@/api/axios"; // Your custom Axios setup
+import PopupModal from "../components/PopupModal";
 
 type DesignationItem = {
+  _id?: string;
   name: string;
   description: string;
   category: "Teaching" | "Non-Teaching";
+  createdOn?: string;
 };
 
 const DesignationTable: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [designations, setDesignations] = useState<DesignationItem[]>([
-    { name: "Principal", description: "School Principal", category: "Non-Teaching" },
-    { name: "PGT", description: "Post Graduate Teacher", category: "Teaching" },
-    { name: "TGT", description: "Trained Graduate Teacher", category: "Teaching" },
-    { name: "Accountant", description: "Handles budgeting and Expenses", category: "Non-Teaching" },
-  ]);
-
+  const [designations, setDesignations] = useState<DesignationItem[]>([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [newDesig, setNewDesig] = useState<Partial<DesignationItem>>({
     name: "",
     description: "",
     category: "Teaching",
   });
-
   const [editIndex, setEditIndex] = useState<number | null>(null);
   const [editedItem, setEditedItem] = useState<DesignationItem | null>(null);
 
-  const handleAddDesignation = () => {
+  const fetchDesignations = async () => {
+    try {
+      const res = await axiosInstance.get("/designations");
+      setDesignations(res.data);
+    } catch (err) {
+      console.error("Fetch error:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchDesignations();
+  }, []);
+
+  const handleAddDesignation = async () => {
     if (!newDesig.name || !newDesig.description || !newDesig.category) return;
-    setDesignations((prev) => [...prev, newDesig as DesignationItem]);
-    setNewDesig({ name: "", description: "", category: "Teaching" });
-    setIsPopupOpen(false);
+
+    const newItem: DesignationItem = {
+      name: newDesig.name,
+      description: newDesig.description,
+      category: newDesig.category,
+      createdOn: new Date().toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      }),
+    };
+
+    try {
+      await axiosInstance.post("/designations", newItem);
+      setNewDesig({ name: "", description: "", category: "Teaching" });
+      setIsPopupOpen(false);
+      fetchDesignations();
+    } catch (err) {
+      console.error("Add error:", err);
+    }
   };
 
   const handleEdit = (idx: number) => {
@@ -38,13 +64,21 @@ const DesignationTable: React.FC = () => {
     setEditedItem({ ...designations[idx] });
   };
 
-  const handleSave = (idx: number) => {
-    if (!editedItem) return;
-    const updated = [...designations];
-    updated[idx] = editedItem;
-    setDesignations(updated);
-    setEditIndex(null);
-    setEditedItem(null);
+  const handleSave = async (_id: number) => {
+    if (!editedItem || !editedItem._id) return;
+
+    try {
+      await axiosInstance.put(`/designations/${editedItem._id}`, {
+        name: editedItem.name,
+        description: editedItem.description,
+        category: editedItem.category,
+      });
+      setEditIndex(null);
+      setEditedItem(null);
+      fetchDesignations();
+    } catch (err) {
+      console.error("Update error:", err);
+    }
   };
 
   const handleCancel = () => {
@@ -52,8 +86,16 @@ const DesignationTable: React.FC = () => {
     setEditedItem(null);
   };
 
-  const handleDelete = (idx: number) => {
-    setDesignations(designations.filter((_, i) => i !== idx));
+  const handleDelete = async (idx: number) => {
+    const id = designations[idx]._id;
+    if (!id) return;
+
+    try {
+      await axiosInstance.delete(`/designations/${id}`);
+      fetchDesignations();
+    } catch (err) {
+      console.error("Delete error:", err);
+    }
   };
 
   const filteredDesignations = designations.filter((item) =>
@@ -65,7 +107,9 @@ const DesignationTable: React.FC = () => {
       <div className="flex justify-between items-center mb-4">
         <div>
           <h2 className="text-[1.5rem] font-[600]">Designations</h2>
-          <p className="text-[0.9rem] font-[400] text-[#363636]">Add Designations</p>
+          <p className="text-[0.9rem] font-[400] text-[#363636]">
+            Add Designations
+          </p>
         </div>
         <div className="flex items-center gap-2">
           <input
@@ -99,7 +143,7 @@ const DesignationTable: React.FC = () => {
               {filteredDesignations.map((item, idx) => {
                 const isEditing = editIndex === idx;
                 return (
-                  <tr key={idx} className="bg-white text-[0.9rem] font-[400]">
+                  <tr key={item._id || idx} className="bg-white text-[0.9rem] font-[400]">
                     <td className="p-2 rounded-l-lg">
                       {isEditing && editedItem ? (
                         <input
@@ -192,7 +236,7 @@ const DesignationTable: React.FC = () => {
         </div>
       </div>
 
-      {/* Modal for Create Designation */}
+      {/* Create Designation Modal */}
       <PopupModal
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
@@ -229,8 +273,7 @@ const DesignationTable: React.FC = () => {
             type: "textarea",
             placeholder: "Brief description",
             value: newDesig.description || "",
-            onChange: (value) =>
-              setNewDesig({ ...newDesig, description: value }),
+            onChange: (value) => setNewDesig({ ...newDesig, description: value }),
             required: true,
           },
         ]}

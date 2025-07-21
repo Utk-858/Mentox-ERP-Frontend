@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import AssignPopup from "../components/AssignModal"; // adjust path
+import React, { useEffect, useState } from "react";
+import AssignPopup from "../components/AssignModal";
+import axiosInstance from "@/api/axios";
 
 interface SubjectRow {
   academicYear: string;
@@ -14,21 +15,24 @@ interface SubjectRow {
 const SubjectAssign: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<"All" | "Not Started" | "Complete">("All");
-  const [rows, setRows] = useState<SubjectRow[]>(
-    Array.from({ length: 10 }, (_, idx) => ({
-      academicYear: "2024–25",
-      classNum: idx + 1,
-      classSections: 3,
-      subjectCount: 5,
-      status: idx === 2 ? "Complete" : "Not Started",
-      showView: idx === 2,
-      isEditing: idx === 2,
-    }))
-  );
-
+  const [rows, setRows] = useState<SubjectRow[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRowIndex, setSelectedRowIndex] = useState<number | null>(null);
   const [viewOnly, setViewOnly] = useState(false);
+
+  // ✅ Fetch data on mount
+  useEffect(() => {
+    const fetchRows = async () => {
+      try {
+        const res = await axiosInstance.get("/subject-assignments"); // adjust route as needed
+        setRows(res.data);
+      } catch (error) {
+        console.error("Error fetching subject assignments:", error);
+      }
+    };
+
+    fetchRows();
+  }, []);
 
   const filteredRows = rows.filter((row) => {
     const matchesSearch = row.classNum.toString().includes(searchQuery.trim());
@@ -49,18 +53,27 @@ const SubjectAssign: React.FC = () => {
   };
 
   const handleAssignComplete = () => {
-    if (selectedRowIndex !== null) {
-      setRows((prev) =>
-        prev.map((row, idx) =>
-          idx === selectedRowIndex ? { ...row, status: "Complete", showView: true, isEditing: true } : row
-        )
-      );
-      handleModalClose();
-    }
-  };
+  if (selectedRowIndex !== null) {
+    const updatedRow: SubjectRow = {
+      ...rows[selectedRowIndex],
+      status: "Complete" as const,
+ // ✅ casting to the correct union type
+      showView: true,
+      isEditing: true,
+    };
+
+    setRows((prev) =>
+      prev.map((row, idx) => (idx === selectedRowIndex ? updatedRow : row))
+    );
+
+    handleModalClose();
+  }
+};
+
 
   return (
     <div className="p-4 bg-[#F5F5F7] rounded-lg shadow mr-8">
+      {/* Search & Filter Header */}
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-[1.5rem] font-[600]">Subjects and Teachers</h2>
@@ -77,7 +90,9 @@ const SubjectAssign: React.FC = () => {
           />
           <select
             value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value as "All" | "Not Started" | "Complete")}
+            onChange={(e) =>
+              setStatusFilter(e.target.value as "All" | "Not Started" | "Complete")
+            }
             className="bg-black text-white px-4 py-2 rounded text-sm"
           >
             <option value="All">All Status</option>
@@ -87,6 +102,7 @@ const SubjectAssign: React.FC = () => {
         </div>
       </div>
 
+      {/* Table Section */}
       <div className="overflow-x-auto">
         <div className="max-h-[490px] overflow-y-auto">
           <table className="w-full text-left border-separate border-spacing-y-2">
@@ -102,16 +118,16 @@ const SubjectAssign: React.FC = () => {
             </thead>
             <tbody>
               {filteredRows.map((row, idx) => {
-                const actualIndex = rows.findIndex(r => r.classNum === row.classNum);
+                const actualIndex = rows.findIndex((r) => r.classNum === row.classNum);
                 return (
                   <tr key={idx} className="bg-white text-[0.9rem] font-[400]">
                     <td className="p-2 rounded-l-lg">{row.academicYear}</td>
                     <td className="p-2">{row.classNum}</td>
                     <td className="p-2">{row.classSections}</td>
                     <td className="p-2">{row.subjectCount}</td>
-                    <td className="p-2 ">
+                    <td className="p-2">
                       <span
-                        className={`text-xs px-3 py-1 rounded-full font-semibold  ${
+                        className={`text-xs px-3 py-1 rounded-full font-semibold ${
                           row.status === "Complete"
                             ? "bg-[#22C55E] text-white"
                             : "bg-[#606060] text-white"
@@ -120,7 +136,7 @@ const SubjectAssign: React.FC = () => {
                         {row.status}
                       </span>
                     </td>
-                    <td className="p-2 rounded-r-lg flex items-center gap-2 ">
+                    <td className="p-2 rounded-r-lg flex items-center gap-2">
                       {row.showView && (
                         <span
                           className="text-[#702DFF] font-medium hover:underline cursor-pointer"
@@ -131,7 +147,7 @@ const SubjectAssign: React.FC = () => {
                       )}
                       <button
                         className={`${
-                          row.isEditing ? "bg-black  text-white" : "bg-[#702DFF] text-white"
+                          row.isEditing ? "bg-black text-white" : "bg-[#702DFF] text-white"
                         } text-sm px-4 py-1 rounded font-semibold`}
                         onClick={() => openModal(actualIndex, false)}
                       >

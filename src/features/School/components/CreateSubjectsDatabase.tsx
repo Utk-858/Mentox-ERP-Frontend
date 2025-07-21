@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axiosInstance from "@/api/axios";
 import SubjectModal from "./SubjectModal";
 
 interface SubjectEntry {
@@ -20,19 +21,21 @@ const CreateSubjectsDatabase: React.FC = () => {
   const [selectedClass, setSelectedClass] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [readOnlyMode, setReadOnlyMode] = useState(false);
+  const [rows, setRows] = useState<SubjectRow[]>([]);
 
-  const [rows, setRows] = useState<SubjectRow[]>([
-    { year: 2024, class: 1, strength: 120, sections: 3 },
-    { year: 2024, class: 2, strength: 120, subjectCount: 5, sections: 3 },
-    { year: 2024, class: 3, strength: 120, subjectCount: 5, sections: 3 },
-    { year: 2024, class: 4, strength: 120, subjectCount: 5, sections: 3 },
-    { year: 2024, class: 5, strength: 120, subjectCount: 5, sections: 3 },
-    { year: 2024, class: 6, strength: 120, subjectCount: 5, sections: 3 },
-    { year: 2024, class: 7, strength: 120, sections: 3 },
-    { year: 2024, class: 8, strength: 120, sections: 3 },
-    { year: 2024, class: 9, strength: 120, sections: 3 },
-    { year: 2024, class: 10, strength: 130, sections: 3 },
-  ]);
+  // ✅ Fetch data from backend
+  const fetchRows = async () => {
+    try {
+      const res = await axiosInstance.get("/subjects-db");
+      setRows(res.data); // assume data is an array of SubjectRow
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchRows();
+  }, []);
 
   const filtered = rows.filter((item) =>
     item.class.toString().includes(searchQuery)
@@ -44,14 +47,29 @@ const CreateSubjectsDatabase: React.FC = () => {
     setShowModal(true);
   };
 
-  const handleSaveSubjects = (classNum: number, subjects: SubjectEntry[]) => {
-    setRows((prev: SubjectRow[]) =>
-      prev.map((item) =>
-        item.class === classNum
-          ? { ...item, subjectCount: subjects.length, subjects }
-          : item
-      )
-    );
+  const handleSaveSubjects = async (classNum: number, subjects: SubjectEntry[]) => {
+    try {
+      const updatedRow = rows.find((item) => item.class === classNum);
+      if (!updatedRow) return;
+
+      const updatedData = {
+        ...updatedRow,
+        subjects,
+        subjectCount: subjects.length,
+      };
+
+      // ✅ Update backend
+      await axiosInstance.put(`/subjects-db/${classNum}`, updatedData);
+
+      // ✅ Update frontend state
+      setRows((prev) =>
+        prev.map((item) =>
+          item.class === classNum ? updatedData : item
+        )
+      );
+    } catch (err) {
+      console.error("Update error:", err);
+    }
   };
 
   return (
@@ -113,6 +131,7 @@ const CreateSubjectsDatabase: React.FC = () => {
         </table>
       </div>
 
+      {/* Subject Modal */}
       {showModal && selectedClass !== null && (
         <SubjectModal
           selectedClass={selectedClass}

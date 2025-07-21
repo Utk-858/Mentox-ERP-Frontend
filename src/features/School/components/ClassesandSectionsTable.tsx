@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddClassModal from "./AddClassModal";
 import AddSectionModal from "./AddSectionModal";
+import axiosInstance from "@/api/axios"; // ✅ imported
 
 type ClassItem = {
   className: string;
@@ -13,33 +14,37 @@ type ClassItem = {
 
 const ClassesAndSectionsTable: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [classes, setClasses] = useState<ClassItem[]>([
-    { className: "1", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
-    { className: "2", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
-    { className: "3", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
-    { className: "4", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
-    { className: "5", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
-    { className: "6", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
-    { className: "7", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
-    { className: "8", numOfSections: "3", totalSeats: "50", createdOn: "2 Jun 2025" },
-  ]);
+  const [classes, setClasses] = useState<ClassItem[]>([]);
   const [isSectionModalOpen, setIsSectionModalOpen] = useState(false);
   const [currentClass, setCurrentClass] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedClass, setSelectedClass] = useState("");
 
-  const handleCreateClass = () => {
-  if (!selectedClass) return;
+  // ✅ Fetch all classes
+  useEffect(() => {
+    const fetchClasses = async () => {
+      try {
+        const res = await axiosInstance.get("/classes");
+        setClasses(res.data);
+      } catch (error) {
+        console.error("Error fetching classes:", error);
+      }
+    };
 
-  const isDuplicate = classes.some(cls => cls.className === selectedClass);
-  if (isDuplicate) {
-    alert(`Class "${selectedClass}" already exists.`);
-    return;
-  }
+    fetchClasses();
+  }, []);
 
-  setClasses((prev) => [
-    ...prev,
-    {
+  // ✅ Add new class
+  const handleCreateClass = async () => {
+    if (!selectedClass) return;
+
+    const isDuplicate = classes.some((cls) => cls.className === selectedClass);
+    if (isDuplicate) {
+      alert(`Class "${selectedClass}" already exists.`);
+      return;
+    }
+
+    const newClass: ClassItem = {
       className: selectedClass,
       numOfSections: "-",
       totalSeats: "-",
@@ -48,27 +53,75 @@ const ClassesAndSectionsTable: React.FC = () => {
         month: "short",
         year: "numeric",
       }),
-    },
-  ]);
-  setSelectedClass("");
-  setIsModalOpen(false);
+    };
+
+    try {
+      await axiosInstance.post("/classes", newClass);
+      setClasses((prev) => [...prev, newClass]);
+      setSelectedClass("");
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error creating class:", error);
+    }
+  };
+
+  const handleUpdateClass = async <K extends keyof ClassItem>(
+  idx: number,
+  field: K,
+  value: ClassItem[K]
+) => {
+  const updated = [...classes];
+  updated[idx][field] = value;
+
+  try {
+    await axiosInstance.put(`/classes/${updated[idx].className}`, updated[idx]);
+    setClasses(updated);
+  } catch (error) {
+    console.error("Error updating class:", error);
+  }
 };
 
 
+  // ✅ Toggle edit
   const handleEditToggle = (idx: number) => {
     setClasses((prev) =>
       prev.map((cls, i) => (i === idx ? { ...cls, isEditing: !cls.isEditing } : cls))
     );
   };
 
-  const handleUpdateClass = (idx: number, field: keyof ClassItem, value: string) => {
-    setClasses((prev) =>
-      prev.map((cls, i) => (i === idx ? { ...cls, [field]: value } : cls))
-    );
+  // ✅ Delete class
+  const handleDeleteClass = async (idx: number) => {
+    const className = classes[idx].className;
+    try {
+      await axiosInstance.delete(`/classes/${className}`);
+      setClasses((prev) => prev.filter((_, i) => i !== idx));
+    } catch (error) {
+      console.error("Error deleting class:", error);
+    }
   };
 
-  const handleDeleteClass = (idx: number) => {
-    setClasses((prev) => prev.filter((_, i) => i !== idx));
+  // ✅ Save section data
+  const handleSaveSections = async (sections: { name: string; capacity: number }[]) => {
+    const updated = classes.map((cls) =>
+      cls.className === currentClass
+        ? {
+            ...cls,
+            sections,
+            numOfSections: sections.length.toString(),
+            totalSeats: sections.reduce((sum, s) => sum + s.capacity, 0).toString(),
+          }
+        : cls
+    );
+
+    try {
+      await axiosInstance.patch(`/classes/${currentClass}/sections`, {
+        sections,
+      });
+      setClasses(updated);
+      setIsSectionModalOpen(false);
+    } catch (error) {
+      console.error("Error saving sections:", error);
+    }
   };
 
   const filteredClasses = classes.filter((cls) =>
@@ -196,26 +249,13 @@ const ClassesAndSectionsTable: React.FC = () => {
         onSelectClass={setSelectedClass}
       />
       <AddSectionModal
-        isOpen={isSectionModalOpen}
-        onClose={() => setIsSectionModalOpen(false)}
-        className={currentClass}
-        academicYear="2024–25"
-        onSaveSections={(sections) => {
-          setClasses((prev) =>
-            prev.map((cls) =>
-              cls.className === currentClass
-                ? {
-                    ...cls,
-                    sections: sections,
-                    numOfSections: sections.length.toString(),
-                    totalSeats: sections.reduce((sum, sec) => sum + sec.capacity, 0).toString(),
-                  }
-                : cls
-            )
-          );
-          setIsSectionModalOpen(false);
-        }}
-      />
+  isOpen={isSectionModalOpen}
+  onClose={() => setIsSectionModalOpen(false)}
+  className={currentClass}
+  academicYear="2024–25"
+  onSaveSections={handleSaveSections}
+/>
+
     </div>
   );
 };

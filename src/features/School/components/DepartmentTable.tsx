@@ -1,56 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axiosInstance from "@/api/axios";
 import PopupModal from "../components/PopupModal";
 
 type DepartmentItem = {
+  _id?: string;
   name: string;
   description: string;
   createdOn: string;
 };
 
 const DepartmentTable: React.FC = () => {
+  const [departments, setDepartments] = useState<DepartmentItem[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [departments, setDepartments] = useState<DepartmentItem[]>([
-    {
-      name: "Academics",
-      description: "Manages curriculum, teaching, and student performance.",
-      createdOn: "01-June-2024",
-    },
-    {
-      name: "Administration",
-      description: "Oversees daily operations and institutional coordination.",
-      createdOn: "01-June-2024",
-    },
-    {
-      name: "Librarian",
-      description: "Provides access to books, resources, and research support.",
-      createdOn: "01-June-2024",
-    },
-    {
-      name: "Finance",
-      description: "Handles budgeting, expenses, and financial planning.",
-      createdOn: "01-June-2024",
-    },
-    {
-      name: "HR",
-      description: "Manages hiring, payroll, and employee wellbeing.",
-      createdOn: "01-June-2024",
-    },
-    {
-      name: "IT",
-      description: "Handles infrastructure, networking, and support.",
-      createdOn: "01-June-2024",
-    },
-  ]);
-
-  const [editIndex, setEditIndex] = useState<number | null>(null);
-  const [editedItem, setEditedItem] = useState<DepartmentItem | null>(null);
-
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [newDeptName, setNewDeptName] = useState("");
   const [newDeptDesc, setNewDeptDesc] = useState("");
+  const [editIndex, setEditIndex] = useState<number | null>(null);
+  const [editedItem, setEditedItem] = useState<DepartmentItem | null>(null);
 
-  const handleAdd = () => {
+  const fetchDepartments = async () => {
+    try {
+      const res = await axiosInstance.get("http://localhost:5000/api/departments");
+      setDepartments(res.data);
+    } catch (err) {
+      console.error("Fetch error:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchDepartments();
+  }, []);
+
+  const handleAdd = async () => {
     if (!newDeptName || !newDeptDesc) return;
+
     const newDept: DepartmentItem = {
       name: newDeptName,
       description: newDeptDesc,
@@ -60,15 +43,26 @@ const DepartmentTable: React.FC = () => {
         year: "numeric",
       }),
     };
-    setDepartments([...departments, newDept]);
-    setNewDeptName("");
-    setNewDeptDesc("");
-    setIsPopupOpen(false);
+
+    try {
+      await axiosInstance.post("http://localhost:5000/api/departments", newDept);
+      setNewDeptName("");
+      setNewDeptDesc("");
+      setIsPopupOpen(false);
+      fetchDepartments();
+    } catch (err) {
+      console.error("Add error:", err);
+    }
   };
 
-  const handleDelete = (index: number) => {
-    const updated = departments.filter((_, i) => i !== index);
-    setDepartments(updated);
+  const handleDelete = async (id: string | undefined) => {
+    if (!id) return;
+    try {
+      await axiosInstance.delete(`http://localhost:5000/api/departments/${id}`);
+      fetchDepartments();
+    } catch (err) {
+      console.error("Delete error:", err);
+    }
   };
 
   const handleEdit = (index: number) => {
@@ -76,13 +70,21 @@ const DepartmentTable: React.FC = () => {
     setEditedItem(departments[index]);
   };
 
-  const handleSaveEdit = (index: number) => {
-    if (!editedItem) return;
-    const updated = [...departments];
-    updated[index] = editedItem;
-    setDepartments(updated);
-    setEditIndex(null);
-    setEditedItem(null);
+  const handleSaveEdit = async (index: number) => {
+    const item = departments[index];
+    if (!editedItem || !item._id) return;
+
+    try {
+      await axiosInstance.put(`http://localhost:5000/api/departments/${item._id}`, {
+        name: editedItem.name,
+        description: editedItem.description,
+      });
+      setEditIndex(null);
+      setEditedItem(null);
+      fetchDepartments();
+    } catch (err) {
+      console.error("Edit error:", err);
+    }
   };
 
   const filteredDepartments = departments.filter((dept) =>
@@ -130,7 +132,7 @@ const DepartmentTable: React.FC = () => {
               {filteredDepartments.map((item, idx) => {
                 const isEditing = editIndex === idx;
                 return (
-                  <tr key={idx} className="bg-white text-[0.9rem] font-[400]">
+                  <tr key={item._id || idx} className="bg-white text-[0.9rem] font-[400]">
                     <td className="p-2 rounded-l-lg">
                       {isEditing && editedItem ? (
                         <input
@@ -190,7 +192,7 @@ const DepartmentTable: React.FC = () => {
                           </button>
                           <button
                             className="bg-[#FFE3E3] px-3 py-1 rounded"
-                            onClick={() => handleDelete(idx)}
+                            onClick={() => handleDelete(item._id)}
                           >
                             Delete
                           </button>
@@ -214,7 +216,7 @@ const DepartmentTable: React.FC = () => {
         fields={[
           {
             label: "Department Name",
-            placeholder: "eg:, Academics, Administration",
+            placeholder: "e.g., Academics, HR",
             type: "input",
             required: true,
             name: "name",
@@ -223,7 +225,7 @@ const DepartmentTable: React.FC = () => {
           },
           {
             label: "Description",
-            placeholder: "Brief description of the department",
+            placeholder: "Brief description",
             type: "textarea",
             required: true,
             name: "description",
