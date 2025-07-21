@@ -106,10 +106,6 @@ const TeacherPersonalDetailsForm: React.FC<Props> = ({ formData, setFormData }) 
         <SectionTitle>Current Address Details</SectionTitle>
         <FormInput label="Address Line 1" id="currentAddressLine1" name="line1" value={formData.currentAddress.line1} onChange={(e) => handleAddressChange('currentAddress', e)} required />
         <FormInput label="Address Line 2" id="currentAddressLine2" name="line2" value={formData.currentAddress.line2} onChange={(e) => handleAddressChange('currentAddress', e)} />
-        <FormInput label="City" id="currentCity" name="city" value={formData.currentAddress.city} onChange={(e) => handleAddressChange('currentAddress', e)} required />
-        <FormInput label="State/Province" id="currentState" name="state" value={formData.currentAddress.state} onChange={(e) => handleAddressChange('currentAddress', e)} required />
-        <FormInput label="Country" id="currentCountry" name="country" value={formData.currentAddress.country} onChange={(e) => handleAddressChange('currentAddress', e)} required />
-        <FormInput label="Pincode" id="currentPincode" name="pincode" value={formData.currentAddress.pincode} onChange={(e) => handleAddressChange('currentAddress', e)} required />
       </section>
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
@@ -123,10 +119,6 @@ const TeacherPersonalDetailsForm: React.FC<Props> = ({ formData, setFormData }) 
         <div className="lg:col-span-3 border-b border-gray-200 " />
         <FormInput label="Address Line 1" id="permanentAddressLine1" name="line1" value={formData.isPermanentSameAsCurrent ? formData.currentAddress.line1 : formData.permanentAddress.line1} onChange={(e) => handleAddressChange('permanentAddress', e)} required disabled={formData.isPermanentSameAsCurrent}/>
         <FormInput label="Address Line 2" id="permanentAddressLine2" name="line2" value={formData.isPermanentSameAsCurrent ? formData.currentAddress.line2 : formData.permanentAddress.line2} onChange={(e) => handleAddressChange('permanentAddress', e)} disabled={formData.isPermanentSameAsCurrent} />
-        <FormInput label="City" id="permanentCity" name="city" value={formData.isPermanentSameAsCurrent ? formData.currentAddress.city : formData.permanentAddress.city} onChange={(e) => handleAddressChange('permanentAddress', e)} required disabled={formData.isPermanentSameAsCurrent} />
-        <FormInput label="State/Province" id="permanentState" name="state" value={formData.isPermanentSameAsCurrent ? formData.currentAddress.state : formData.permanentAddress.state} onChange={(e) => handleAddressChange('permanentAddress', e)} required disabled={formData.isPermanentSameAsCurrent} />
-        <FormInput label="Country" id="permanentCountry" name="country" value={formData.isPermanentSameAsCurrent ? formData.currentAddress.country : formData.permanentAddress.country} onChange={(e) => handleAddressChange('permanentAddress', e)} required disabled={formData.isPermanentSameAsCurrent} />
-        <FormInput label="Pincode" id="permanentPincode" name="pincode" value={formData.isPermanentSameAsCurrent ? formData.currentAddress.pincode : formData.permanentAddress.pincode} onChange={(e) => handleAddressChange('permanentAddress', e)} required disabled={formData.isPermanentSameAsCurrent} />
       </section>
     </div>
   );

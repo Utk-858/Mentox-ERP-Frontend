@@ -20,7 +20,7 @@ const ViewPersonalDetails: React.FC<Props> = ({ data }) => {
 
   // Helper to format the full address for display
   const formatAddress = (address: TeacherPersonalDetails['currentAddress']) => {
-      return `${address.line1}, ${address.line2}, ${address.city}, ${address.state} - ${address.pincode}, ${address.country}`;
+      return `${address.line1}, ${address.line2}`;
   };
 
   return (
