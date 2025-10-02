@@ -1,3 +1,4 @@
+/// <reference path="./shared/types/express.d.ts" />
 import app from './app';
 import config from './config';
 import connectDB from './config/database';

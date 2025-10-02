@@ -11,7 +11,7 @@ export const registerSchema = z.object({
     password: requiredString('Password is required').min(6, 'Password must be at least 6 characters long'),
     // Ensures the role provided is one of the valid, predefined roles
     role: z.enum(AllRoles, {
-      errorMap: () => ({ message: 'A valid role must be provided.' }),
+      message: 'A valid role must be provided.',
     }),
     department: z.string().optional(),
   }),

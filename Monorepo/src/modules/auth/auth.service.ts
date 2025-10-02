@@ -1,10 +1,10 @@
-import jwt from 'jsonwebtoken';
+import jwt, { Secret, SignOptions } from "jsonwebtoken";
 import { IUser, IUserDocument, UserPayload, UserRole } from './auth.types';
 import UserModel from './user.model';
 import config from '../../config';
 import { RolePermissionsMap } from '../../config/role-permissions.map';
 import logger from '../../shared/utils/logger';
-
+import { StringValue } from "ms";
 class AuthService {
   public async registerUser(userData: Omit<IUser, 'permissions'>): Promise<IUserDocument> {
     const { username, password, role, department } = userData;
@@ -37,7 +37,7 @@ class AuthService {
     }
     const user = new UserModel({ username, password, role: 'Student' });
     await user.save();
-    
+
     logger.info({ userId: (user._id as any).toHexString(), username }, 'Student registered successfully');
     return user;
   }
@@ -65,50 +65,55 @@ class AuthService {
     };
     const accessToken = this.generateAccessToken(userPayload);
     const refreshToken = this.generateRefreshToken(userPayload);
-    
+
     logger.info({ userId: (user._id as any).toHexString(), username }, 'User logged in successfully');
     return { accessToken, refreshToken, user: userPayload };
   }
 
   public generateAccessToken(payload: UserPayload): string {
-    const secret = config.jwt.accessTokenSecret;
+    const secret: Secret = config.jwt.accessTokenSecret || "";
     if (!secret) {
-        logger.error('CRITICAL: Access token secret is not configured!');
-        throw new Error('Access token secret is not configured!');
+      logger.error("CRITICAL: Access token secret is not configured!");
+      throw new Error("Access token secret is not configured!");
     }
 
     const tokenPayload = {
-        _id: payload._id,
-        username: payload.username,
-        role: payload.role,
-        department: payload.department,
-        permissions: payload.permissions
+      _id: payload._id,
+      username: payload.username,
+      role: payload.role,
+      department: payload.department,
+      permissions: payload.permissions,
     };
 
-    return jwt.sign(tokenPayload, secret, {
-      expiresIn: config.jwt.accessTokenExpiresIn,
-    });
+    const options: SignOptions = {
+      expiresIn: config.jwt.accessTokenExpiresIn as StringValue,
+    };
+
+    return jwt.sign(tokenPayload, secret, options);
   }
 
   public generateRefreshToken(payload: UserPayload): string {
-    const secret = config.jwt.refreshTokenSecret;
+    const secret: Secret = config.jwt.refreshTokenSecret || "";
     if (!secret) {
-        logger.error('CRITICAL: Refresh token secret is not configured!');
-        throw new Error('Refresh token secret is not configured!');
+      logger.error("CRITICAL: Refresh token secret is not configured!");
+      throw new Error("Refresh token secret is not configured!");
     }
 
-     const tokenPayload = {
-        _id: payload._id,
-        username: payload.username,
-        role: payload.role,
-        department: payload.department,
-        permissions: payload.permissions
+    const tokenPayload = {
+      _id: payload._id,
+      username: payload.username,
+      role: payload.role,
+      department: payload.department,
+      permissions: payload.permissions,
     };
 
-    return jwt.sign(tokenPayload, secret, {
-      expiresIn: config.jwt.refreshTokenExpiresIn,
-    });
+    const options: SignOptions = {
+      expiresIn: config.jwt.refreshTokenExpiresIn as StringValue,
+    };
+
+    return jwt.sign(tokenPayload, secret, options);
   }
+
 
   public verifyRefreshToken(token: string): UserPayload {
     try {

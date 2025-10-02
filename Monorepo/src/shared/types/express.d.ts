@@ -1,4 +1,4 @@
-import { UserPayload } from '../../../modules/auth/auth.types';
+import { UserPayload } from '../../modules/auth/auth.types';
 
 // This file uses declaration merging to add a custom 'user' property
 // to the global Express Request interface. This allows us to attach

@@ -1,8 +1,11 @@
 import dotenv from 'dotenv';
 import path from 'path';
+import { Secret} from "jsonwebtoken";
 
 // Load .env file from the root directory
-dotenv.config({ path: path.join(__dirname, '../../.env') });
+dotenv.config({ path: path.join(__dirname, '../../.env') 
+
+});
 
 // Helper function to safely get environment variables
 const getEnv = (key: string, defaultValue?: string): string => {
